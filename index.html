@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2308172E'/><path d='M8 10h16M16 10v12c0 3-2 4-5 4' stroke='%231685FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JAZ COMPUTER | Technology, Built Around You | Tenkasi, Tamil Nadu</title>
+    <meta name="description" content="JAZ COMPUTER - Premium Computer Sales, Chip-Level Laptop & Desktop Repairs, CCTV Security Solutions & IT Support in Tenkasi. Hikvision Authorised Sub-Regional Distributor." />
+    <meta name="keywords" content="Jaz Computer, Tenkasi, Hikvision distributor, CCTV installation, laptop repair, desktop sales, antivirus, printers, networking solutions, IT support Tenkasi" />
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="JAZ COMPUTER | Technology, Built Around You" />
+    <meta property="og:description" content="Premium Computer Sales, CCTV Solutions & IT Services in Tenkasi. Hikvision Authorised Sub-Regional Distributor." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+      // Prevent dark mode flashing
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-slate-50 text-slate-800 dark:bg-brand-navy-dark dark:text-brand-silver font-sans antialiased transition-colors duration-300 min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
