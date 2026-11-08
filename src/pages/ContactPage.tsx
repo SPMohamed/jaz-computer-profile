@@ -5,15 +5,16 @@ import { COMPANY_INFO } from '../data/company';
 import { 
   MapPin, 
   Phone, 
+  MessageSquare, 
   Mail, 
   Clock, 
-  MessageSquare, 
-  ExternalLink, 
+  ArrowUpRight, 
   Send, 
   CheckCircle2, 
-  ShieldCheck,
-  HelpCircle,
-  Sparkles
+  Shield,
+  Sparkles,
+  Terminal,
+  ExternalLink
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -24,354 +25,261 @@ interface ContactPageProps {
 export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenEnquiry }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [serviceCategory, setServiceCategory] = useState('CCTV Installation & Site Survey');
+  const [category, setCategory] = useState('Hardware Sales & Pricing');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const waText = encodeURIComponent(
-      `*New Contact Enquiry - JAZ COMPUTER Website*\n` +
+      `*New Contact Message - JAZ COMPUTER*\n` +
       `• Name: ${name}\n` +
       `• Phone: ${phone}\n` +
-      `• Email: ${email || 'Not provided'}\n` +
-      `• Category: ${serviceCategory}\n` +
-      `• Requirement: ${message}`
+      `• Topic: ${category}\n` +
+      `• Details: ${message}`
     );
     window.open(`https://wa.me/${COMPANY_INFO.whatsapp}?text=${waText}`, '_blank');
     setSubmitted(true);
   };
 
-  const FAQS = [
-    {
-      q: 'Do you provide free on-site CCTV inspection in Tenkasi?',
-      a: 'Yes, our certified surveillance technicians conduct on-site inspections for homes, commercial shops, textile mills, schools, and agricultural estates to determine ideal camera angles, lens focal lengths, and cabling paths before quoting.'
-    },
-    {
-      q: 'Are the desktop components and software licenses 100% genuine?',
-      a: 'Absolutely. We source genuine branded parts from authorized national distributors. All Microsoft Windows, Office, and Antivirus (Quick Heal, McAfee, eScan, VibraNium) products come with authentic activation licenses and manufacturer warranties.'
-    },
-    {
-      q: 'How fast can you repair a laptop motherboard or screen?',
-      a: 'Common screen and keyboard replacements are typically completed within 2 to 4 hours. Delicate chip-level micro-soldering, liquid spill recovery, or BGA rework typically takes 24 to 48 hours for thorough diagnostics and burn-in stress testing.'
-    },
-    {
-      q: 'Do you offer Annual Maintenance Contracts (AMC) for businesses and institutions?',
-      a: 'Yes. We manage corporate AMCs covering regular monthly hardware checkups, printer maintenance, automated data backups, network troubleshooting, and priority emergency response for offices, accounting firms, and clinics in Tenkasi.'
-    }
-  ];
-
   return (
-    <div className="space-y-16 pb-20">
-      {/* Page Hero Header */}
+    <div className="space-y-16 pb-24 text-white">
+      {/* Page Header */}
       <PageHeader
         title="Contact JAZ COMPUTER"
-        subtitle="Visit our store on West Car Street, Tenkasi or get immediate technical assistance via phone call and WhatsApp."
-        tamilSubtitle="எங்களைத் தொடர்பு கொள்ள · நேரடி அழைப்பு, வாட்ஸ்அப் அல்லது கடைக்கு வருகை தாருங்கள்."
-        badge="Tenkasi Store & Lab"
+        subtitle="Visit our store at West Car Street, Tenkasi or get immediate technical consultation via direct phone call or WhatsApp."
+        label="Store & Technical Desk"
         currentPage="contact"
         onNavigate={onNavigate}
-        onOpenEnquiry={() => onOpenEnquiry('Direct Contact Page Form')}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
-        {/* Contact Info Cards Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
+        {/* Contact Info Cyber Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Address Card */}
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue flex items-center justify-center">
-              <MapPin className="w-6 h-6" />
+          {/* Address */}
+          <div className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-neon-cyan/50 transition-all duration-300 space-y-3 group shadow-xl">
+            <div className="w-10 h-10 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan flex items-center justify-center">
+              <MapPin className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Store & Service Lab
+            <h3 className="text-base font-bold font-display text-white group-hover:text-neon-cyan transition-colors">
+              Store & Service Desk
             </h3>
-            <p className="text-xs text-slate-600 dark:text-brand-silver leading-relaxed">
-              <strong>JAZ COMPUTER</strong><br />
-              {COMPANY_INFO.address}<br />
-              Tenkasi - {COMPANY_INFO.postalCode}<br />
-              {COMPANY_INFO.state}, India
+            <p className="text-xs text-neon-grey leading-relaxed font-light">
+              {COMPANY_INFO.address}, Tenkasi - {COMPANY_INFO.postalCode}, {COMPANY_INFO.state}
             </p>
             <div className="pt-2">
               <a
                 href={COMPANY_INFO.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue hover:text-brand-blue-hover"
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-neon-cyan hover:underline"
               >
-                <span>Open in Google Maps</span>
-                <ExternalLink className="w-3 h-3" />
+                <span>Open Google Maps</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
-          {/* Phone Call Card */}
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-sky-500/10 text-brand-blue flex items-center justify-center">
-              <Phone className="w-6 h-6" />
+          {/* Direct Phone Line */}
+          <div className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-neon-magenta/50 transition-all duration-300 space-y-3 group shadow-xl">
+            <div className="w-10 h-10 rounded-xl bg-neon-magenta/10 border border-neon-magenta/30 text-neon-magenta flex items-center justify-center">
+              <Phone className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Phone Consultation
+            <h3 className="text-base font-bold font-display text-white group-hover:text-neon-magenta transition-colors">
+              Direct Phone Line
             </h3>
-            <p className="text-xs text-slate-600 dark:text-brand-silver leading-relaxed">
-              Speak directly with our senior hardware technician for service status, pricing, or emergency support.
+            <p className="text-xs text-neon-grey leading-relaxed font-light">
+              Direct technical and sales assistance during store business hours.
             </p>
             <div className="pt-2">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-brand-blue hover:bg-brand-blue-hover shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-bold bg-white text-black hover:bg-neon-magenta hover:text-white transition-all shadow-[0_0_15px_rgba(217,0,255,0.2)]"
               >
-                <Phone className="w-3 h-3" />
                 <span>Call {COMPANY_INFO.phoneDisplay}</span>
               </a>
             </div>
           </div>
 
-          {/* WhatsApp Card */}
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-              <MessageSquare className="w-6 h-6" />
+          {/* WhatsApp Direct */}
+          <div className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-emerald-500/50 transition-all duration-300 space-y-3 group shadow-xl">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center">
+              <MessageSquare className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
+            <h3 className="text-base font-bold font-display text-white group-hover:text-emerald-400 transition-colors">
               WhatsApp Support
             </h3>
-            <p className="text-xs text-slate-600 dark:text-brand-silver leading-relaxed">
-              Send photos of faulty screens, error messages, or camera locations for an instant diagnostic estimate.
+            <p className="text-xs text-neon-grey leading-relaxed font-light">
+              Send fault photos, hardware specs, or site location pins for rapid response.
             </p>
             <div className="pt-2">
               <a
                 href={COMPANY_INFO.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]"
               >
-                <MessageSquare className="w-3 h-3" />
                 <span>Chat: {COMPANY_INFO.whatsappDisplay}</span>
               </a>
             </div>
           </div>
 
-          {/* Working Hours Card */}
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
-              <Clock className="w-6 h-6" />
+          {/* Store Hours */}
+          <div className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-amber-400/50 transition-all duration-300 space-y-3 group shadow-xl">
+            <div className="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-400 flex items-center justify-center">
+              <Clock className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Working Hours
+            <h3 className="text-base font-bold font-display text-white group-hover:text-amber-400 transition-colors">
+              Store Timings
             </h3>
-            <div className="text-xs text-slate-600 dark:text-brand-silver space-y-1">
-              <p><strong>Mon – Sat:</strong> 9:30 AM – 9:00 PM</p>
-              <p><strong>Sunday:</strong> On-Call IT & CCTV Emergency Support</p>
-            </div>
-            <div className="pt-2 text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              Open for Walk-In Inquiries
+            <div className="text-xs text-neon-grey space-y-1 font-mono font-light">
+              <p><strong>{COMPANY_INFO.workingHours.weekdays}</strong></p>
+              <p className="text-amber-400/80">{COMPANY_INFO.workingHours.sunday}</p>
             </div>
           </div>
         </div>
 
-        {/* Contact Form & Google Map Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Enquiry Form */}
-          <div className="lg:col-span-6 bg-white dark:bg-brand-navy-card rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
-            <div className="space-y-1 border-b border-slate-100 dark:border-slate-800 pb-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-                Quick Enquiry & Service Ticket
-              </span>
-              <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white">
-                Send Us a Message
+        {/* Contact Form & Google Map Container */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          {/* Cyber Terminal Form (Left) */}
+          <div className="lg:col-span-6 bg-[#160826]/90 p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-neon-magenta font-bold">
+                <Terminal className="w-3.5 h-3.5" />
+                <span>Command Terminal</span>
+              </div>
+              <h3 className="text-2xl font-black font-display text-white">
+                Transmit an Inquiry
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Submit your inquiry and we will respond immediately during standard store hours.
-              </p>
             </div>
 
             {submitted ? (
-              <div className="p-8 text-center space-y-4 bg-emerald-50 dark:bg-brand-navy rounded-2xl border border-emerald-200 dark:border-emerald-900/50">
-                <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto" />
-                <h4 className="text-lg font-bold text-slate-900 dark:text-white font-display">
-                  Enquiry Dispatched Successfully!
+              <div className="p-8 rounded-2xl bg-white/[0.04] border border-neon-cyan/40 text-center space-y-4 animate-in fade-in">
+                <div className="w-12 h-12 rounded-full bg-neon-cyan/20 border border-neon-cyan text-neon-cyan mx-auto flex items-center justify-center">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <h4 className="text-lg font-bold font-display text-white">
+                  Transmission Dispatched
                 </h4>
-                <p className="text-xs text-slate-600 dark:text-brand-silver">
-                  Your message has been formatted and directed to our WhatsApp line. Our technical team in Tenkasi will review your requirements.
+                <p className="text-xs text-neon-grey font-light">
+                  Your inquiry details have been forwarded to our Tenkasi WhatsApp business desk. Our team will review and reply promptly.
                 </p>
                 <button
+                  type="button"
                   onClick={() => setSubmitted(false)}
-                  className="px-4 py-2 rounded-xl text-xs font-bold text-brand-blue border border-brand-blue/30"
+                  className="px-6 py-2.5 rounded-full text-xs font-mono font-bold bg-white/10 hover:bg-white/20 text-white transition-colors"
                 >
                   Send Another Message
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-brand-silver mb-1">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="e.g. Ramesh Kumar"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-brand-navy text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-brand-silver mb-1">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="e.g. 98946 68866"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-brand-navy text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-brand-silver mb-1">
-                      Email Address (Optional)
-                    </label>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="e.g. customer@gmail.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-brand-navy text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-brand-silver mb-1">
-                      Inquiry Category *
-                    </label>
-                    <select
-                      value={serviceCategory}
-                      onChange={(e) => setServiceCategory(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-brand-navy text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue"
-                    >
-                      <option value="CCTV Installation & Site Survey">CCTV Installation & Site Survey</option>
-                      <option value="Hikvision Sub-Regional Distributor Supply">Hikvision Distributor Supply</option>
-                      <option value="Laptop Chip-Level Repair">Laptop Chip-Level Repair</option>
-                      <option value="Desktop Computer Sales / Custom Build">Desktop Computer Sales / Custom Build</option>
-                      <option value="Printer Service & Cartridges">Printer Service & Cartridges</option>
-                      <option value="Smart LED TV Service">Smart LED TV Service</option>
-                      <option value="Licensed Software / Antivirus">Licensed Software / Antivirus</option>
-                      <option value="Corporate IT AMC & Networking">Corporate IT AMC & Networking</option>
-                    </select>
-                  </div>
-                </div>
-
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-brand-silver mb-1">
-                    Describe Your Requirement or Issue *
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neon-grey mb-1.5 font-bold">
+                    Full Name *
                   </label>
-                  <textarea
-                    rows={4}
+                  <input
+                    type="text"
                     required
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Provide details about your hardware model, fault symptoms, number of CCTV cameras required, or location in Tenkasi..."
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-brand-navy text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue resize-none"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your name"
+                    className="w-full px-4 py-3 rounded-xl border border-white/10 bg-[#10051F] text-white placeholder-neon-grey/40 text-xs focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all font-mono"
                   />
                 </div>
 
-                <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <span className="text-[11px] text-slate-500">
-                    Dispatched directly to WhatsApp support
-                  </span>
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs font-bold text-white bg-brand-blue hover:bg-brand-blue-hover transition-all shadow-glow-blue"
-                  >
-                    <span>Submit & Open WhatsApp</span>
-                    <Send className="w-3.5 h-3.5" />
-                  </button>
+                <div>
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neon-grey mb-1.5 font-bold">
+                    Phone / WhatsApp Number *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+91 98765 43210"
+                    className="w-full px-4 py-3 rounded-xl border border-white/10 bg-[#10051F] text-white placeholder-neon-grey/40 text-xs focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all font-mono"
+                  />
                 </div>
+
+                <div>
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neon-grey mb-1.5 font-bold">
+                    Inquiry Requirement
+                  </label>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-white/10 bg-[#10051F] text-white text-xs focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all font-mono"
+                  >
+                    <option value="Hardware Sales & Custom PC">Hardware Sales & Custom PC</option>
+                    <option value="Desktop or Laptop Service">Desktop or Laptop Service</option>
+                    <option value="CCTV Installation & Site Survey">CCTV Installation & Site Survey</option>
+                    <option value="CCTV Equipment & Multi-Camera Setup">CCTV Equipment & Multi-Camera Setup</option>
+                    <option value="Printer / LED TV Diagnostics">Printer / LED TV Diagnostics</option>
+                    <option value="Structured Networking / IT Support">Structured Networking / IT Support</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neon-grey mb-1.5 font-bold">
+                    Project Details / Symptoms
+                  </label>
+                  <textarea
+                    rows={4}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Describe configuration specs, camera count, printer model or required service..."
+                    className="w-full px-4 py-3 rounded-xl border border-white/10 bg-[#10051F] text-white placeholder-neon-grey/40 text-xs focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all font-mono"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-3.5 rounded-full text-xs font-bold text-black bg-gradient-to-r from-neon-cyan to-neon-magenta hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-glow-combo"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Transmit to WhatsApp Desk</span>
+                </button>
               </form>
             )}
           </div>
 
-          {/* Google Maps & Landmark Information */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="bg-white dark:bg-brand-navy-card rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-                    Verified Google Maps Location
-                  </span>
-                  <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white">
-                    Find Us on West Car Street
-                  </h3>
-                </div>
+          {/* Interactive Google Map Visual (Right) */}
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+            <div className="relative rounded-3xl overflow-hidden border border-white/10 h-full min-h-[380px] bg-[#10051F] shadow-2xl group">
+              <iframe
+                title="JAZ COMPUTER Tenkasi Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.874052028886!2d77.3005391!3d8.9592237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0429c669149021%3A0xeae06cce7d57367c!2sJaz%20Computer!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                className="w-full h-full min-h-[380px] border-0 filter grayscale-[0.8] contrast-[1.2] invert-[0.9] opacity-80 group-hover:opacity-100 transition-opacity"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
 
-                <a
-                  href={COMPANY_INFO.googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-blue/10 text-brand-blue hover:bg-brand-blue hover:text-white transition-colors flex items-center gap-1"
-                >
-                  <span>Directions</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-
-              {/* Map Embed Frame */}
-              <div className="h-80 w-full rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-200 dark:bg-slate-800">
-                <iframe
-                  title="JAZ COMPUTER Tenkasi Interactive Map"
-                  src={COMPANY_INFO.googleMapsEmbedUrl}
-                  className="w-full h-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-
-              <div className="text-xs text-slate-500 dark:text-slate-400 space-y-1.5 pt-1">
-                <p>
-                  <strong>Landmark:</strong> Situated right on West Car Street in Tenkasi, easily accessible from the Tenkasi Old Bus Stand and Railway Junction.
-                </p>
-                <p>
-                  <strong>Parking:</strong> Two-wheeler and customer vehicle parking accessible along West Car Street.
-                </p>
+              <div className="absolute top-4 left-4 bg-[#10051F]/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-neon-cyan/40 text-xs font-mono text-neon-cyan flex items-center gap-2 shadow-glow-cyan">
+                <MapPin className="w-4 h-4 text-neon-magenta" />
+                <span>11/9, West Car Street, Tenkasi</span>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Frequently Asked Questions */}
-        <div className="bg-slate-100 dark:bg-brand-navy rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-              Got Questions?
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 dark:text-white">
-              Frequently Asked Questions
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {FAQS.map((faq, idx) => (
-              <div
-                key={idx}
-                className="bg-white dark:bg-brand-navy-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2 shadow-sm"
-              >
-                <h4 className="text-sm sm:text-base font-bold font-display text-slate-900 dark:text-white flex items-start gap-2">
-                  <HelpCircle className="w-4 h-4 text-brand-blue flex-shrink-0 mt-0.5" />
-                  <span>{faq.q}</span>
+            {/* Quick Call & Walk-in Highlight Card */}
+            <div className="p-6 rounded-3xl bg-[#160826]/80 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="space-y-1 text-center sm:text-left">
+                <h4 className="text-sm font-bold font-display text-white">
+                  Direct Store Front & Diagnostic Benches
                 </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed pl-6">
-                  {faq.a}
+                <p className="text-xs text-neon-grey font-light">
+                  Walk-ins welcome for quick diagnostic checks, display testing, and component pick-up.
                 </p>
               </div>
-            ))}
+
+              <a
+                href={`tel:${COMPANY_INFO.phone}`}
+                className="px-5 py-2.5 rounded-full text-xs font-mono font-bold bg-white text-black hover:bg-neon-cyan hover:text-black transition-colors flex items-center gap-2 flex-shrink-0"
+              >
+                <Phone className="w-3.5 h-3.5 text-neon-magenta" />
+                <span>Call Store</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

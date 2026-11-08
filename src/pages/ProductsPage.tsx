@@ -5,15 +5,14 @@ import { PRODUCTS_DATA, PRODUCT_CATEGORIES, ProductItem } from '../data/products
 import { COMPANY_INFO } from '../data/company';
 import { 
   Search, 
+  ArrowUpRight, 
   MessageSquare, 
-  Phone, 
-  Check, 
-  Filter, 
-  ShieldCheck, 
-  Layers, 
-  ChevronRight,
   Info,
-  Sparkles
+  Check,
+  Sparkles,
+  Zap,
+  SlidersHorizontal,
+  ChevronRight
 } from 'lucide-react';
 
 interface ProductsPageProps {
@@ -35,7 +34,11 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate, onOpenEn
         item.description.toLowerCase().includes(q) ||
         item.categoryLabel.toLowerCase().includes(q) ||
         (item.brands && item.brands.some(b => b.toLowerCase().includes(q))) ||
-        item.features.some(f => f.toLowerCase().includes(q));
+        (item.specs && item.specs.some(s => s.toLowerCase().includes(q))) ||
+        (item.softwareCategories && item.softwareCategories.some(sc => 
+          sc.category.toLowerCase().includes(q) || 
+          sc.items.some(it => it.toLowerCase().includes(q))
+        ));
 
       return matchesCategory && matchesSearch;
     });
@@ -43,244 +46,292 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate, onOpenEn
 
   const handleProductWhatsApp = (item: ProductItem) => {
     const text = encodeURIComponent(
-      `Hello JAZ COMPUTER, I am interested in *${item.name}* (${item.categoryLabel}). Please share current pricing and availability in Tenkasi.`
+      `Hello JAZ COMPUTER, I am inquiring regarding *${item.name}* (${item.categoryLabel}). Please share technical details and availability in Tenkasi.`
     );
     window.open(`https://wa.me/${COMPANY_INFO.whatsapp}?text=${text}`, '_blank');
   };
 
+  const featuredProduct = PRODUCTS_DATA.find(p => p.id === 'prod-desktop-assembled') || PRODUCTS_DATA[0];
+
   return (
-    <div className="space-y-12 pb-20">
-      {/* Page Hero Header */}
+    <div className="space-y-16 pb-24 text-white">
+      {/* Page Header */}
       <PageHeader
-        title="Hardware & Software Showcase"
-        subtitle="Branded Desktops, Custom High-End Rigs, Commercial Laptops, LED TVs (24&quot; to 100&quot;), Licensed Software & Peripherals in Tenkasi."
-        tamilSubtitle="கணினி பாகங்கள், லேப்டாப்கள், பிரிண்டர்கள் மற்றும் அசல் மென்பொருள் உரிமங்கள்."
-        badge="Catalogue Showcase"
+        title="Hardware & Systems"
+        subtitle="Branded Desktops, Custom Workstation Towers, Laptops, Displays, LED TVs (24&quot;–100&quot;), Licensed Software & Peripherals."
+        label="Product Showcase"
         currentPage="products"
         onNavigate={onNavigate}
-        onOpenEnquiry={() => onOpenEnquiry('Products General Catalogue')}
+        actionText="Request Hardware Quote"
+        onAction={() => onOpenEnquiry('General Hardware Quote')}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
-        {/* Important Phase 1 Non-Ecommerce Notice */}
-        <div className="bg-brand-blue/10 dark:bg-brand-blue/15 border border-brand-blue/30 rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 text-xs sm:text-sm text-slate-700 dark:text-brand-silver">
-          <Info className="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" />
-          <div className="space-y-1">
-            <strong className="text-slate-900 dark:text-white font-semibold block">
-              Official Product Showcase (Phase 1):
-            </strong>
-            <p>
-              To ensure customized guidance, bulk institutional discounts, and verified hardware compatibility, we do not operate an automated shopping cart. Click <strong>&quot;Enquire Now&quot;</strong> on any product to connect with our Tenkasi store for real-time pricing and delivery details.
-            </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-14">
+        {/* Futuristic Featured Spotlight Section (Asymmetric) */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1b0833] via-[#10051F] to-[#0A0214] border border-neon-magenta/30 p-8 sm:p-12 shadow-[0_0_50px_rgba(217,0,255,0.15)] group">
+          <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-neon-magenta/15 rounded-full blur-[140px] pointer-events-none group-hover:bg-neon-magenta/25 transition-all duration-700" />
+          <div className="absolute bottom-0 left-1/3 w-[350px] h-[350px] bg-neon-cyan/15 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-wider bg-neon-magenta/20 border border-neon-magenta/40 text-neon-magenta">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Signature Architecture Spotlight</span>
+              </div>
+
+              <div className="space-y-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-neon-cyan block">
+                  {featuredProduct.categoryLabel}
+                </span>
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-white leading-tight">
+                  {featuredProduct.name}
+                </h2>
+              </div>
+
+              <p className="text-sm sm:text-base text-neon-grey leading-relaxed font-light">
+                {featuredProduct.description} Hand-tuned with high-airflow cooling, zero-throttle power deliveries, and precision benchmark validation.
+              </p>
+
+              {/* Specs Pills */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                {featuredProduct.specs.map((spec, i) => (
+                  <div key={i} className="flex items-center gap-2.5 text-xs text-neon-grey font-mono bg-white/[0.03] p-2.5 rounded-xl border border-white/5">
+                    <Zap className="w-3.5 h-3.5 text-neon-cyan flex-shrink-0" />
+                    <span>{spec}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-4 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => handleProductWhatsApp(featuredProduct)}
+                  type="button"
+                  className="px-6 py-3 rounded-full text-xs font-bold text-white bg-emerald-600/90 hover:bg-emerald-500 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>WhatsApp Specification</span>
+                </button>
+
+                <button
+                  onClick={() => onOpenEnquiry(`Spotlight Quote: ${featuredProduct.name}`)}
+                  type="button"
+                  className="px-6 py-3 rounded-full text-xs font-bold text-black bg-gradient-to-r from-neon-cyan to-neon-magenta hover:opacity-90 transition-all flex items-center gap-2 shadow-glow-combo"
+                >
+                  <span>Request Custom Build Quote</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 relative">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 group-hover:border-neon-magenta/50 transition-colors shadow-2xl">
+                <img
+                  src={featuredProduct.image}
+                  alt={featuredProduct.name}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/assets/custom-gaming-pc.jpg';
+                  }}
+                  className="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#10051F] via-transparent to-transparent opacity-80" />
+                <div className="absolute top-4 left-4 bg-[#10051F]/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-mono text-neon-cyan border border-neon-cyan/40">
+                  {featuredProduct.tag}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Filter Toolbar: Search Bar + Category Pills */}
-        <div className="space-y-4 bg-white dark:bg-brand-navy-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-          {/* Search Bar */}
-          <div className="relative max-w-xl">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by product name, brand (Dell, HP, Quick Heal), or specs..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-brand-navy text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-white"
-              >
-                Clear
-              </button>
-            )}
+        {/* Transparent Hardware Policy Notice */}
+        <div className="flex items-center gap-3.5 text-xs text-neon-grey bg-[#160826]/70 p-4 sm:p-5 rounded-2xl border border-white/10">
+          <Info className="w-4 h-4 text-neon-cyan flex-shrink-0" />
+          <span className="font-light">
+            Official hardware showcase. To ensure custom configuration matching exact business workflows and institutional volume tiers, pricing is tailored per system. Connect directly with our West Car Street store for quotes.
+          </span>
+        </div>
+
+        {/* Filter & Live Search Bar */}
+        <div className="space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            {/* Cyber Search Bar */}
+            <div className="relative max-w-md w-full">
+              <Search className="w-4 h-4 text-neon-grey/70 absolute left-4 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search hardware, brands (Dell, Apple, TVS, Seqrite, Kaspersky, RTX)..."
+                className="w-full pl-11 pr-4 py-3 rounded-full border border-white/10 bg-[#160826]/90 text-white placeholder-neon-grey/50 text-xs focus:outline-none focus:border-neon-cyan focus:shadow-[0_0_20px_rgba(0,229,255,0.25)] transition-all font-mono"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold text-neon-grey hover:text-white"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-3 text-xs text-neon-grey font-mono">
+              <SlidersHorizontal className="w-3.5 h-3.5 text-neon-magenta" />
+              <span>Showing {filteredProducts.length} hardware lines</span>
+            </div>
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap gap-2 pt-2">
-            {PRODUCT_CATEGORIES.map((category) => {
-              const isSelected = selectedCategory === category.id;
+          {/* Neon Category Tabs */}
+          <div className="flex flex-wrap gap-2 pt-1">
+            {PRODUCT_CATEGORIES.map((cat) => {
+              const isSelected = selectedCategory === cat.id;
+              const count = cat.id === 'all'
+                ? PRODUCTS_DATA.length
+                : PRODUCTS_DATA.filter(p => p.category === cat.id).length;
+
               return (
                 <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
                   type="button"
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                  className={`px-4 py-2 rounded-full text-xs font-mono transition-all flex items-center gap-2 ${
                     isSelected
-                      ? 'bg-brand-blue text-white shadow-sm shadow-brand-blue/30 scale-[1.02]'
-                      : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-brand-silver hover:bg-slate-200 dark:hover:bg-slate-700'
+                      ? 'bg-gradient-to-r from-neon-magenta to-neon-cyan text-black font-bold shadow-glow-combo'
+                      : 'bg-[#160826]/80 text-neon-grey border border-white/10 hover:border-neon-cyan/40 hover:text-white'
                   }`}
                 >
-                  {category.label}
+                  <span>{cat.label}</span>
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                    isSelected ? 'bg-black/20 text-black font-bold' : 'bg-white/10 text-neon-grey'
+                  }`}>
+                    {count}
+                  </span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Product Count Indicator */}
-        <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 px-1">
-          <span>
-            Showing <strong>{filteredProducts.length}</strong> product lines
-          </span>
-          {selectedCategory !== 'all' && (
-            <button
-              onClick={() => setSelectedCategory('all')}
-              className="text-brand-blue hover:underline"
+        {/* Product Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="group rounded-3xl overflow-hidden bg-[#160826]/80 border border-white/10 hover:border-neon-cyan/60 hover:shadow-[0_0_30px_rgba(0,229,255,0.2)] transition-all duration-300 flex flex-col justify-between"
             >
-              Reset filter
-            </button>
-          )}
-        </div>
-
-        {/* Product Grid */}
-        {filteredProducts.length === 0 ? (
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-12 text-center border border-slate-200 dark:border-slate-800 space-y-3">
-            <Layers className="w-10 h-10 text-slate-400 mx-auto" />
-            <h3 className="text-lg font-bold text-slate-800 dark:text-white font-display">
-              No matching products found
-            </h3>
-            <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              We frequently source custom components and specialized IT equipment on request. Please contact us directly for specific hardware inquiries.
-            </p>
-            <button
-              onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-brand-blue border border-brand-blue/30 hover:bg-brand-blue/10"
-            >
-              Clear Search Filters
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white dark:bg-brand-navy-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group hover:-translate-y-1.5"
-              >
-                {/* Product Image Banner */}
-                <div className="relative h-52 overflow-hidden bg-slate-900">
+              <div>
+                {/* Visual Image Container */}
+                <div className="relative h-64 overflow-hidden bg-black/60">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/assets/gallery/computer-hardware.jpg';
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
                     loading="lazy"
                   />
-                  {product.badge && (
-                    <span className="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-brand-blue/40 shadow-sm">
-                      {product.badge}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#160826] via-transparent to-transparent opacity-80" />
+                  
+                  {product.tag && (
+                    <span className="absolute top-4 left-4 bg-[#10051F]/90 backdrop-blur-md text-neon-cyan text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full border border-neon-cyan/30 shadow-[0_0_10px_rgba(0,229,255,0.2)]">
+                      {product.tag}
                     </span>
                   )}
-                  <span className="absolute bottom-3 right-3 bg-white/95 dark:bg-brand-navy-dark/95 backdrop-blur-sm text-slate-800 dark:text-brand-silver text-[10px] font-bold px-2.5 py-0.5 rounded shadow-sm">
-                    {product.categoryLabel}
-                  </span>
                 </div>
 
-                {/* Product Body */}
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-5">
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white group-hover:text-brand-blue transition-colors leading-snug">
+                {/* Product Meta */}
+                <div className="p-7 space-y-4">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-neon-magenta block font-bold">
+                      {product.categoryLabel}
+                    </span>
+                    <h3 className="text-xl font-bold font-display text-white group-hover:text-neon-cyan transition-colors leading-snug">
                       {product.name}
                     </h3>
-                    
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                      {product.description}
-                    </p>
+                  </div>
 
-                    {/* Features List */}
-                    <div className="pt-2 space-y-1.5">
-                      {product.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-brand-silver">
-                          <Check className="w-3.5 h-3.5 text-brand-blue flex-shrink-0 mt-0.5" />
-                          <span>{feature}</span>
-                        </div>
+                  <p className="text-xs text-neon-grey leading-relaxed font-light">
+                    {product.description}
+                  </p>
+
+                  {/* Bullet Specs */}
+                  <div className="space-y-1.5 pt-3 border-t border-white/5">
+                    {product.specs.map((spec, i) => (
+                      <div key={i} className="flex items-center gap-2 text-[11px] text-neon-grey/90 font-mono">
+                        <Check className="w-3.5 h-3.5 text-neon-cyan flex-shrink-0" />
+                        <span>{spec}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Brand Badges */}
+                  {product.brands && (
+                    <div className="pt-2 flex flex-wrap gap-1.5">
+                      {product.brands.map((b) => (
+                        <span
+                          key={b}
+                          className="text-[10px] font-mono bg-white/[0.04] text-neon-grey px-2.5 py-0.5 rounded-full border border-white/5"
+                        >
+                          {b}
+                        </span>
                       ))}
                     </div>
+                  )}
 
-                    {/* Brands Available */}
-                    {product.brands && product.brands.length > 0 && (
-                      <div className="pt-3">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1.5">
-                          Verified Brands:
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {product.brands.map((b) => (
-                            <span
-                              key={b}
-                              className="text-[11px] font-medium bg-slate-100 dark:bg-brand-navy text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700/60"
-                            >
-                              {b}
+                  {/* Organized Genuine Software Categorization */}
+                  {product.softwareCategories && (
+                    <div className="pt-3 border-t border-white/5 space-y-2">
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-neon-cyan block font-bold">
+                        Genuine Software Portfolio
+                      </span>
+                      <div className="space-y-1.5">
+                        {product.softwareCategories.map((group, idx) => (
+                          <div key={idx} className="bg-white/[0.02] p-2 rounded-xl border border-white/5 space-y-1">
+                            <span className="text-[10px] font-mono text-neon-magenta uppercase font-bold block">
+                              {group.category}
                             </span>
-                          ))}
-                        </div>
+                            <div className="flex flex-wrap gap-1">
+                              {group.items.map((item, itemIdx) => (
+                                <span key={itemIdx} className="text-[10px] font-mono text-neon-grey/90 bg-white/5 px-2 py-0.5 rounded">
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    )}
-                  </div>
-
-                  {/* Actions & Enquiry Highlight */}
-                  <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
-                    <div className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      <span>{product.inquiryHighlight}</span>
+                      <p className="text-[10px] font-mono text-neon-grey/60 pt-0.5 italic">
+                        * Genuine licensed software supplied upon consultation. No unauthorized keys or activation tools.
+                      </p>
                     </div>
-
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => handleProductWhatsApp(product)}
-                        type="button"
-                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors shadow-sm"
-                      >
-                        <MessageSquare className="w-3.5 h-3.5" />
-                        <span>WhatsApp</span>
-                      </button>
-
-                      <button
-                        onClick={() => onOpenEnquiry(`Product Enquiry: ${product.name}`)}
-                        type="button"
-                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-brand-blue hover:bg-brand-blue-hover transition-colors shadow-glow-blue"
-                      >
-                        <span>Enquire</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
-            ))}
-          </div>
-        )}
 
-        {/* Custom Configuration Consultation Callout */}
-        <div className="bg-gradient-to-r from-brand-navy via-brand-navy-card to-brand-navy text-white rounded-3xl p-8 sm:p-12 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-          <div className="space-y-2 text-center md:text-left">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-              Custom Computer Assembly
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold font-display">
-              Need a bespoke workstation configured to your exact budget?
-            </h3>
-            <p className="text-brand-silver text-sm max-w-xl">
-              Talk directly with our system architects in Tenkasi for custom CAD, 3D animation, gaming, or corporate multi-display rigs.
-            </p>
-          </div>
+              {/* Action Buttons Footer */}
+              <div className="p-7 pt-0 border-t border-white/5 grid grid-cols-2 gap-2 mt-4">
+                <button
+                  onClick={() => handleProductWhatsApp(product)}
+                  type="button"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-full text-xs font-semibold text-white bg-white/5 hover:bg-emerald-600/30 border border-white/10 hover:border-emerald-500/50 transition-colors"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>WhatsApp</span>
+                </button>
 
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
-              className="px-5 py-3 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/20 border border-slate-700 text-white transition-all flex items-center gap-2"
-            >
-              <Phone className="w-3.5 h-3.5 text-brand-blue" />
-              <span>Call Technician</span>
-            </a>
-
-            <button
-              onClick={() => onOpenEnquiry('Custom Assembled PC Specification Request')}
-              type="button"
-              className="px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-brand-blue hover:bg-brand-blue-hover text-white shadow-glow-blue transition-all"
-            >
-              Get Custom Rig Spec
-            </button>
-          </div>
+                <button
+                  onClick={() => onOpenEnquiry(`Product Enquiry: ${product.name}`)}
+                  type="button"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-full text-xs font-bold text-black bg-neon-cyan hover:bg-white transition-colors shadow-[0_0_15px_rgba(0,229,255,0.3)]"
+                >
+                  <span>Enquire</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

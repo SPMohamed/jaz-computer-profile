@@ -1,416 +1,164 @@
+export type ClientCategory =
+  | 'All'
+  | 'Local Vendor Support'
+  | 'Retail & Commercial'
+  | 'Textiles'
+  | 'Healthcare'
+  | 'Education'
+  | 'Professional Services'
+  | 'Banking'
+  | 'Hospitality'
+  | 'Automotive';
+
 export interface ClientRecord {
   id: number;
-  clientNumber: string;
   name: string;
-  category: 'Retail & Commercial' | 'Textiles & Mills' | 'Education & Academics' | 'Healthcare & Diagnostics' | 'Professional & Corporate' | 'Jewellery & Gold' | 'Automotive & Logistics';
-  location: string;
-  serviceProvided: string;
-  clientType: 'Commercial' | 'Institutional' | 'Enterprise' | 'Retail' | 'Professional';
+  category: ClientCategory;
+  location?: string;
 }
 
 /**
- * CLIENT DATA REPOSITORY
- * Contains all 43 client records supplied by the business owner across Tenkasi and surrounding districts.
- * Designed as a separate extensible module so new clients can be appended smoothly.
- * No fake logos or unauthorized personal contact numbers are displayed.
+ * OFFICIAL VALUABLE CLIENTS
+ * Verified customer list supplied by the owner of JAZ COMPUTER.
+ * Exact spellings, locations, and categories preserved.
+ * Total Named Records: 100 (Verified Directory).
+ * Overall Business Trust: Trusted by 2,000+ Valued Clients.
+ * No invented testimonials, endorsements, logos or services.
  */
 export const CLIENTS_DATA: ClientRecord[] = [
-  {
-    id: 1,
-    clientNumber: "01",
-    name: "Kalyan Jewellers Showroom",
-    category: "Jewellery & Gold",
-    location: "Tenkasi",
-    serviceProvided: "High-Definition CCTV Surveillance & DVR Backup System",
-    clientType: "Commercial"
-  },
-  {
-    id: 2,
-    clientNumber: "02",
-    name: "Sri Ram Textiles & Readymades",
-    category: "Textiles & Mills",
-    location: "Tenkasi Main Bazaar",
-    serviceProvided: "POS Billing Desktops, Laser Printers & Annual Maintenance",
-    clientType: "Retail"
-  },
-  {
-    id: 3,
-    clientNumber: "03",
-    name: "Tenkasi City Hospital & Research Center",
-    category: "Healthcare & Diagnostics",
-    location: "Tenkasi",
-    serviceProvided: "Hospital Network Cabling, Diagnostic Workstations & AMC",
-    clientType: "Institutional"
-  },
-  {
-    id: 4,
-    clientNumber: "04",
-    name: "National Matriculation Higher Secondary School",
-    category: "Education & Academics",
-    location: "Tenkasi",
-    serviceProvided: "Computer Science Lab Setup (30 Systems) & Campus Wi-Fi",
-    clientType: "Institutional"
-  },
-  {
-    id: 5,
-    clientNumber: "05",
-    name: "Thiruvalluvar Transport & Logistics",
-    category: "Automotive & Logistics",
-    location: "Tenkasi Bypass",
-    serviceProvided: "Fleet Monitoring Center, Multi-Screen CCTV & Desktops",
-    clientType: "Enterprise"
-  },
-  {
-    id: 6,
-    clientNumber: "06",
-    name: "Al-Ameen Rice Mill & Modern Processing Plant",
-    category: "Retail & Commercial",
-    location: "Kadayanallur",
-    serviceProvided: "Perimeter Bullet CCTV & Weighbridge Computer System",
-    clientType: "Commercial"
-  },
-  {
-    id: 7,
-    clientNumber: "07",
-    name: "Modern Diagnostic Lab & Scan Center",
-    category: "Healthcare & Diagnostics",
-    location: "Tenkasi",
-    serviceProvided: "Report Generation Desktops, Color Laser Printers & UPS",
-    clientType: "Commercial"
-  },
-  {
-    id: 8,
-    clientNumber: "08",
-    name: "Maruthi Auto Spares & Service Station",
-    category: "Automotive & Logistics",
-    location: "Surandai Road, Tenkasi",
-    serviceProvided: "Billing Computer, Thermal Receipt Printers & Security Cameras",
-    clientType: "Retail"
-  },
-  {
-    id: 9,
-    clientNumber: "09",
-    name: "Vasantham Silks & Sarees",
-    category: "Textiles & Mills",
-    location: "Tenkasi",
-    serviceProvided: "Multi-Floor Dome CCTV Security & Network Infrastructure",
-    clientType: "Retail"
-  },
-  {
-    id: 10,
-    clientNumber: "10",
-    name: "Sri Murugan Departmental Store & Supermarket",
-    category: "Retail & Commercial",
-    location: "Shenkottai",
-    serviceProvided: "Barcode Scanners, POS Billing Systems & CCTV Coverage",
-    clientType: "Retail"
-  },
-  {
-    id: 11,
-    clientNumber: "11",
-    name: "Anand & Associates Chartered Accountants",
-    category: "Professional & Corporate",
-    location: "Tenkasi",
-    serviceProvided: "Licensed Windows & MS Office, Tally Workstations & Security",
-    clientType: "Commercial"
-  },
-  {
-    id: 12,
-    clientNumber: "12",
-    name: "Green Valley Agro Farm & Coconut Estate",
-    category: "Retail & Commercial",
-    location: "Courtrallam Border",
-    serviceProvided: "Off-Grid Solar Powered 4G Cameras & Long-Range Wi-Fi Link",
-    clientType: "Commercial"
-  },
-  {
-    id: 13,
-    clientNumber: "13",
-    name: "Oxford Public School & Kindergarten",
-    category: "Education & Academics",
-    location: "Alangulam",
-    serviceProvided: "Classroom Smart TV Displays, Staff Workstations & NVR Setup",
-    clientType: "Institutional"
-  },
-  {
-    id: 14,
-    clientNumber: "14",
-    name: "City Union Pharmacy & Medicals",
-    category: "Healthcare & Diagnostics",
-    location: "Tenkasi Old Bus Stand",
-    serviceProvided: "Medicine Inventory System, Barcode Hardware & Ink Tank Printers",
-    clientType: "Retail"
-  },
-  {
-    id: 15,
-    clientNumber: "15",
-    name: "Swathi Gold & Diamond Works",
-    category: "Jewellery & Gold",
-    location: "Tenkasi Car Street",
-    serviceProvided: "AcuSense Face Recognition CCTV, Monitored DVR & Lockroom Audio",
-    clientType: "Commercial"
-  },
-  {
-    id: 16,
-    clientNumber: "16",
-    name: "Sri Krishna Cotton Ginning Mills",
-    category: "Textiles & Mills",
-    location: "Sankarankovil",
-    serviceProvided: "Industrial CCTV Surveillance & Weighbridge Network Interface",
-    clientType: "Enterprise"
-  },
-  {
-    id: 17,
-    clientNumber: "17",
-    name: "Universal Poly Clinic & Dental Care",
-    category: "Healthcare & Diagnostics",
-    location: "Surandai",
-    serviceProvided: "Patient Record Workstations, Wi-Fi Network & Display Panels",
-    clientType: "Commercial"
-  },
-  {
-    id: 18,
-    clientNumber: "18",
-    name: "Pioneer Offset Printers & Packaging",
-    category: "Professional & Corporate",
-    location: "Tenkasi Industrial Estate",
-    serviceProvided: "CorelDRAW Design Workstations, High-Speed RAM & SSD Upgrades",
-    clientType: "Commercial"
-  },
-  {
-    id: 19,
-    clientNumber: "19",
-    name: "Royal Furniture Mart & Wood Works",
-    category: "Retail & Commercial",
-    location: "Pavoorchatram",
-    serviceProvided: "Warehouse Perimeter CCTV & Office Accounting Systems",
-    clientType: "Retail"
-  },
-  {
-    id: 20,
-    clientNumber: "20",
-    name: "Tenkasi District Advocates Chamber",
-    category: "Professional & Corporate",
-    location: "Court Road, Tenkasi",
-    serviceProvided: "Legal Document Printing, Laser Jet Support & Laptop Repairs",
-    clientType: "Professional"
-  },
-  {
-    id: 21,
-    clientNumber: "21",
-    name: "Apex Engineering & Metal Fabrication",
-    category: "Retail & Commercial",
-    location: "Shenkottai Road",
-    serviceProvided: "CAD Drafting Workstations, Data Backup & CCTV Camera Grid",
-    clientType: "Enterprise"
-  },
-  {
-    id: 22,
-    clientNumber: "22",
-    name: "Gomathi Amman Milk Producers Society",
-    category: "Retail & Commercial",
-    location: "Sankarankovil Region",
-    serviceProvided: "Milk Collection Center Computer Systems & Thermal Printers",
-    clientType: "Institutional"
-  },
-  {
-    id: 23,
-    clientNumber: "23",
-    name: "Sri Sai Baba Matric Higher Secondary School",
-    category: "Education & Academics",
-    location: "Kadayanallur",
-    serviceProvided: "Digital Attendance Biometrics, Lab Desktops & CCTV Surveillance",
-    clientType: "Institutional"
-  },
-  {
-    id: 24,
-    clientNumber: "24",
-    name: "Southern Stars Hotel & Residency",
-    category: "Retail & Commercial",
-    location: "Courtallam Main Road",
-    serviceProvided: "Guest Wi-Fi Mesh, Reception Billing, 32-Channel NVR Network",
-    clientType: "Commercial"
-  },
-  {
-    id: 25,
-    clientNumber: "25",
-    name: "Star Tiles & Sanitaryware Showroom",
-    category: "Retail & Commercial",
-    location: "Tenkasi Bypass",
-    serviceProvided: "Showroom CCTV Monitoring & Billing Counter Workstations",
-    clientType: "Retail"
-  },
-  {
-    id: 26,
-    clientNumber: "26",
-    name: "Lotus Eye Hospital & Opticals",
-    category: "Healthcare & Diagnostics",
-    location: "Tenkasi",
-    serviceProvided: "Consultation Room Desktops, Frame Display TV & Laser Printers",
-    clientType: "Commercial"
-  },
-  {
-    id: 27,
-    clientNumber: "27",
-    name: "Meenakshi Power Loom Weaving Unit",
-    category: "Textiles & Mills",
-    location: "Kadayanallur",
-    serviceProvided: "Factory Floor Dust-Resistant CCTV & Office System Maintenance",
-    clientType: "Enterprise"
-  },
-  {
-    id: 28,
-    clientNumber: "28",
-    name: "A.K.R. Parcel Service Branch",
-    category: "Automotive & Logistics",
-    location: "Tenkasi Goods Yard",
-    serviceProvided: "Parcel Tracking Desktops, High-End Routers & Backup Inverter PC",
-    clientType: "Commercial"
-  },
-  {
-    id: 29,
-    clientNumber: "29",
-    name: "Crescent Educational Academy",
-    category: "Education & Academics",
-    location: "Shenkottai",
-    serviceProvided: "Staff Laptops, Anti-Virus Security Deployment & Projector Display",
-    clientType: "Institutional"
-  },
-  {
-    id: 30,
-    clientNumber: "30",
-    name: "Rajeshwari Rice & Grocery Mart",
-    category: "Retail & Commercial",
-    location: "Pavoorchatram Market",
-    serviceProvided: "Retail POS Machine, Barcode Labels & Security Dome Cameras",
-    clientType: "Retail"
-  },
-  {
-    id: 31,
-    clientNumber: "31",
-    name: "Bharath Petroleum Dealer Station",
-    category: "Automotive & Logistics",
-    location: "Tenkasi Tirunelveli Highway",
-    serviceProvided: "Forecourt Weatherproof Bullet Cameras & Cash Office Safe CCTV",
-    clientType: "Commercial"
-  },
-  {
-    id: 32,
-    clientNumber: "32",
-    name: "Arun Clinical Laboratory & ECG Center",
-    category: "Healthcare & Diagnostics",
-    location: "Tenkasi",
-    serviceProvided: "Pathology Analyzer PC Connectivity & Laser Printing Supplies",
-    clientType: "Commercial"
-  },
-  {
-    id: 33,
-    clientNumber: "33",
-    name: "Supreme Hardware & Electrical Supplies",
-    category: "Retail & Commercial",
-    location: "Alangulam",
-    serviceProvided: "Inventory Management Server, Billing Terminals & CCTV System",
-    clientType: "Retail"
-  },
-  {
-    id: 34,
-    clientNumber: "34",
-    name: "Tenkasi Poultry Farms & Feeds",
-    category: "Retail & Commercial",
-    location: "Surandai Rural",
-    serviceProvided: "Remote Farm 4G PTZ Cameras & Off-Grid Surveillance Maintenance",
-    clientType: "Commercial"
-  },
-  {
-    id: 35,
-    clientNumber: "35",
-    name: "V.M.R. Spinning Mills Pvt Ltd",
-    category: "Textiles & Mills",
-    location: "Rajapalayam Border",
-    serviceProvided: "Enterprise CAT6 Optical Network Backbone & 64-Channel CCTV",
-    clientType: "Enterprise"
-  },
-  {
-    id: 36,
-    clientNumber: "36",
-    name: "Subramania Swamy Temple Trust Administrative Office",
-    category: "Professional & Corporate",
-    location: "Tenkasi Region",
-    serviceProvided: "Donation Receipt Printers, Donor Registry Desktops & Security",
-    clientType: "Institutional"
-  },
-  {
-    id: 37,
-    clientNumber: "37",
-    name: "Shifa Unani & Siddha Wellness Clinic",
-    category: "Healthcare & Diagnostics",
-    location: "Kadayanallur",
-    serviceProvided: "Clinic Front-Desk PC, Patient Data Security & Wi-Fi Extender",
-    clientType: "Commercial"
-  },
-  {
-    id: 38,
-    clientNumber: "38",
-    name: "Devi Auto Spare Parts & Tyre Centre",
-    category: "Automotive & Logistics",
-    location: "Shenkottai",
-    serviceProvided: "Billing Computer System, Wheel Alignment PC Service & CCTV",
-    clientType: "Retail"
-  },
-  {
-    id: 39,
-    clientNumber: "39",
-    name: "Karpagam Bridal Silks & Matching Centre",
-    category: "Textiles & Mills",
-    location: "Tenkasi Bazaar",
-    serviceProvided: "ColorVu CCTV Surveillance & Billing Printer Cartridge AMC",
-    clientType: "Retail"
-  },
-  {
-    id: 40,
-    clientNumber: "40",
-    name: "Victory Driving School & RTO Consultancy",
-    category: "Professional & Corporate",
-    location: "Tenkasi",
-    serviceProvided: "Learner Portal Desktop Systems, Webcam & Laser Printer Setup",
-    clientType: "Commercial"
-  },
-  {
-    id: 41,
-    clientNumber: "41",
-    name: "M.S. Timber & Saw Mill Yard",
-    category: "Retail & Commercial",
-    location: "Shenkottai Road",
-    serviceProvided: "Perimeter High-Power Night Vision Cameras & Billing Machine",
-    clientType: "Commercial"
-  },
-  {
-    id: 42,
-    clientNumber: "42",
-    name: "Little Pearls Nursery & Primary School",
-    category: "Education & Academics",
-    location: "Tenkasi",
-    serviceProvided: "Classroom Audio-Visual Displays, Office PC & Entrance CCTV",
-    clientType: "Institutional"
-  },
-  {
-    id: 43,
-    clientNumber: "43",
-    name: "Sri Saravana Bakery & Sweets Network",
-    category: "Retail & Commercial",
-    location: "Tenkasi Junction",
-    serviceProvided: "Multi-Outlet CCTV Stream, POS Terminal Support & Thermal Paper",
-    clientType: "Retail"
-  }
+  { id: 1, name: "VTSR SILKS – Tenkasi", category: "Textiles", location: "Tenkasi" },
+  { id: 2, name: "Pothigai Silks – Tenkasi", category: "Textiles", location: "Tenkasi" },
+  { id: 3, name: "Mydeen Timbers", category: "Retail & Commercial", location: "Shenkottai" },
+  { id: 4, name: "Shameer Studios – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 5, name: "Welcome Colour Lab – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 6, name: "Art Chitra Creation – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 7, name: "Singapore Silks – Tenkasi", category: "Textiles", location: "Tenkasi" },
+  { id: 8, name: "MM Gold – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 9, name: "Banu Arts – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 10, name: "Sai Ram Book Center – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 11, name: "Phonix Mobiles – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 12, name: "Nila Beauty Parlour", category: "Retail & Commercial" },
+  { id: 13, name: "Sree Travels – Tenkasi", category: "Hospitality", location: "Tenkasi" },
+  { id: 14, name: "My Little One – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 15, name: "GK Tours And Travels – Tenkasi", category: "Hospitality", location: "Tenkasi" },
+  { id: 16, name: "Chennai Digital – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 17, name: "Vincy Fish Form", category: "Retail & Commercial" },
+  { id: 18, name: "Tenkasi Govt. Hospital", category: "Local Vendor Support", location: "Tenkasi" },
+  { id: 19, name: "Sasi Clinic – Tenkasi", category: "Healthcare", location: "Tenkasi" },
+  { id: 20, name: "Swasam ENT Clinic – Tenkasi", category: "Healthcare", location: "Tenkasi" },
+  { id: 21, name: "Prema Dental Clinic – Tenkasi", category: "Healthcare", location: "Tenkasi" },
+  { id: 22, name: "KP Hospital – Tenkasi", category: "Healthcare", location: "Tenkasi" },
+  { id: 23, name: "King Clinic – Vadakarai", category: "Healthcare", location: "Vadakarai" },
+  { id: 24, name: "Tenkasi Sarvodhya Sangam", category: "Education", location: "Tenkasi" },
+  { id: 25, name: "St. Micheale Hr. Sec. School – Tenkasi", category: "Education", location: "Tenkasi" },
+  { id: 26, name: "RC Hr. Sec. School", category: "Education", location: "Vallam" },
+  { id: 27, name: "Ibnu Umar (Rali) Islamic School – Tenkasi", category: "Education", location: "Tenkasi" },
+  { id: 28, name: "Homeway Properties – Shenkottai", category: "Professional Services", location: "Shenkottai" },
+  { id: 29, name: "Vincy DTP – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 30, name: "Saitharan Associates – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 31, name: "SPR Law Chambers – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 32, name: "Haroon ADV Law Chamber – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 33, name: "Dinesh ADV Law Chamber – Kadayam, Tenkasi", category: "Professional Services", location: "Kadayam, Tenkasi" },
+  { id: 34, name: "IDBI Bank – Tenkasi Branch", category: "Local Vendor Support", location: "Tenkasi Branch" },
+  { id: 35, name: "Vanavil E Sevai – KK Valasai, Tenkasi", category: "Professional Services", location: "KK Valasai, Tenkasi" },
+  { id: 36, name: "K.info Soft – Ilanji", category: "Professional Services", location: "Ilanji" },
+  { id: 37, name: "Five Falls Resort – Five Falls", category: "Hospitality", location: "Five Falls" },
+  { id: 38, name: "Pothigai Palace – Courtallam", category: "Hospitality", location: "Courtallam" },
+  { id: 39, name: "Mount Zion Holidays – Courtallam", category: "Hospitality", location: "Courtallam" },
+  { id: 40, name: "Mahadev Iyer Petrol Pump – Yanaipaalam, Tenkasi", category: "Automotive", location: "Yanaipaalam, Tenkasi" },
+  { id: 41, name: "Jaibhakya Jewelry – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 42, name: "Run Bug – Idaikal.", category: "Retail & Commercial", location: "Idaikal" },
+  { id: 43, name: "Loyal Builders – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 44, name: "Shiva Digital Studio – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 45, name: "JRS Digital Studio – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 46, name: "Shameer LED – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 47, name: "Design Mantic – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 48, name: "SM Cable – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 49, name: "Shentamil RealEstate – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 50, name: "Haaris Builders – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 51, name: "Krish Dairy Farm – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 52, name: "Velasi Cottons – Tenkasi", category: "Textiles", location: "Tenkasi" },
+  { id: 53, name: "Makx Outfit – Tenkasi", category: "Textiles", location: "Tenkasi" },
+  { id: 54, name: "Fashion Flex – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 55, name: "AA Diagnostics & Lab – Tenkasi", category: "Healthcare", location: "Tenkasi" },
+  { id: 56, name: "Nima Foundation – Tenkasi", category: "Education", location: "Tenkasi" },
+  { id: 57, name: "GMT Jewellery – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 58, name: "Zoora Tech – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 59, name: "Nutrifys – Tenkasi", category: "Healthcare", location: "Tenkasi" },
+  { id: 60, name: "SRS & SBM Transport – Tenkasi", category: "Automotive", location: "Tenkasi" },
+  { id: 61, name: "Royal Bombay Tailor – Tenkasi", category: "Textiles", location: "Tenkasi" },
+  { id: 62, name: "Some Govt Hr. Sec. Schools", category: "Local Vendor Support", location: "Tenkasi" },
+  { id: 63, name: "Achenpudur Govt PHC", category: "Local Vendor Support", location: "Achenpudur, Tenkasi" },
+  { id: 64, name: "Ilanji Govt PHC", category: "Local Vendor Support", location: "Ilanji, Tenkasi" },
+  { id: 65, name: "Melagaram Govt PHC", category: "Local Vendor Support", location: "Melagaram, Tenkasi" },
+  { id: 66, name: "ABFL – Tenkasi Branch", category: "Local Vendor Support", location: "Tenkasi Branch" },
+  { id: 67, name: "Mathaji Fashion – Tenkasi", category: "Textiles", location: "Tenkasi" },
+  { id: 68, name: "RajaMouli Clinic – Tenkasi", category: "Healthcare", location: "Tenkasi" },
+  { id: 69, name: "Aroma Kitchen – Tenkasi", category: "Hospitality", location: "Tenkasi" },
+  { id: 70, name: "Cinimatic Studio – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 71, name: "Yobz Digital Advertiser – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 72, name: "Body Soul Mind Care Siddha Clinic", category: "Healthcare" },
+  { id: 73, name: "EPP ADV Law Chambers – Alangulam", category: "Professional Services", location: "Alangulam" },
+  { id: 74, name: "Orange Mobiles – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 75, name: "Focus Studio – Shenkottai", category: "Retail & Commercial", location: "Shenkottai" },
+  { id: 76, name: "AR Call Taxi – Tenkasi", category: "Automotive", location: "Tenkasi" },
+  { id: 77, name: "Apple Mobiles – PottalPudur", category: "Retail & Commercial", location: "PottalPudur" },
+  { id: 78, name: "Nellai Construction – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 79, name: "Sushma Studio – Achenpudur", category: "Retail & Commercial", location: "Achenpudur" },
+  { id: 80, name: "Dzine Boutique – Shenkottai", category: "Textiles", location: "Shenkottai" },
+  { id: 81, name: "Ariya Studio – Vallam", category: "Retail & Commercial", location: "Vallam" },
+  { id: 82, name: "Thangam Tailoring – Shenkottai", category: "Textiles", location: "Shenkottai" },
+  { id: 83, name: "Malika Papers – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 84, name: "JK Academy – Tenkasi", category: "Education", location: "Tenkasi" },
+  { id: 85, name: "CSC E-sevai – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 86, name: "VJSR Chicken Farm – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 87, name: "MS Gold – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 88, name: "Legend Mens Wear – Tenkasi", category: "Textiles", location: "Tenkasi" },
+  { id: 89, name: "Mugi Shutter View – Tenkasi", category: "Retail & Commercial", location: "Tenkasi" },
+  { id: 90, name: "Tevel Technologies – Chennai", category: "Professional Services", location: "Chennai" },
+  { id: 91, name: "A2Z E-Sevai – Melagaram, Tenkasi", category: "Professional Services", location: "Melagaram, Tenkasi" },
+  { id: 92, name: "Kumar Lodge – Courtallam", category: "Hospitality", location: "Courtallam" },
+  { id: 93, name: "Taamsi Technologies – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 94, name: "LuLu Online Services – Kadayanallur", category: "Professional Services", location: "Kadayanallur" },
+  { id: 95, name: "MMM Construction – Tenkasi", category: "Professional Services", location: "Tenkasi" },
+  { id: 96, name: "Athiba Jewellery", category: "Retail & Commercial" },
+  { id: 97, name: "Hamna Jewellery", category: "Retail & Commercial" },
+  { id: 98, name: "Salma Pharmacy", category: "Healthcare" },
+  { id: 99, name: "Govt ITI – Tenkasi", category: "Local Vendor Support", location: "Tenkasi" },
+  { id: 100, name: "Govt ITI – Kadayanallur", category: "Local Vendor Support", location: "Kadayanallur" }
 ];
 
-export const CLIENT_SECTORS = [
-  'All Sectors',
+export const CLIENT_CATEGORIES: ClientCategory[] = [
+  'All',
+  'Local Vendor Support',
   'Retail & Commercial',
-  'Textiles & Mills',
-  'Education & Academics',
-  'Healthcare & Diagnostics',
-  'Professional & Corporate',
-  'Jewellery & Gold',
-  'Automotive & Logistics'
-] as const;
+  'Textiles',
+  'Healthcare',
+  'Education',
+  'Professional Services',
+  'Banking',
+  'Hospitality',
+  'Automotive'
+];
+
+/**
+ * OFFICIAL SCROLLING / MARQUEE CLIENTS
+ * Strictly displays the 15 approved client names in exact prescribed order.
+ */
+export const SCROLLING_CLIENTS: string[] = [
+  "VTSR Silks",
+  "SPR Law Chambers",
+  "My Little One",
+  "Prema Dental Clinic",
+  "Swasam ENT Clinic",
+  "Pothigai Silks",
+  "KP Hospital",
+  "Loyal Builders",
+  "SM Cable",
+  "Five Falls Resort",
+  "Haaris Builders",
+  "Tevel Technologies",
+  "Body Soul Mind Care Siddha Clinic",
+  "Mydeen Timbers",
+  "Art Chitra Creation"
+];

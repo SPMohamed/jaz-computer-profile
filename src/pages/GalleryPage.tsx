@@ -2,16 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader } from '../components/common/PageHeader';
 import { PageId } from '../components/common/Header';
 import { GALLERY_DATA, GALLERY_CATEGORIES, GalleryItem } from '../data/gallery';
-import { 
-  Camera, 
-  MapPin, 
-  X, 
-  Maximize2, 
-  Layers, 
-  ShieldCheck, 
-  ArrowRight,
-  Sparkles
-} from 'lucide-react';
+import { MapPin, X, ArrowUpRight, Maximize2, Sparkles } from 'lucide-react';
 
 interface GalleryPageProps {
   onNavigate: (page: PageId) => void;
@@ -20,28 +11,28 @@ interface GalleryPageProps {
 
 export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate, onOpenEnquiry }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [activeLightbox, setActiveLightbox] = useState<GalleryItem | null>(null);
+  const [activeItem, setActiveItem] = useState<GalleryItem | null>(null);
 
   const filteredItems = selectedCategory === 'all'
     ? GALLERY_DATA
     : GALLERY_DATA.filter(item => item.category === selectedCategory);
 
   return (
-    <div className="space-y-16 pb-20">
-      {/* Page Hero Header */}
+    <div className="space-y-16 pb-24 text-white">
+      {/* Page Header */}
       <PageHeader
-        title="Project & Installation Gallery"
-        subtitle="Explore our CCTV deployments, custom PC workstation builds, chip-level service lab, and structured networking racks in Tenkasi."
-        tamilSubtitle="எங்கள் திட்டங்கள் மற்றும் சாதனங்களின் புகைப்பட தொகுப்பு."
-        badge="Field Work & Lab"
+        title="Project & Work Showcase"
+        subtitle="Visual archive of custom desktop workstation builds, CCTV security deployments, networking racks, and display installations in Tenkasi."
+        label="Visual Portfolio"
         currentPage="gallery"
         onNavigate={onNavigate}
-        onOpenEnquiry={() => onOpenEnquiry('Gallery Project Inquiry')}
+        actionText="Consult on Similar Project"
+        onAction={() => onOpenEnquiry('Installation Project Consultation')}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 bg-white dark:bg-brand-navy-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap gap-2">
           {GALLERY_CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat.id;
             return (
@@ -49,10 +40,10 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate, onOpenEnqu
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
                 type="button"
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+                className={`px-4 py-2 rounded-full text-xs font-mono transition-all ${
                   isSelected
-                    ? 'bg-brand-blue text-white shadow-sm'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-brand-silver hover:bg-slate-200 dark:hover:bg-slate-700'
+                    ? 'bg-gradient-to-r from-neon-magenta to-neon-cyan text-black font-bold shadow-glow-combo'
+                    : 'bg-[#160826]/80 text-neon-grey border border-white/10 hover:border-neon-cyan/40 hover:text-white'
                 }`}
               >
                 {cat.label}
@@ -66,112 +57,113 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate, onOpenEnqu
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              onClick={() => setActiveLightbox(item)}
-              className="group bg-white dark:bg-brand-navy-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-1"
+              onClick={() => setActiveItem(item)}
+              className="group rounded-3xl overflow-hidden bg-[#160826]/80 border border-white/10 hover:border-neon-cyan/60 hover:shadow-[0_0_30px_rgba(0,229,255,0.2)] transition-all duration-300 flex flex-col justify-between cursor-pointer"
             >
-              {/* Image Frame */}
-              <div className="relative h-60 overflow-hidden bg-slate-900">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-                  loading="lazy"
-                />
+              <div>
+                <div className="relative h-64 overflow-hidden bg-black/60">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/assets/gallery/outdoor-cctv-installation.jpg';
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#160826] via-transparent to-transparent opacity-80" />
 
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-brand-navy-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="p-3 rounded-full bg-brand-blue/90 text-white shadow-lg">
-                    <Maximize2 className="w-5 h-5" />
+                  <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-[#10051F]/90 backdrop-blur-md text-neon-cyan text-[10px] font-mono uppercase px-3 py-1 rounded-full border border-neon-cyan/30 shadow-[0_0_10px_rgba(0,229,255,0.2)]">
+                    <MapPin className="w-3 h-3 text-neon-cyan" />
+                    <span>{item.locationTag}</span>
+                  </div>
+
+                  <div className="absolute top-4 right-4 p-2 rounded-full bg-[#10051F]/80 text-neon-grey opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 className="w-3.5 h-3.5 text-neon-cyan" />
+                  </div>
+                </div>
+
+                <div className="p-7 space-y-3">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-neon-magenta block font-bold">
+                    {item.categoryLabel}
                   </span>
-                </div>
-
-                {/* Location Badge */}
-                <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-brand-navy/85 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-md border border-brand-blue/30 shadow-sm">
-                  <MapPin className="w-3 h-3 text-brand-blue" />
-                  <span>{item.locationTag}</span>
-                </div>
-
-                {/* Category Badge */}
-                <span className="absolute bottom-3 right-3 bg-white/90 dark:bg-brand-navy-dark/90 backdrop-blur-sm text-slate-800 dark:text-brand-silver text-[10px] font-semibold px-2 py-0.5 rounded">
-                  {item.categoryLabel}
-                </span>
-              </div>
-
-              {/* Caption */}
-              <div className="p-6 space-y-2 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-base font-bold font-display text-slate-900 dark:text-white group-hover:text-brand-blue transition-colors leading-snug">
+                  <h3 className="text-lg font-bold font-display text-white group-hover:text-neon-cyan transition-colors leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                  <p className="text-xs text-neon-grey leading-relaxed font-light">
                     {item.description}
                   </p>
                 </div>
+              </div>
 
-                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-blue font-semibold">
-                  <span>View Project Details</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </div>
+              <div className="p-7 pt-0 text-xs font-semibold text-neon-cyan flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
+                <span>Inspect Deployment</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Lightbox Modal */}
-        {activeLightbox && (
-          <div 
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
-            onClick={() => setActiveLightbox(null)}
+        {/* Futuristic Full Image Lightbox */}
+        {activeItem && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200"
+            onClick={() => setActiveItem(null)}
           >
-            <div 
-              className="relative w-full max-w-3xl bg-brand-navy-card text-white rounded-2xl overflow-hidden border border-slate-700 shadow-2xl space-y-4"
+            <div
+              className="relative w-full max-w-4xl bg-[#160826] text-white rounded-3xl overflow-hidden border border-neon-cyan/40 shadow-[0_0_50px_rgba(0,229,255,0.25)]"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative h-96 w-full bg-black">
+              <div className="relative h-[420px] bg-black">
                 <img
-                  src={activeLightbox.image}
-                  alt={activeLightbox.title}
+                  src={activeItem.image}
+                  alt={activeItem.title}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/assets/gallery/outdoor-cctv-installation.jpg';
+                  }}
                   className="w-full h-full object-contain"
                 />
                 <button
-                  onClick={() => setActiveLightbox(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white transition-colors"
-                  aria-label="Close image lightbox"
+                  onClick={() => setActiveItem(null)}
+                  className="absolute top-4 right-4 p-2.5 rounded-full bg-[#10051F]/80 hover:bg-[#10051F] text-white border border-white/10 hover:border-neon-cyan/50 transition-colors"
+                  aria-label="Close image"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-5 h-5 text-neon-cyan" />
                 </button>
               </div>
 
-              <div className="p-6 space-y-2">
-                <div className="flex items-center gap-2 text-xs text-brand-blue font-bold uppercase tracking-wider">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>{activeLightbox.locationTag} · {activeLightbox.categoryLabel}</span>
+              <div className="p-8 space-y-4">
+                <div className="flex items-center gap-2 text-xs font-mono text-neon-cyan uppercase">
+                  <MapPin className="w-3.5 h-3.5 text-neon-magenta" />
+                  <span>{activeItem.locationTag} · {activeItem.categoryLabel}</span>
                 </div>
-                <h3 className="text-xl font-bold font-display text-white">
-                  {activeLightbox.title}
+                <h3 className="text-2xl font-black font-display text-white">
+                  {activeItem.title}
                 </h3>
-                <p className="text-sm text-brand-silver leading-relaxed">
-                  {activeLightbox.description}
+                <p className="text-sm text-neon-grey font-light leading-relaxed">
+                  {activeItem.description}
                 </p>
 
-                <div className="pt-4 flex items-center justify-between border-t border-slate-700/80">
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
                   <button
                     onClick={() => {
-                      const item = activeLightbox;
-                      setActiveLightbox(null);
-                      onOpenEnquiry(`Similar Project Enquiry: ${item.title}`);
+                      const sel = activeItem;
+                      setActiveItem(null);
+                      onOpenEnquiry(`Consultation for ${sel.title}`);
                     }}
                     type="button"
-                    className="px-4 py-2 rounded-xl text-xs font-bold bg-brand-blue hover:bg-brand-blue-hover text-white shadow-glow-blue transition-all"
+                    className="px-6 py-2.5 rounded-full text-xs font-bold text-black bg-gradient-to-r from-neon-cyan to-neon-magenta hover:opacity-90 transition-all shadow-glow-combo"
                   >
-                    Request Similar Installation
+                    Request Similar Setup
                   </button>
                   <button
-                    onClick={() => setActiveLightbox(null)}
+                    onClick={() => setActiveItem(null)}
                     type="button"
-                    className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white"
+                    className="text-xs font-mono text-neon-grey hover:text-white"
                   >
-                    Close
+                    Close Preview [ESC]
                   </button>
                 </div>
               </div>

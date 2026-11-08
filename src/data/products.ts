@@ -1,28 +1,92 @@
+export interface SoftwareCategoryGroup {
+  category: string;
+  items: string[];
+}
+
 export interface ProductItem {
   id: string;
   name: string;
-  category: 'desktops' | 'laptops' | 'monitors' | 'printers' | 'accessories' | 'televisions' | 'components' | 'software' | 'antivirus' | 'ai';
+  category: 
+    | 'desktops' 
+    | 'custom-pcs' 
+    | 'laptops' 
+    | 'monitors' 
+    | 'printers' 
+    | 'accessories' 
+    | 'televisions' 
+    | 'spares' 
+    | 'software' 
+    | 'antivirus' 
+    | 'ai';
   categoryLabel: string;
+  headline: string;
   description: string;
-  features: string[];
+  specs: string[];
   brands?: string[];
-  badge?: string;
+  tag?: string;
   image: string;
-  inquiryHighlight: string;
+  softwareCategories?: SoftwareCategoryGroup[];
 }
+
+// Brand Catalogs by Category (Modular, easy to maintain, non-duplicative)
+export const BRANDED_DESKTOP_BRANDS = ['Dell', 'HP', 'Lenovo', 'Acer', 'Apple', 'Asus'] as const;
+export const LAPTOP_BRANDS = ['Dell', 'HP', 'Lenovo', 'Acer', 'Asus', 'Apple'] as const;
+export const PRINTER_BRANDS = ['Epson', 'HP', 'Canon', 'Brother', 'TVS'] as const;
+export const KEYBOARD_MOUSE_BRANDS = ['TVS', 'Acer', 'Asus', 'Logitech', 'HP', 'Dell', 'Lenovo'] as const;
+export const ANTIVIRUS_BRANDS = [
+  'Quick Heal',
+  'McAfee',
+  'eScan',
+  'VibraNium',
+  'Seqrite Endpoint Security',
+  'Kaspersky',
+  'K7'
+] as const;
+
+export const GENUINE_SOFTWARE_BRANDS = [
+  'Microsoft Windows',
+  'Microsoft Windows Server',
+  'Microsoft Office',
+  'CorelDRAW',
+  'Microsoft SQL Server'
+] as const;
+
+export const GENUINE_SOFTWARE_CATALOGUE: SoftwareCategoryGroup[] = [
+  {
+    category: 'Operating Systems',
+    items: ['Microsoft Windows 10', 'Microsoft Windows 11', 'Microsoft Windows Server']
+  },
+  {
+    category: 'Office & Productivity',
+    items: ['Microsoft Office']
+  },
+  {
+    category: 'Graphics & Design',
+    items: ['CorelDRAW']
+  },
+  {
+    category: 'Database Management',
+    items: ['Microsoft SQL Server']
+  },
+  {
+    category: 'Additional Solutions',
+    items: ['Other genuine licensed business and professional software solutions']
+  }
+];
 
 export const PRODUCT_CATEGORIES = [
   { id: 'all', label: 'All Products' },
-  { id: 'desktops', label: 'Desktops' },
+  { id: 'desktops', label: 'Desktop Computers' },
+  { id: 'custom-pcs', label: 'Custom Assembled PCs' },
   { id: 'laptops', label: 'Laptops' },
   { id: 'monitors', label: 'Monitors' },
-  { id: 'printers', label: 'Printers & Ink' },
-  { id: 'accessories', label: 'Keyboards & Mice' },
-  { id: 'televisions', label: 'LED TVs (24"-100")' },
-  { id: 'components', label: 'Laptop Spares & Displays' },
-  { id: 'software', label: 'Licensed Software' },
-  { id: 'antivirus', label: 'Antivirus Solutions' },
-  { id: 'ai', label: 'AI Applications' },
+  { id: 'printers', label: 'Printers' },
+  { id: 'accessories', label: 'Accessories' },
+  { id: 'televisions', label: 'LED TVs' },
+  { id: 'spares', label: 'Laptop Spare Parts' },
+  { id: 'software', label: 'Software' },
+  { id: 'antivirus', label: 'Antivirus' },
+  { id: 'ai', label: 'AI Applications' }
 ] as const;
 
 export const PRODUCTS_DATA: ProductItem[] = [
@@ -30,168 +94,189 @@ export const PRODUCTS_DATA: ProductItem[] = [
     id: 'prod-desktop-branded',
     name: 'Branded Desktop Computers',
     category: 'desktops',
-    categoryLabel: 'Desktops & Workstations',
-    description: 'Corporate and home desktop workstations from tier-1 manufacturers. Engineered for heavy office productivity, multi-tasking, high endurance, and silent operation.',
-    features: ['Intel Core i3/i5/i7/i9 & AMD Ryzen processors', 'Up to 64GB DDR4/DDR5 RAM and NVMe SSD speeds', 'Preloaded with genuine operating systems', 'Comprehensive manufacturer warranty support'],
-    brands: ['Dell', 'HP', 'Lenovo', 'Acer', 'Asus'],
-    badge: 'Corporate Standard',
-    image: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Available for enterprise procurement & retail orders'
+    categoryLabel: 'Desktop Computers',
+    headline: 'Tier-1 Commercial Towers & All-in-Ones',
+    description: 'Tier-1 enterprise desktop systems and all-in-one workstations configured for heavy office multitasking, accounting, and institutional computing.',
+    specs: [
+      'Dell, HP, Lenovo, Acer, Apple & Asus systems',
+      'Intel Core, AMD Ryzen & Apple Silicon architecture',
+      'Up to 64GB DDR4/DDR5 unified memory',
+      'Genuine factory pre-activated OS & warranty'
+    ],
+    brands: [...BRANDED_DESKTOP_BRANDS],
+    tag: 'Enterprise',
+    image: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80'
   },
   {
     id: 'prod-desktop-assembled',
     name: 'Custom Assembled Performance PCs',
-    category: 'desktops',
-    categoryLabel: 'Desktops & Workstations',
-    description: 'Custom-configured desktop rigs tailored for CAD modeling, 3D rendering, video editing, gaming, and commercial business accounting needs with precision cable management.',
-    features: ['Customized CPU, GPU, motherboard & cooling selection', 'Tailored power supply units (80 Plus Bronze/Gold certified)', 'High airflow chassis with custom fan profiles', 'Burn-in tested and stress-benchmarked before delivery'],
-    brands: ['Intel', 'AMD', 'Gigabyte', 'MSI', 'Corsair', 'Cooler Master'],
-    badge: 'Custom Built',
-    image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Custom configuration advice tailored to your budget'
+    category: 'custom-pcs',
+    categoryLabel: 'Custom Assembled PCs',
+    headline: 'Bespoke Workstation Architecture',
+    description: 'Hand-assembled workstation towers optimized for CAD engineering, 3D rendering, video production, and high-performance gaming.',
+    specs: [
+      'Custom CPU/GPU cooling architecture',
+      'Certified 80+ power supplies',
+      'Airflow-optimized chassis',
+      'Stress-benchmarked hardware'
+    ],
+    brands: ['Intel', 'AMD', 'NVIDIA', 'Gigabyte', 'MSI', 'Corsair'],
+    tag: 'Custom Built',
+    image: '/assets/custom-workstation-tower.webp'
   },
   {
     id: 'prod-laptops',
-    name: 'Business & Commercial Laptops',
+    name: 'Commercial & Ultrabook Laptops',
     category: 'laptops',
     categoryLabel: 'Laptops',
-    description: 'Ultraportable and heavy-duty business laptops built for professionals, students, accountants, and mobile workforces requiring endurance, battery life, and high speed.',
-    features: ['FHD / 2K IPS Anti-glare displays', 'All-day battery longevity with rapid-charge support', 'Robust hinges and military-grade durability testing', 'Integrated biometric fingerprint & TPM 2.0 security'],
-    brands: ['Dell', 'HP', 'Lenovo ThinkPad', 'Acer', 'Asus'],
-    badge: 'Best Seller',
-    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Official warranty with prompt local service support'
+    headline: 'Portable Computing Precision',
+    description: 'Slim business notebooks, rugged enterprise portables, and ultrabooks engineered for mobile professionals, engineers, and students.',
+    specs: [
+      'Dell, HP, Lenovo, Acer, Asus & Apple platforms',
+      'FHD / 2K IPS & Retina anti-glare displays',
+      'Fast-charging battery architecture & Type-C',
+      'TPM 2.0 biometric security & robust chassis'
+    ],
+    brands: [...LAPTOP_BRANDS],
+    tag: 'Pro Mobility',
+    image: '/assets/macbook-pro-complete.webp'
   },
   {
     id: 'prod-monitors',
-    name: 'High-Resolution Monitors (Office, Gaming & Professional)',
+    name: 'High-Resolution Monitors',
     category: 'monitors',
     categoryLabel: 'Monitors',
-    description: 'Flicker-free, eye-care certified computer monitors ranging from 18.5-inch compact workstations to 34-inch ultra-wide curved screens for multimonitor trading and creative setups.',
-    features: ['IPS panels with accurate 99% sRGB color gamut', 'HDMI, DisplayPort & VGA multi-connectivity', 'Low blue light filter & flicker-free technology', 'VESA wall mount and ergonomic tilt stands'],
-    brands: ['LG', 'Samsung', 'Dell', 'BenQ', 'AOC', 'ViewSonic'],
-    badge: 'Eye Care Tech',
-    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Available in sizes from 18.5" to 34" ultrawide'
+    headline: 'Frameless Eye-Care Displays',
+    description: 'Curved and frameless ultrawide displays from 24" to 34" for gaming, multi-screen trading, and creative video editing.',
+    specs: [
+      'Aggressive immersive curvature',
+      'HDMI & DisplayPort high-refresh inputs',
+      'Flicker-free eye comfort certification',
+      'VESA wall & arm mount ready'
+    ],
+    brands: ['Samsung', 'LG', 'Dell', 'BenQ', 'AOC'],
+    tag: 'Curved Ultrawide',
+    image: '/assets/curved-gaming-monitor.webp'
   },
   {
     id: 'prod-printers',
-    name: 'Multifunction Laser & Ink Tank Printers',
+    name: 'Printers (Ink Tank, Laser, All-in-One & Dot Matrix)',
     category: 'printers',
-    categoryLabel: 'Printers & Ink',
-    description: 'High-volume color ink-tank printers and heavy-duty monochrome laser multi-function machines (Print, Copy, Scan, Wi-Fi Direct) for schools, offices, and retail bill counters.',
-    features: ['Ultra low cost-per-page printing (black & color)', 'Integrated flatbed scanner & auto document feeder (ADF)', 'Wireless Wi-Fi, Ethernet & USB 2.0 direct print', 'Seamless mobile print support (AirPrint & Mopria)'],
-    brands: ['Epson', 'Canon', 'HP', 'Brother'],
-    badge: 'Low Cost Print',
-    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Original ink tanks & toner cartridges in stock'
+    categoryLabel: 'Printers',
+    headline: 'High-Yield Office Printing & Passbook Billing',
+    description: 'EcoTank color ink tank systems, heavy-duty monochrome laser multi-function printers, all-in-one scanners, and TVS dot matrix billing printers.',
+    specs: [
+      'Ink Tank, Laser, All-in-One & Dot Matrix categories',
+      'Epson, HP, Canon, Brother & TVS printer platforms',
+      'High-capacity integrated ink tanks & ADF duplex',
+      'TVS Dot Matrix passbook, receipt & billing printers'
+    ],
+    brands: [...PRINTER_BRANDS],
+    tag: 'Office & Billing',
+    image: '/assets/printer-lineup.webp'
   },
   {
-    id: 'prod-printer-ink',
-    name: 'Genuine Printer Ink Bottles & Toner Cartridges',
-    category: 'printers',
-    categoryLabel: 'Printers & Ink',
-    description: '100% authentic, sealed ink bottles, laser toners, and ribbons designed to protect printer print-heads, prevent smearing, and ensure consistent sharp document text.',
-    features: ['Genuine pigment and dye-based formulations', 'LaserJet replacement cartridges with high yield count', 'Sealed anti-leak packaging for clean replenishment', 'Ribbon cassettes for dot matrix passbook printers'],
-    brands: ['Epson EcoTank', 'Canon GI-790/GI-71', 'HP GT53/GT52', 'Brother'],
-    badge: '100% Genuine',
-    image: 'https://images.unsplash.com/photo-1589739900243-4b52cd9b104e?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Bulk supply for educational & business institutions'
-  },
-  {
-    id: 'prod-peripherals',
-    name: 'Ergonomic Keyboards, Mice & Desktop Peripherals',
+    id: 'prod-accessories',
+    name: 'Keyboards, Mice & Peripherals',
     category: 'accessories',
-    categoryLabel: 'Keyboards & Mice',
-    description: 'Durable wired and wireless membrane and mechanical keyboards, optical mice, desk pads, and combo sets built for long hours of comfortable data entry and gaming.',
-    features: ['Silent-switch keyboards for peaceful office environments', 'Long battery life wireless 2.4GHz + Bluetooth pairing', 'Spill-resistant and UV-coated keys that resist fading', 'Ergonomic contours for wrist fatigue reduction'],
-    brands: ['Logitech', 'Dell', 'HP', 'Zebronics', 'Fingers', 'TVS Gold'],
-    badge: 'Daily Essential',
-    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Wired and wireless combos ready for deployment'
+    categoryLabel: 'Accessories',
+    headline: 'Commercial, Mechanical & Tactile Input Hardware',
+    description: 'Durable mechanical keyboards, TVS commercial billing keyboards, wireless desktop combos, and precision optical mice from industry-leading brands.',
+    specs: [
+      'TVS mechanical & commercial billing keyboards',
+      'Acer, Asus, Logitech, HP, Dell & Lenovo combos',
+      'Ergonomic high-precision optical tracking',
+      'Durable braided USB cables & wireless multi-link'
+    ],
+    brands: [...KEYBOARD_MOUSE_BRANDS],
+    tag: 'Input Peripherals',
+    image: '/assets/premium-gaming-keyboard-mouse.webp'
   },
   {
     id: 'prod-led-tv',
-    name: 'Smart LED TVs (24 to 100 Inches)',
+    name: 'Smart LED TVs (24" to 100")',
     category: 'televisions',
-    categoryLabel: 'LED TVs (24"-100")',
-    description: 'Commercial display panels, hotel displays, conference room screens, and residential smart 4K UHD LED televisions from 24-inch bedroom sizes to 100-inch auditorium displays.',
-    features: ['Crystal-clear 4K Ultra HD & HDR10+ visual clarity', 'Integrated Google TV / Android smart OS with OTT apps', 'Dolby Audio sound with dual high-output speakers', 'Multiple HDMI ARC, USB, Optical & Wi-Fi connectivity'],
-    brands: ['Samsung', 'LG', 'Sony', 'Mi / Xiaomi', 'TCL', 'OnePlus'],
-    badge: 'Sizes 24" - 100"',
-    image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Wall mounting and installation support included'
+    categoryLabel: 'LED TVs',
+    headline: 'Commercial Displays & 4K Panels',
+    description: 'Ultra-thin bezel smart panels for conference rooms, digital signage, reception areas, and home entertainment.',
+    specs: [
+      '4K Ultra HD & HDR10+ support',
+      'Smart Google TV / Android OS',
+      'Dolby Audio acoustic drivers',
+      'HDMI ARC & optical connectivity'
+    ],
+    brands: ['Samsung', 'LG', 'Sony', 'Mi', 'TCL'],
+    tag: 'Sizes 24"–100"',
+    image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=1200&q=80'
   },
   {
-    id: 'prod-laptop-spares',
-    name: 'Laptop Chargers, Adapters & Original Batteries',
-    category: 'components',
-    categoryLabel: 'Laptop Spares & Displays',
-    description: 'Certified replacement power adapters (Type-C, barrel jack, rectangular slim tip) and high-density replacement battery packs for all leading laptop brands.',
-    features: ['Built-in short-circuit and over-voltage surge protection', 'Original OEM wattage (45W, 65W, 90W, 135W, 200W+)', 'BIS certified for Indian electrical standards', 'Warranty backed against charging failures'],
-    brands: ['Dell Original', 'HP Smart Pin', 'Lenovo', 'Acer', 'Apple MagSafe / Type-C'],
-    badge: 'Safe & Certified',
-    image: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Exact model matching to ensure zero laptop damage'
+    id: 'prod-spares',
+    name: 'Laptop Chargers, Batteries & Displays',
+    category: 'spares',
+    categoryLabel: 'Laptop Spare Parts',
+    headline: 'Certified Replacement Components',
+    description: 'Original wattage power adapters (Type-C / barrel tip), high-retention replacement batteries, and replacement screen panels.',
+    specs: [
+      'Surge & overvoltage safety',
+      'OEM wattage compliance',
+      'Grade-A display panels',
+      'Clean installation fit'
+    ],
+    brands: ['Dell', 'HP', 'Lenovo', 'Acer', 'Apple Type-C'],
+    tag: 'Replacement Spares',
+    image: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=1200&q=80'
   },
   {
-    id: 'prod-laptop-screens',
-    name: 'Laptop Replacement Displays & Hinges',
-    category: 'components',
-    categoryLabel: 'Laptop Spares & Displays',
-    description: 'Precision replacement screens (HD, Full HD IPS, OLED, 144Hz high refresh rate) and reinforced metallic replacement hinges for cracked or flickering laptop displays.',
-    features: ['Grade-A panels with zero dead pixels', '30-pin & 40-pin eDP connector compatibility', 'Slim bezel, matte anti-glare and touch screen variants', 'Expert chip-level screen installation by lab technicians'],
-    brands: ['BOE', 'Innolux', 'AUO', 'LG Display', 'Samsung Display'],
-    badge: 'Lab Installation',
-    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Same-day or next-day turnaround on common panels'
+    id: 'prod-software',
+    name: 'Genuine Licensed Software Solutions',
+    category: 'software',
+    categoryLabel: 'Software',
+    headline: 'Operating Systems, Productivity, Database & Design',
+    description: 'Genuine digital software licenses supplied by JAZ COMPUTER. We deliver official digital licenses ensuring audit compliance, stability, and uninterrupted enterprise productivity across platforms. Genuine software solutions available on request.',
+    specs: [
+      'Operating Systems: Microsoft Windows 10, Windows 11 & Windows Server',
+      'Office & Productivity: Microsoft Office & 365 suites',
+      'Graphics & Design: CorelDRAW Graphics Suite',
+      'Database Management: Microsoft SQL Server',
+      'Additional Software: Business & enterprise licensing solutions'
+    ],
+    brands: [...GENUINE_SOFTWARE_BRANDS],
+    softwareCategories: [...GENUINE_SOFTWARE_CATALOGUE],
+    tag: 'Audit Compliant',
+    image: '/assets/microsoft-windows-sql-software.webp'
   },
   {
     id: 'prod-antivirus',
     name: 'Antivirus & Endpoint Security Solutions',
     category: 'antivirus',
-    categoryLabel: 'Antivirus Solutions',
-    description: 'Authorized licenses for premier cybersecurity software suites, safeguarding home PCs and corporate client-server workstations from ransomware, spyware, and phishing.',
-    features: ['Real-time zero-day threat detection & behavioral shields', 'Ransomware protection & banking data encryption', 'Lightweight background engine with minimal RAM load', 'Automatic daily cloud signature updates'],
-    brands: ['Quick Heal', 'McAfee', 'eScan', 'VibraNium'],
-    badge: 'Authorized Seller',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Single-user, multi-user (3/5/10 PCs) & enterprise packs'
+    categoryLabel: 'Antivirus',
+    headline: 'Real-Time Endpoint Cybersecurity & Threat Defense',
+    description: 'Official multi-device endpoint security licenses protecting systems against ransomware, phishing, malware, zero-day threats, and network intrusion.',
+    specs: [
+      'Seqrite Endpoint Security centralized management',
+      'Zero-day behavioral shields & ransomware defense',
+      'Kaspersky, Quick Heal, McAfee & K7 retail licenses',
+      'eScan & VibraNium multi-device protection'
+    ],
+    brands: [...ANTIVIRUS_BRANDS],
+    tag: 'Cyber Defense',
+    image: '/assets/antivirus-cybersecurity-alert.webp'
   },
   {
-    id: 'prod-software-os',
-    name: 'Windows 11, Windows Server & Microsoft Office',
-    category: 'software',
-    categoryLabel: 'Licensed Software',
-    description: 'Genuine Microsoft digital licenses for workstations, retail businesses, and corporate domain networks. Compliant with IT audits and legal software standards.',
-    features: ['Windows 11 Home & Windows 11 Professional licenses', 'Windows Server 2022/2025 standard edition licenses & CALs', 'Microsoft Office 2021 / 2024 Home & Business perpetual keys', 'Microsoft 365 cloud subscriptions setup & tenant migration'],
-    brands: ['Microsoft'],
-    badge: 'Official Licenses',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Full license certificates suitable for IT compliance'
-  },
-  {
-    id: 'prod-software-creative-db',
-    name: 'CorelDRAW Graphics Suite & Microsoft SQL Server',
-    category: 'software',
-    categoryLabel: 'Licensed Software',
-    description: 'Industrial-grade design software for printing presses, sign makers, and banner studios, alongside robust database licenses for ERP, billing, and accounting systems.',
-    features: ['CorelDRAW Graphics Suite vector illustration and typography', 'Microsoft SQL Server Standard & Express deployment', 'High throughput transactional database reliability', 'Authorized activation with lifetime security patches'],
-    brands: ['Corel Corporation', 'Microsoft'],
-    badge: 'Industry Standard',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Setup assistance for local printing presses & billing software'
-  },
-  {
-    id: 'prod-ai-apps',
-    name: 'AI Applications & Local Intelligent Workflow Tools',
+    id: 'prod-ai',
+    name: 'AI Workstations & Hardware Acceleration',
     category: 'ai',
     categoryLabel: 'AI Applications',
-    description: 'Cutting-edge AI-enabled workstations, local neural-network accelerators, AI photo enhancements, automated transcription tools, and intelligent business assistant setup.',
-    features: ['Dedicated NVIDIA RTX Tensor Core hardware configuration', 'On-premise localized AI model deployment (private data)', 'Automated document extraction & OCR workflows', 'AI-assisted video generation & high-speed batch processing'],
-    brands: ['NVIDIA AI Workstations', 'Local LLM Setup', 'Vision AI'],
-    badge: 'Next-Gen Tech',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
-    inquiryHighlight: 'Custom consultation for AI workstation builds'
+    headline: 'Local Hardware for Machine Intelligence',
+    description: 'Tensor-core equipped hardware configurations built to run local language models, video synthesis, and AI automation workflows privately.',
+    specs: [
+      'NVIDIA RTX Tensor Cores',
+      'High-bandwidth VRAM buffers',
+      'On-premise localized models',
+      'Ultra-fast NVMe read/write'
+    ],
+    brands: ['NVIDIA RTX', 'Intel Core Ultra', 'AMD Ryzen AI'],
+    tag: 'Next-Gen AI',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80'
   }
 ];

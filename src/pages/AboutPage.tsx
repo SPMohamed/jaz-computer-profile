@@ -3,18 +3,16 @@ import { PageHeader } from '../components/common/PageHeader';
 import { PageId } from '../components/common/Header';
 import { COMPANY_INFO } from '../data/company';
 import { 
-  ShieldCheck, 
-  Award, 
-  Cpu, 
-  Wrench, 
+  Shield, 
+  MapPin, 
+  ArrowUpRight, 
   CheckCircle2, 
-  Layers, 
-  Users, 
-  Clock, 
-  Target, 
-  Building2,
+  Cpu, 
+  Camera, 
+  Layers,
   Sparkles,
-  ArrowRight
+  Zap,
+  Award
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -24,324 +22,199 @@ interface AboutPageProps {
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenEnquiry }) => {
   return (
-    <div className="space-y-16 pb-20">
-      {/* Page Hero Header */}
+    <div className="space-y-20 pb-24 text-white">
+      {/* Page Header */}
       <PageHeader
         title="About JAZ COMPUTER"
-        subtitle="Technology, Built Around You — Your trusted computing sales, chip-level service and surveillance partner in Tenkasi, Tamil Nadu."
-        tamilSubtitle="எங்களைப் பற்றி · உங்கள் தொழில்நுட்பத் தேவைகளுக்கு நம்பகமான உதவி."
-        badge="Company Overview"
+        subtitle="Technology, Built Around You — Your trusted computing sales, hardware engineering and surveillance partner in Tenkasi."
+        label="Company Profile"
         currentPage="about"
         onNavigate={onNavigate}
-        onOpenEnquiry={() => onOpenEnquiry('About Page Consultation')}
+        actionText="Contact Store"
+        onAction={() => onNavigate('contact')}
       />
 
-      {/* Main Story & Background */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
+        {/* Core Narrative with Cyber Asymmetric Spotlight */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-blue">
-              <Building2 className="w-4 h-4" />
-              <span>Our Story & Foundation</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-wider bg-neon-magenta/20 border border-neon-magenta/40 text-neon-magenta">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Technology Beyond Boundaries</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-slate-900 dark:text-white leading-tight">
-              Pioneering Dependable IT Hardware & Surveillance in Tenkasi
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-white leading-tight">
+              Hardware Architecture Engineered for Real-World Workflows.
             </h2>
 
-            <p className="text-slate-600 dark:text-brand-silver text-base leading-relaxed">
-              Founded on West Car Street in Tenkasi, <strong>JAZ COMPUTER</strong> emerged from a clear local need: providing residents, schools, commercial businesses, and agricultural estates with genuine computing hardware, transparent advice, and dependable on-site technical support.
+            <p className="text-sm sm:text-base text-neon-grey leading-relaxed font-light">
+              Located on West Car Street in Tenkasi, <strong>JAZ COMPUTER</strong> delivers high-reliability computing hardware, custom workstation assemblies, commercial displays, licensed software, and surveillance systems for businesses, medical clinics, educational institutions, and residences.
             </p>
 
-            <p className="text-slate-600 dark:text-brand-silver text-base leading-relaxed">
-              Instead of pushing generic hardware, our philosophy has always been simple: <em>Technology, Built Around You</em>. Whether a student requires a reliable budget study laptop, an accounting firm needs licensed multi-user tax software, or a textile mill requires 64-channel continuous video surveillance, we tailor each deployment specifically to the user&apos;s real-world operational demands.
+            <p className="text-sm sm:text-base text-neon-grey leading-relaxed font-light">
+              We focus on exact requirements: recommending hardware configurations tailored to specific accounting, design, administrative, or security needs rather than pushing generic retail stock.
             </p>
 
-            {/* Quick Distinctions List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm text-slate-700 dark:text-slate-300">
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue flex-shrink-0" />
-                <span>Hikvision Authorised Sub-Regional Distributor</span>
+            <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-neon-grey font-mono">
+              <div className="flex items-center gap-2.5 bg-[#160826] p-3 rounded-xl border border-white/5">
+                <CheckCircle2 className="w-4 h-4 text-neon-cyan flex-shrink-0" />
+                <span>Surveillance & Security Engineering</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue flex-shrink-0" />
-                <span>Dedicated In-House Chip-Level Repair Lab</span>
+              <div className="flex items-center gap-2.5 bg-[#160826] p-3 rounded-xl border border-white/5">
+                <CheckCircle2 className="w-4 h-4 text-neon-cyan flex-shrink-0" />
+                <span>Original Serial Licenses & Warranties</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue flex-shrink-0" />
-                <span>Over 43+ Valued Commercial & School Clients</span>
+              <div className="flex items-center gap-2.5 bg-[#160826] p-3 rounded-xl border border-white/5">
+                <CheckCircle2 className="w-4 h-4 text-neon-cyan flex-shrink-0" />
+                <span>Dedicated In-House Service Benches</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue flex-shrink-0" />
-                <span>100% Genuine Branded Hardware & Licenses</span>
+              <div className="flex items-center gap-2.5 bg-[#160826] p-3 rounded-xl border border-white/5">
+                <CheckCircle2 className="w-4 h-4 text-neon-cyan flex-shrink-0" />
+                <span>Tenkasi Field Support Across Sectors</span>
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="relative">
-              <div className="absolute -inset-1 rounded-3xl bg-brand-blue/20 blur-xl" />
-              <div className="relative bg-white dark:bg-brand-navy-card rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
-                <div className="flex items-center gap-4 border-b border-slate-100 dark:border-slate-800 pb-5">
-                  <div className="w-14 h-14 rounded-2xl bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue flex items-center justify-center">
-                    <ShieldCheck className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display">
-                      Authorized Credentials
-                    </h3>
-                    <p className="text-xs text-brand-blue font-semibold">
-                      Tenkasi & Regional Distribution
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4 text-sm text-slate-600 dark:text-brand-silver">
-                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-brand-navy border border-slate-100 dark:border-slate-700/60">
-                    <strong className="text-slate-900 dark:text-white block mb-0.5">
-                      Sub-Regional Distributorship
-                    </strong>
-                    <span className="text-xs text-slate-500 dark:text-slate-400">
-                      Authorised Sub-Regional Distributor for Hikvision surveillance systems and security equipment.
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-brand-navy border border-slate-100 dark:border-slate-700/60">
-                    <strong className="text-slate-900 dark:text-white block mb-0.5">
-                      Cybersecurity Authorized Dealer
-                    </strong>
-                    <span className="text-xs text-slate-500 dark:text-slate-400">
-                      Genuine licenses for Quick Heal, McAfee, eScan, and VibraNium antivirus solutions.
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-brand-navy border border-slate-100 dark:border-slate-700/60">
-                    <strong className="text-slate-900 dark:text-white block mb-0.5">
-                      Service Lab & Spares Depot
-                    </strong>
-                    <span className="text-xs text-slate-500 dark:text-slate-400">
-                      Equipped with high-precision hot air rework stations, digital oscilloscopes, and testing benches.
-                    </span>
-                  </div>
-                </div>
+          <div className="lg:col-span-5 relative">
+            <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-[#241035] to-[#10051F] border border-neon-cyan/40 shadow-[0_0_40px_rgba(0,229,255,0.2)] relative min-h-[400px] group">
+              <img
+                src="/assets/about-white-gaming-pc.webp"
+                alt="JAZ COMPUTER Custom White Gaming PC & Workstation Architecture"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/assets/about-white-gaming-pc.webp';
+                }}
+                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#10051F] via-[#10051F]/40 to-transparent" />
+              
+              <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-[#160826]/90 border border-white/10 backdrop-blur-md space-y-1.5 shadow-2xl">
+                <span className="text-[10px] font-mono text-neon-cyan uppercase tracking-wider block font-bold">
+                  Official Storefront
+                </span>
+                <h4 className="text-sm font-bold font-display text-white">
+                  JAZ COMPUTER · Computing & Surveillance
+                </h4>
+                <p className="text-xs text-neon-grey/70 font-mono">
+                  11/9, West Car Street, Tenkasi
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Hikvision Distributorship Showcase Section */}
-      <section className="bg-brand-navy-dark text-white py-16 border-y border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-blue/20 text-brand-blue border border-brand-blue/30">
-              <ShieldCheck className="w-4 h-4" />
-              <span>Official Sub-Regional Distributorship</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-white">
-              Why Our Sub-Regional Status Benefits You
-            </h2>
-            <p className="text-brand-silver text-sm sm:text-base leading-relaxed">
-              As Hikvision&apos;s Authorised Sub-Regional Distributor in Tenkasi, we eliminate third-party reseller markups and ensure every camera, DVR, NVR and cable run meets verified factory standards.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-brand-navy-card rounded-2xl p-6 border border-slate-800 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-blue/20 text-brand-blue flex items-center justify-center font-bold">
-                01
-              </div>
-              <h3 className="text-lg font-bold font-display text-white">
-                Direct Genuine Stock
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Direct access to authentic serial numbers, ColorVu 24/7 vision technology, and AcuSense artificial intelligence models directly backed by the manufacturer.
-              </p>
-            </div>
-
-            <div className="bg-brand-navy-card rounded-2xl p-6 border border-slate-800 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-blue/20 text-brand-blue flex items-center justify-center font-bold">
-                02
-              </div>
-              <h3 className="text-lg font-bold font-display text-white">
-                Warranty & RMA Support
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Hassle-free replacement and factory repair handling. If any unit exhibits manufacturing anomalies, we handle warranty claims directly through official channels.
-              </p>
-            </div>
-
-            <div className="bg-brand-navy-card rounded-2xl p-6 border border-slate-800 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-blue/20 text-brand-blue flex items-center justify-center font-bold">
-                03
-              </div>
-              <h3 className="text-lg font-bold font-display text-white">
-                Installer & Bulk Supply
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                We supply independent electricians, CCTV contractors, and IT integrators throughout Tenkasi, Tirunelveli, and neighboring taluks with distributor-grade pricing.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values / Pillars of Excellence */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-            Our Commitments
-          </span>
-          <h2 className="text-3xl font-bold font-display text-slate-900 dark:text-white">
-            Built On Four Core Principles
-          </h2>
-          <p className="text-sm text-slate-600 dark:text-brand-silver">
-            The foundation of our enduring relationship with businesses and families throughout Tenkasi.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center">
-              <Target className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Need-Based Recommendation
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              We never push higher-cost components when a cost-effective, dependable solution accomplishes the user&apos;s goal.
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Uncompromising Authenticity
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Every ink cartridge, antivirus activation key, desktop motherboard, and CCTV DVR carries verified genuine lineage.
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
-              <Wrench className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Deep Technical Mastery
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Our technicians perform chip-level BGA rework and IC soldering in-house, significantly cutting turnaround times and repair costs.
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center">
-              <Clock className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Rapid Local Turnaround
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Conveniently located on West Car Street in Tenkasi, we provide same-day diagnostics and prompt on-site technician visits.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Strategic Roadmap Architecture Overview */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-br from-slate-100 to-white dark:from-brand-navy-card dark:to-brand-navy rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 shadow-lg space-y-8">
-          <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-              Technology Roadmap
+        {/* 4 Core Principles Matrix */}
+        <div className="space-y-6 pt-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono uppercase tracking-widest text-neon-magenta font-bold block">
+              Core Principles
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 dark:text-white">
-              The Digital Evolution of JAZ COMPUTER
-            </h2>
-            <p className="text-sm text-slate-600 dark:text-brand-silver">
-              Our modern web architecture is systematically structured across four distinct phases to support long-term business scalability.
-            </p>
+            <span className="text-xs font-mono text-neon-grey">
+              The JAZ Standard
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-5 rounded-2xl bg-white dark:bg-brand-navy border-2 border-brand-blue shadow-md space-y-2">
-              <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-brand-blue text-white">
-                Phase 1 · Active Now
-              </span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Corporate Profile & Showcase
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-neon-cyan/50 transition-all duration-300 space-y-3 group">
+              <span className="text-xs font-mono text-neon-cyan font-bold">01 // SOURCE</span>
+              <h4 className="text-base font-bold font-display text-white group-hover:text-neon-cyan transition-colors">
+                Genuine Sourcing
               </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                Premium digital branding, complete product & CCTV showcase, client trust registry, and instant WhatsApp/Call enquiries.
+              <p className="text-xs text-neon-grey leading-relaxed font-light">
+                Direct procurement of authentic equipment with official manufacturer warranties and audit-compliant licensing.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-brand-navy/60 border border-slate-200 dark:border-slate-800 space-y-2 opacity-80">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                Phase 2 · Planned
-              </span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Admin Dashboard & CMS
+            <div className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-neon-magenta/50 transition-all duration-300 space-y-3 group">
+              <span className="text-xs font-mono text-neon-magenta font-bold">02 // PRECISION</span>
+              <h4 className="text-base font-bold font-display text-white group-hover:text-neon-magenta transition-colors">
+                Technical Bench
               </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                Internal portal for business owners to update price sheets, upload gallery snapshots, and maintain inventory notices.
+              <p className="text-xs text-neon-grey leading-relaxed font-light">
+                Hardware diagnostics, screen replacements, thermal overhauls, and structured network cabling executed with certified tools.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-brand-navy/60 border border-slate-200 dark:border-slate-800 space-y-2 opacity-80">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                Phase 3 · Planned
-              </span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Enquiry & Ticket CRM
+            <div className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-neon-cyan/50 transition-all duration-300 space-y-3 group">
+              <span className="text-xs font-mono text-neon-cyan font-bold">03 // HARDWARE</span>
+              <h4 className="text-base font-bold font-display text-white group-hover:text-neon-cyan transition-colors">
+                Security Systems
               </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                Automated customer enquiry tracking, service job sheet status lookups, and AMC renewal alerts.
+              <p className="text-xs text-neon-grey leading-relaxed font-light">
+                Comprehensive hardware solutions for Hikvision, CP Plus, TrueView, Unicam and TVT cameras, DVRs, and NVRs with local installation support.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-brand-navy/60 border border-slate-200 dark:border-slate-800 space-y-2 opacity-80">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                Phase 4 · Planned
-              </span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Online Catalogue & E-Commerce
+            <div className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-neon-magenta/50 transition-all duration-300 space-y-3 group">
+              <span className="text-xs font-mono text-neon-magenta font-bold">04 // GROUND</span>
+              <h4 className="text-base font-bold font-display text-white group-hover:text-neon-magenta transition-colors">
+                Local Presence
               </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                Direct online hardware purchasing, digital payment gateways, and delivery tracking across Tamil Nadu.
+              <p className="text-xs text-neon-grey leading-relaxed font-light">
+                Accessible storefront and testing facility at West Car Street, Tenkasi for face-to-face consultations and rapid equipment pick-up.
               </p>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Call to Action Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="rounded-3xl bg-brand-navy p-8 sm:p-12 text-white border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl font-bold font-display">
-              Experience the JAZ COMPUTER difference today.
+        {/* Strategic Future Architecture Roadmap */}
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#160826]/80 border border-white/10 space-y-6 shadow-xl">
+          <div className="space-y-1">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neon-cyan block font-bold">
+              Engineering Architecture
+            </span>
+            <h3 className="text-2xl font-bold font-display text-white">
+              Phased Enterprise Roadmap
             </h3>
-            <p className="text-brand-silver text-sm max-w-xl">
-              Visit our store at West Car Street, Tenkasi or get immediate technical guidance over WhatsApp.
-            </p>
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => onNavigate('contact')}
-              type="button"
-              className="px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-brand-blue hover:bg-brand-blue-hover text-white transition-all shadow-glow-blue flex items-center gap-2"
-            >
-              <span>Contact Our Team</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-white/[0.03] border border-neon-cyan/40 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-neon-cyan font-bold">Phase 1</span>
+                <span className="px-2 py-0.5 rounded-full bg-neon-cyan/10 text-neon-cyan text-[10px]">Active</span>
+              </div>
+              <h5 className="text-sm font-bold text-white">Digital Brand & Showcase</h5>
+              <p className="text-xs text-neon-grey font-light">
+                Responsive showcase, client directory, WhatsApp inquiry desks, and verified hardware catalog.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2 opacity-80">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-neon-grey">Phase 2</span>
+                <span className="text-[10px] text-neon-grey/60 font-mono">Future</span>
+              </div>
+              <h5 className="text-sm font-bold text-white">Admin & CMS</h5>
+              <p className="text-xs text-neon-grey font-light">
+                Storefront content management, real-time client management, and dynamic service catalog updates.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2 opacity-80">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-neon-grey">Phase 3</span>
+                <span className="text-[10px] text-neon-grey/60 font-mono">Future</span>
+              </div>
+              <h5 className="text-sm font-bold text-white">Enquiry Management</h5>
+              <p className="text-xs text-neon-grey font-light">
+                Automated customer ticketing, quote dispatch, and service technician scheduling.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2 opacity-80">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-neon-grey">Phase 4</span>
+                <span className="text-[10px] text-neon-grey/60 font-mono">Future</span>
+              </div>
+              <h5 className="text-sm font-bold text-white">Catalog & Commerce</h5>
+              <p className="text-xs text-neon-grey font-light">
+                Institutional ordering portals, inventory feeds, and direct order processing.
+              </p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

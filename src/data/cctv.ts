@@ -1,129 +1,207 @@
 export interface CctvProduct {
   id: string;
   name: string;
-  type: 'Bullet' | 'Dome' | 'Wi-Fi PTZ' | 'Solar Powered' | 'DVR' | 'NVR';
-  tagline: string;
-  idealFor: string;
-  keySpecs: string[];
-  brandsAvailable: string[];
+  type: 
+    | 'Bullet' 
+    | 'Dome' 
+    | 'Wi-Fi PTZ' 
+    | 'Solar Powered' 
+    | 'DVR' 
+    | 'NVR' 
+    | 'CCTV Accessories' 
+    | 'Networking Accessories';
+  headline: string;
+  description: string;
+  specs: string[];
+  brands: string[];
   image: string;
 }
 
-export interface CctvPackage {
-  id: string;
-  title: string;
-  camerasCount: string;
-  recommendedFor: string;
-  includes: string[];
-  badge?: string;
-}
+export const CCTV_BRAND_LIST = [
+  'Hikvision',
+  'CP Plus',
+  'TrueView',
+  'Unicam',
+  'TVT',
+  'HiFocus',
+  'Maxxion',
+  'Cofe',
+  'D-Link',
+  'TP-Link'
+] as const;
 
 export const CCTV_BRANDS = [
-  { name: 'Hikvision', badge: 'Authorised Sub-Regional Distributor', highlight: 'Industry standard in smart AI surveillance, ColorVu full-color 24/7 vision, AcuSense human/vehicle filtering.' },
-  { name: 'CP Plus', badge: 'Popular Commercial Brand', highlight: 'Widespread Indian security brand with high-definition clarity, night vision, and reliable mobile app support.' },
-  { name: 'TrueView', badge: 'Smart Wireless & 4G/Solar', highlight: 'Specialists in 4G SIM cameras, dual-lens pan-tilt systems, and standalone solar powered remote units.' },
-  { name: 'Unicam', badge: 'Cost-Effective Surveillance', highlight: 'Economical high-definition surveillance options ideal for small retail stores, godowns, and apartments.' },
-  { name: 'TVT', badge: 'Enterprise Digital Video', highlight: 'Robust high-channel DVRs, enterprise NVR servers, and specialized industrial surveillance hardware.' }
+  { 
+    name: 'Hikvision', 
+    badge: 'ColorVu & AI', 
+    desc: 'Global surveillance technology featuring ColorVu 24/7 full-color night vision and AcuSense AI perimeter filtration.' 
+  },
+  { 
+    name: 'CP Plus', 
+    badge: 'Commercial Security', 
+    desc: 'High-definition network cameras, intelligent DVRs, and dependable video recording for shops and commercial complexes.' 
+  },
+  { 
+    name: 'TrueView', 
+    badge: 'Wireless & Solar', 
+    desc: '4G LTE SIM cameras, dual-lens pan-tilt security, and 100% off-grid solar-powered monitoring.' 
+  },
+  { 
+    name: 'Unicam', 
+    badge: 'Value Security', 
+    desc: 'Reliable, cost-effective HD video surveillance for retail stores, warehouses, and residences.' 
+  },
+  { 
+    name: 'TVT', 
+    badge: 'Enterprise Digital', 
+    desc: 'Multi-channel digital video recorders and enterprise IP network surveillance equipment.' 
+  },
+  { 
+    name: 'HiFocus', 
+    badge: 'Smart Optics', 
+    desc: 'High-clarity IP and HD cameras with smart night vision and durable weatherproof construction.' 
+  },
+  { 
+    name: 'Maxxion', 
+    badge: 'Perimeter Defense', 
+    desc: 'Industrial and commercial video security systems with continuous recording endurance.' 
+  },
+  { 
+    name: 'Cofe', 
+    badge: 'Wireless & 4G', 
+    desc: 'Smart 4G routers, wireless security bridges, and compact wireless surveillance solutions.' 
+  },
+  { 
+    name: 'D-Link', 
+    badge: 'Networking & PoE', 
+    desc: 'Enterprise unmanaged and smart PoE switches, Cat6 copper cabling, and surveillance transmission.' 
+  },
+  { 
+    name: 'TP-Link', 
+    badge: 'VIGI & Omada Net', 
+    desc: 'VIGI professional security cameras, Omada SDN network management, and high-speed Wi-Fi access points.' 
+  }
 ];
 
 export const CCTV_PRODUCTS: CctvProduct[] = [
   {
     id: 'cctv-bullet',
-    name: 'Outdoor Weatherproof Bullet Cameras',
+    name: 'Weatherproof Bullet Cameras',
     type: 'Bullet',
-    tagline: 'Visible deterrent with long-range night vision for perimeters and gates.',
-    idealFor: 'Building perimeters, parking lots, entrance gates, street frontage and open yards.',
-    keySpecs: [
-      'IP67 waterproof and dustproof heavy-duty metal housing',
-      'Infrared & ColorVu full-color night vision up to 40 meters',
-      'Smart IR LEDs to prevent overexposure of close facial details',
-      'Wide-angle 2.8mm / 3.6mm high-clarity optical lens'
+    headline: 'Perimeter Defense with Long-Range Vision',
+    description: 'Heavy-duty outdoor cameras engineered for gates, boundary walls, street frontage, and open industrial yards.',
+    specs: [
+      'IP67 waterproof metal housing',
+      'ColorVu & infrared night vision up to 40m',
+      'Smart IR facial clarity protection',
+      'Wide-angle optical lenses'
     ],
-    brandsAvailable: ['Hikvision', 'CP Plus', 'TrueView', 'TVT'],
-    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80'
+    brands: ['Hikvision', 'CP Plus', 'TrueView', 'TVT', 'HiFocus', 'Maxxion'],
+    image: '/assets/hikvision-colorvu-pro-series.webp'
   },
   {
     id: 'cctv-dome',
-    name: 'Indoor Sleek Ceiling Dome Cameras',
+    name: 'Ceiling Dome Cameras',
     type: 'Dome',
-    tagline: 'Discreet, tamper-resistant indoor monitoring with 360° coverage aesthetics.',
-    idealFor: 'Retail shops, billing counters, classrooms, offices, living halls and corridors.',
-    keySpecs: [
-      'Low-profile dome enclosure blends smoothly with interior ceilings',
-      'Vandal-resistant housing protects against deliberate tampering',
-      'Built-in high-sensitivity microphone for synchronized audio recording',
-      'Smart 1080p / 4MP / 4K UHD video resolution options'
+    headline: 'Discreet Indoor Security Architecture',
+    description: 'Tamper-resistant low-profile dome cameras designed for showrooms, billing counters, classrooms, and offices.',
+    specs: [
+      'Vandal-resistant low-profile enclosure',
+      'Integrated audio microphone options',
+      'FHD / 4MP / 4K UHD resolutions',
+      'Seamless ceiling aesthetic integration'
     ],
-    brandsAvailable: ['Hikvision', 'CP Plus', 'Unicam', 'TrueView'],
-    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80'
+    brands: ['Hikvision', 'CP Plus', 'Unicam', 'TrueView', 'HiFocus'],
+    image: '/assets/cctv/dome-camera.jpg'
   },
   {
     id: 'cctv-wifi',
-    name: 'Smart 360° Pan-Tilt Wi-Fi & 4G Cameras',
+    name: '360° Pan-Tilt Wi-Fi & 4G Cameras',
     type: 'Wi-Fi PTZ',
-    tagline: 'Wire-free flexibility with app-controlled pan, tilt, zoom and two-way audio talk.',
-    idealFor: 'Small homes, elderly care, baby monitoring, boutique stores, and fast setup without DVR.',
-    keySpecs: [
-      '355° horizontal pan & 90° vertical tilt control from smartphone',
-      'Two-way audio communication via built-in speaker and mic',
-      'Auto-motion tracking: camera automatically follows moving subjects',
-      'MicroSD card slot supporting up to 256GB local loop recording'
+    headline: 'Smart Flexibility with Two-Way Audio',
+    description: 'Standalone wireless security cameras with motorized rotation, smartphone control, and built-in motion tracking.',
+    specs: [
+      '355° pan & 90° tilt from smartphone',
+      'Two-way crystal voice intercom',
+      'Smart human motion tracking',
+      'MicroSD slot up to 256GB'
     ],
-    brandsAvailable: ['TrueView', 'CP Plus', 'Hikvision EZVIZ'],
-    image: 'https://images.unsplash.com/photo-1549101031-15b597b83d16?auto=format&fit=crop&w=800&q=80'
+    brands: ['TrueView', 'CP Plus', 'Hikvision EZVIZ', 'Cofe'],
+    image: '/assets/cctv/wifi-360-camera.jpg'
   },
   {
     id: 'cctv-solar',
-    name: 'Standalone Solar-Powered 4G SIM Cameras',
+    name: 'Solar-Powered 4G SIM Cameras',
     type: 'Solar Powered',
-    tagline: 'Zero power grid required. 100% off-grid security with high-efficiency solar panel & 4G SIM.',
-    idealFor: 'Agricultural farms, coconut and mango groves, construction sites, poultry sheds and remote plots.',
-    keySpecs: [
-      'Integrated monocrystalline solar panel with rechargeable lithium battery',
-      'Direct 4G LTE SIM connectivity (works with Jio, Airtel, Vi)',
-      'PIR human detection wakes system instantly to preserve battery charge',
-      'Operates reliably even during consecutive cloudy or monsoon days'
+    headline: '100% Off-Grid Remote Surveillance',
+    description: 'Integrated solar panel and battery camera requiring zero electricity cabling or local Wi-Fi. Ideal for farmlands, groves, and remote yards.',
+    specs: [
+      'Monocrystalline solar panel + battery',
+      'Direct 4G LTE SIM connectivity',
+      'PIR low-power wake-up sensor',
+      'Continuous operation through overcast days'
     ],
-    brandsAvailable: ['TrueView Solar', 'Hikvision', 'CP Plus Ezykam'],
-    image: 'https://images.unsplash.com/photo-1508873696983-2df5293cb32f?auto=format&fit=crop&w=800&q=80'
+    brands: ['TrueView Solar', 'Hikvision', 'CP Plus'],
+    image: '/assets/cctv/solar-camera.jpg'
   },
   {
     id: 'cctv-dvr',
-    name: 'Digital Video Recorders (DVR) - 4 / 8 / 16 / 32 Ch',
+    name: 'Digital Video Recorders (DVR)',
     type: 'DVR',
-    tagline: 'Central recording hub for HD-TVI, AHD, CVI and analog camera setups.',
-    idealFor: 'Cost-effective HD surveillance with coaxial or twisted-pair cabling over long distances.',
-    keySpecs: [
-      'H.265+ high-efficiency video compression saves up to 75% hard drive storage',
-      'Simultaneous HDMI and VGA 1080p / 4K monitor output',
-      'Continuous, scheduled, and smart motion-triggered recording modes',
-      'Remote internet connectivity for smartphone viewing without static IP'
+    headline: 'Central HD Recording Engine (4 to 32 Channels)',
+    description: 'H.265+ high-compression recording hubs for coaxial and analog HD cameras with seamless mobile live view.',
+    specs: [
+      'H.265+ video storage compression',
+      'HDMI & VGA 4K / 1080p outputs',
+      'Continuous & motion-triggered modes',
+      'Free mobile app remote streaming'
     ],
-    brandsAvailable: ['Hikvision', 'CP Plus', 'Unicam', 'TVT'],
-    image: 'https://images.unsplash.com/photo-1544652478-6653e09f18a2?auto=format&fit=crop&w=800&q=80'
+    brands: ['Hikvision', 'CP Plus', 'Unicam', 'TVT', 'HiFocus', 'Maxxion'],
+    image: 'https://images.unsplash.com/photo-1544652478-6653e09f18a2?auto=format&fit=crop&w=1200&q=80'
   },
   {
     id: 'cctv-nvr',
-    name: 'Network Video Recorders (NVR) with PoE Ports',
+    name: 'Network Video Recorders (NVR)',
     type: 'NVR',
-    tagline: 'Pure digital IP surveillance with Power-over-Ethernet (PoE) and AI deep-learning analytics.',
-    idealFor: 'Institutions, multi-building corporate campuses, jewelry showrooms, and high-security sites.',
-    keySpecs: [
-      'Integrated PoE switches: cameras powered directly through single CAT6 cable',
-      'AcuSense human and motor vehicle classification to eliminate false alarms',
-      'Multi-HDD bays supporting massive 10TB+ surveillance hard drives (WD Purple / Seagate SkyHawk)',
-      'Ultra HD 4K live decoding and synchronized multi-channel playback'
+    headline: 'Enterprise IP Surveillance with PoE',
+    description: 'High-throughput IP camera recording stations with Power-over-Ethernet (PoE) ports and AcuSense AI analytics.',
+    specs: [
+      'Integrated PoE camera power ports',
+      'AcuSense human & vehicle classification',
+      'Multi-bay surveillance hard drive slots',
+      'Multi-channel simultaneous playback'
     ],
-    brandsAvailable: ['Hikvision', 'CP Plus', 'TVT'],
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
+    brands: ['Hikvision', 'CP Plus', 'TVT', 'HiFocus', 'TP-Link'],
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80'
+  },
+  {
+    id: 'cctv-accessories',
+    name: 'CCTV Storage & Power Accessories',
+    type: 'CCTV Accessories',
+    headline: 'Dedicated Surveillance Power, Enclosures & Storage',
+    description: 'Surveillance-grade internal hard drives (1TB to 8TB), centralized SMPS power supplies, BNC/DC connectors, and weatherproof junction boxes.',
+    specs: [
+      '24/7 continuous write surveillance hard drives',
+      'Centralized regulated SMPS multi-channel power',
+      'Weatherproof camera mounting junction boxes',
+      'High-grade copper core 3+1 CCTV video cables'
+    ],
+    brands: ['Seagate SkyHawk', 'Western Digital Purple', 'Hikvision', 'CP Plus', 'ERD'],
+    image: '/assets/gallery/motherboard-testing.jpg'
+  },
+  {
+    id: 'cctv-networking',
+    name: 'Networking & PoE Infrastructure',
+    type: 'Networking Accessories',
+    headline: 'Fast High-Bandwidth Gigabit & PoE Distribution',
+    description: 'PoE switches (4, 8, 16, 24 Port), Cat6 pure copper network cabling, RJ45 patch panels, and long-range outdoor wireless bridges.',
+    specs: [
+      'High-wattage PoE/PoE+ camera ports',
+      'Gigabit uplink for zero-lag surveillance streaming',
+      'Cat6 high-speed transmission cable rolls',
+      'Heavy-duty wall racks & server enclosures'
+    ],
+    brands: ['D-Link', 'TP-Link', 'Cofe', 'Hikvision', 'CP Plus'],
+    image: '/assets/gallery/networking.jpg'
   }
-];
-
-export const CCTV_FEATURE_HIGHLIGHTS = [
-  { title: 'Sub-Regional Distributor Pricing', desc: 'Direct access to official stocks, original serial numbers, and genuine brand warranties without middleman markups.' },
-  { title: 'Clean & Aesthetic Concealed Cabling', desc: 'Our technicians take pride in neat casing/pipe routing, proper termination, and zero messy hanging wires.' },
-  { title: '24/7 Mobile Live View on Any Phone', desc: 'Free setup of mobile applications on iOS & Android with push alerts whenever movement is detected.' },
-  { title: 'Night Vision & Full-Color Technology', desc: 'Crisp images day and night, including Hikvision ColorVu technology providing daylight-like vivid color even in total darkness.' },
-  { title: 'Surveillance-Grade Storage Included', desc: 'We only use authentic 24/7 continuous-duty WD Purple or Seagate SkyHawk hard drives, never desktop drives.' },
-  { title: 'Prompt Local Support & AMC in Tenkasi', desc: 'Fast on-site service whenever you need camera relocation, password recovery, hard disk replacement, or angle adjustment.' }
 ];

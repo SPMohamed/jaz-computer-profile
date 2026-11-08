@@ -1,7 +1,7 @@
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'cctv' | 'desktops' | 'service' | 'networking' | 'displays';
+  category: 'outdoor-cctv' | 'indoor-cctv' | 'hardware' | 'motherboard' | 'networking' | 'solar-cctv';
   categoryLabel: string;
   description: string;
   locationTag: string;
@@ -9,94 +9,68 @@ export interface GalleryItem {
 }
 
 export const GALLERY_CATEGORIES = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'cctv', label: 'CCTV Installations' },
-  { id: 'desktops', label: 'Custom PCs & Workstations' },
-  { id: 'service', label: 'Service Lab & Chip-Level Repairs' },
-  { id: 'networking', label: 'Networking & Structured Cabling' },
-  { id: 'displays', label: 'Commercial & TV Displays' },
+  { id: 'all', label: 'All Showcases' },
+  { id: 'outdoor-cctv', label: 'Outdoor CCTV' },
+  { id: 'indoor-cctv', label: 'Indoor CCTV' },
+  { id: 'hardware', label: 'Computer Hardware' },
+  { id: 'motherboard', label: 'Motherboard Testing' },
+  { id: 'networking', label: 'Networking' },
+  { id: 'solar-cctv', label: 'Solar CCTV' },
 ] as const;
 
 export const GALLERY_DATA: GalleryItem[] = [
   {
-    id: 'gal-cctv-1',
-    title: 'Outdoor Perimeter AcuSense Bullet Camera Deployment',
-    category: 'cctv',
-    categoryLabel: 'CCTV Installations',
-    description: 'Weatherproof Hikvision bullet cameras mounted on commercial warehouse perimeter with high-elevation coverage and IR night vision.',
-    locationTag: 'Tenkasi Industrial Belt',
-    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80'
+    id: 'gal-outdoor-cctv',
+    title: 'Outdoor CCTV Surveillance Installation',
+    category: 'outdoor-cctv',
+    categoryLabel: 'Outdoor CCTV Installation',
+    description: 'Weatherproof metallic bullet security camera with industrial conduit mounted on an exterior building wall overlooking a perimeter driveway.',
+    locationTag: 'Outdoor Surveillance',
+    image: '/assets/gallery/outdoor-cctv-installation.jpg'
   },
   {
-    id: 'gal-desktop-1',
-    title: 'High-Performance Custom Assembled Tower Rig',
-    category: 'desktops',
-    categoryLabel: 'Custom PCs & Workstations',
-    description: 'Precision cable-managed performance PC built for heavy 3D architectural rendering and commercial video editing.',
-    locationTag: 'JAZ Tech Studio, Tenkasi',
-    image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80'
+    id: 'gal-indoor-cctv',
+    title: 'Indoor Ceiling Dome Surveillance Setup',
+    category: 'indoor-cctv',
+    categoryLabel: 'Indoor CCTV Installation',
+    description: 'Discreet white dome surveillance camera flush-mounted on acoustic ceiling tiles for retail stores, showrooms, and office counters.',
+    locationTag: 'Indoor Commercial',
+    image: '/assets/gallery/indoor-cctv-installation.jpg'
   },
   {
-    id: 'gal-service-1',
-    title: 'Chip-Level Laptop Motherboard Soldering Station',
-    category: 'service',
-    categoryLabel: 'Service Lab & Chip-Level Repairs',
-    description: 'BGA rework station and digital microscope setup for micro-soldering, short-circuit diagnostics and power IC replacement.',
-    locationTag: 'JAZ Computer Service Lab',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'
+    id: 'gal-hardware',
+    title: 'Computer Hardware & Workstation Assembly',
+    category: 'hardware',
+    categoryLabel: 'Computer Hardware',
+    description: 'High-performance desktop tower chassis with dual-tower CPU air cooling, dedicated graphics card, high-speed RAM, and clean internal cable routing.',
+    locationTag: 'Hardware Assembly',
+    image: '/assets/gallery/computer-hardware.jpg'
   },
   {
-    id: 'gal-networking-1',
-    title: 'Structured Server Rack & Gigabit Patch Panel',
+    id: 'gal-motherboard',
+    title: 'Motherboard Testing & Chip-Level Diagnostics',
+    category: 'motherboard',
+    categoryLabel: 'Motherboard Testing & Service',
+    description: 'Electronics service bench with digital multimeter probes testing SMD circuit components, with oscilloscope diagnostics and soldering stations.',
+    locationTag: 'Diagnostic Bench',
+    image: '/assets/gallery/motherboard-testing.jpg'
+  },
+  {
+    id: 'gal-networking',
+    title: 'Structured Networking & Server Rack Infrastructure',
     category: 'networking',
-    categoryLabel: 'Networking & Structured Cabling',
-    description: 'Clean CAT6 rack dressed with 24-port Gigabit managed switch, PoE injectors, and central Uninterruptible Power Supply (UPS).',
-    locationTag: 'Academic Institution Campus',
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80'
+    categoryLabel: 'Networking',
+    description: 'Commercial server rack cabinet organized with dressed color-coded CAT6 ethernet patch cables, patch panels, and enterprise switches with active LED status.',
+    locationTag: 'Network Infrastructure',
+    image: '/assets/gallery/networking.jpg'
   },
   {
-    id: 'gal-displays-1',
-    title: '65-inch Smart 4K Conference Room Display Setup',
-    category: 'displays',
-    categoryLabel: 'Commercial & TV Displays',
-    description: 'Flush-mounted large format commercial UHD display with wireless screen mirroring and video conference audio bar.',
-    locationTag: 'Corporate Boardroom, Tenkasi',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80'
-  },
-  {
-    id: 'gal-cctv-2',
-    title: 'Sleek Indoor Dome Surveillance at Retail Showroom',
-    category: 'cctv',
-    categoryLabel: 'CCTV Installations',
-    description: 'Discreet indoor dome cameras covering billing registers, customer aisles, and entry doors with synchronized audio capture.',
-    locationTag: 'Jewellery Showroom, Tenkasi',
-    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80'
-  },
-  {
-    id: 'gal-cctv-3',
-    title: 'Standalone Solar-Powered 4G Agro Farm Surveillance',
-    category: 'cctv',
-    categoryLabel: 'CCTV Installations',
-    description: 'Independent monocrystalline solar panel and lithium battery camera providing continuous live streaming across remote farmland.',
-    locationTag: 'Courtrallam Border Estate',
-    image: 'https://images.unsplash.com/photo-1508873696983-2df5293cb32f?auto=format&fit=crop&w=800&q=80'
-  },
-  {
-    id: 'gal-desktop-2',
-    title: 'Corporate Multi-Monitor Accounting Workstation',
-    category: 'desktops',
-    categoryLabel: 'Custom PCs & Workstations',
-    description: 'Dual-display setup paired with silent mechanical keyboard and ergonomic mouse for financial audits and spreadsheet work.',
-    locationTag: 'Chartered Accountant Office',
-    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80'
-  },
-  {
-    id: 'gal-service-2',
-    title: 'High-Volume Ink-Tank Printer Ultrasonic Head Service',
-    category: 'service',
-    categoryLabel: 'Service Lab & Chip-Level Repairs',
-    description: 'Micro-purging and sonic cleaning to clear stubborn dried ink clogs on color photo printers without damaging delicate nozzles.',
-    locationTag: 'JAZ Printer Diagnostic Bench',
-    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=800&q=80'
+    id: 'gal-solar-cctv',
+    title: 'Solar-Powered 4G Surveillance Setup',
+    category: 'solar-cctv',
+    categoryLabel: 'Solar CCTV Installation',
+    description: 'Standalone pole-mounted 4G outdoor security camera system with attached photovoltaic solar panel and weatherproof battery box for off-grid perimeter monitoring.',
+    locationTag: 'Off-Grid Solar',
+    image: '/assets/gallery/solar-cctv-installation.jpg'
   }
 ];

@@ -4,22 +4,20 @@ import { PageId } from '../components/common/Header';
 import { SERVICES_DATA, ServiceItem } from '../data/services';
 import { COMPANY_INFO } from '../data/company';
 import { 
-  Cpu, 
+  ArrowUpRight, 
+  MessageSquare, 
+  CheckCircle2, 
   Laptop, 
-  Printer, 
   Camera, 
   Network, 
+  Printer, 
   Tv, 
-  ScreenShare, 
-  ShieldCheck, 
-  CheckCircle2, 
-  Clock, 
-  MessageSquare, 
-  Phone, 
-  ChevronRight,
-  Wrench,
-  Sparkles,
-  ArrowRight
+  Cpu,
+  Monitor,
+  ShieldCheck,
+  Zap,
+  Activity,
+  Wrench
 } from 'lucide-react';
 
 interface ServicesPageProps {
@@ -28,217 +26,169 @@ interface ServicesPageProps {
 }
 
 export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenEnquiry }) => {
-  const getServiceIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'Monitor': return <Cpu className="w-6 h-6" />;
-      case 'Laptop': return <Laptop className="w-6 h-6" />;
-      case 'Printer': return <Printer className="w-6 h-6" />;
-      case 'Camera': return <Camera className="w-6 h-6" />;
-      case 'Network': return <Network className="w-6 h-6" />;
-      case 'Tv': return <Tv className="w-6 h-6" />;
-      case 'ScreenShare': return <ScreenShare className="w-6 h-6" />;
-      case 'ShieldCheck': return <ShieldCheck className="w-6 h-6" />;
+  const getIcon = (id: string) => {
+    switch (id) {
+      case 'srv-desktop': return <Cpu className="w-6 h-6" />;
+      case 'srv-laptop': return <Laptop className="w-6 h-6" />;
+      case 'srv-printer': return <Printer className="w-6 h-6" />;
+      case 'srv-monitor': return <Monitor className="w-6 h-6" />;
+      case 'srv-tv': return <Tv className="w-6 h-6" />;
+      case 'srv-cctv': return <Camera className="w-6 h-6" />;
+      case 'srv-networking': return <Network className="w-6 h-6" />;
+      case 'srv-it-support': return <ShieldCheck className="w-6 h-6" />;
       default: return <Wrench className="w-6 h-6" />;
     }
   };
 
-  const handleWhatsAppService = (srv: ServiceItem) => {
+  const handleWhatsApp = (srv: ServiceItem) => {
     const text = encodeURIComponent(
-      `Hello JAZ COMPUTER, I need assistance with *${srv.title}*. Please let me know technician availability in Tenkasi.`
+      `Hello JAZ COMPUTER, I need technical service assistance for *${srv.title}*. Please let me know technician availability in Tenkasi.`
     );
     window.open(`https://wa.me/${COMPANY_INFO.whatsapp}?text=${text}`, '_blank');
   };
 
   return (
-    <div className="space-y-16 pb-20">
-      {/* Page Hero Header */}
+    <div className="space-y-16 pb-24 text-white">
+      {/* Page Header */}
       <PageHeader
-        title="Professional Technical Services"
-        subtitle="Desktop & Laptop Chip-Level Repairs, Printer Care, LED TV Service, CCTV Maintenance, Structured Cabling & Corporate IT Support."
-        tamilSubtitle="கணினி பழுதுநீக்கம், லேப்டாப் சிப் சர்வீஸ், CCTV மற்றும் நெட்வொர்க் சேவைகள்."
-        badge="Technical Expertise"
+        title="Services & Support"
+        subtitle="Desktop Service, Laptop Repair, Printer Service, Monitor Service, LED TV Service, CCTV Installation, Networking & IT Support in Tenkasi."
+        label="Technical Capabilities"
         currentPage="services"
         onNavigate={onNavigate}
-        onOpenEnquiry={() => onOpenEnquiry('General Service Booking')}
+        actionText="Book a Technician"
+        onAction={() => onOpenEnquiry('Service Call Booking')}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
-        {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {SERVICES_DATA.map((srv) => (
-            <div
-              key={srv.id}
-              className="bg-white dark:bg-brand-navy-card rounded-2xl p-7 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between space-y-6 group"
-            >
-              <div className="space-y-4">
-                {/* Header Row */}
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-13 h-13 rounded-2xl bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue flex items-center justify-center p-3 group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                      {getServiceIcon(srv.iconName)}
-                    </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
+        {/* Service Methodology Cyber Ribbon */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6 rounded-3xl bg-[#160826]/70 border border-white/10 space-y-2">
+            <div className="w-10 h-10 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan flex items-center justify-center">
+              <Activity className="w-5 h-5" />
+            </div>
+            <h4 className="text-base font-bold font-display text-white">
+              Chip-Level Diagnostics
+            </h4>
+            <p className="text-xs text-neon-grey leading-relaxed font-light">
+              Testing benches with thermal imaging, oscilloscope checks, and component-level circuit verification.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-[#160826]/70 border border-white/10 space-y-2">
+            <div className="w-10 h-10 rounded-xl bg-neon-magenta/10 border border-neon-magenta/30 text-neon-magenta flex items-center justify-center">
+              <Zap className="w-5 h-5" />
+            </div>
+            <h4 className="text-base font-bold font-display text-white">
+              Genuine Spare Fitment
+            </h4>
+            <p className="text-xs text-neon-grey leading-relaxed font-light">
+              Original display panels, manufacturer power adapters, OEM batteries, and certified Grade-A chips.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-[#160826]/70 border border-white/10 space-y-2">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <h4 className="text-base font-bold font-display text-white">
+              Tenkasi Field Support
+            </h4>
+            <p className="text-xs text-neon-grey leading-relaxed font-light">
+              On-site technician dispatch for commercial networks, surveillance cabling, and server rack installations.
+            </p>
+          </div>
+        </div>
+
+        {/* Modern Visual Service Showcases - Asymmetric Alternating Panels */}
+        <div className="space-y-10">
+          {SERVICES_DATA.map((srv, index) => {
+            const isReversed = index % 2 === 1;
+            const accentColor = index % 2 === 0 ? 'neon-magenta' : 'neon-cyan';
+            
+            return (
+              <div
+                key={srv.id}
+                className={`flex flex-col ${
+                  isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
+                } items-stretch gap-8 bg-[#160826]/80 p-7 sm:p-10 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300 shadow-xl group`}
+              >
+                {/* Visual Imagery Block with Neon Glow Border */}
+                <div className="lg:w-1/2 relative min-h-[280px] sm:min-h-[340px] rounded-2xl overflow-hidden bg-black/60 border border-white/10 group-hover:border-neon-cyan/40 transition-colors">
+                  <img
+                    src={srv.image}
+                    alt={srv.title}
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/assets/gallery/motherboard-testing.jpg';
+                    }}
+                    className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#160826] via-transparent to-transparent opacity-80" />
+                  
+                  {/* Neon Floating Icon Tag */}
+                  <div className="absolute top-5 left-5 p-3 rounded-2xl bg-[#10051F]/90 backdrop-blur-md text-neon-cyan border border-neon-cyan/40 shadow-[0_0_15px_rgba(0,229,255,0.3)]">
+                    {getIcon(srv.id)}
+                  </div>
+
+                  {/* Cyber Index Badge */}
+                  <div className="absolute bottom-5 right-5 font-mono text-xs text-neon-grey/70 bg-[#10051F]/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                    SERVICE #{index + 1 < 10 ? `0${index + 1}` : index + 1}
+                  </div>
+                </div>
+
+                {/* Content Block */}
+                <div className="lg:w-1/2 flex flex-col justify-between space-y-6">
+                  <div className="space-y-4">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-2 py-0.5 rounded">
-                        {srv.serviceType}
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-neon-magenta block font-bold">
+                        {srv.subtitle}
                       </span>
-                      <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mt-1">
+                      <h3 className="text-2xl sm:text-3xl font-black font-display text-white group-hover:text-neon-cyan transition-colors mt-1">
                         {srv.title}
                       </h3>
                     </div>
+
+                    <p className="text-sm text-neon-grey leading-relaxed font-light">
+                      {srv.shortDesc}
+                    </p>
+
+                    {/* Highlights Matrix */}
+                    <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {srv.highlights.map((h, i) => (
+                        <div key={i} className="flex items-center gap-2.5 text-xs text-neon-grey font-mono bg-white/[0.03] p-2 rounded-xl border border-white/5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-neon-cyan flex-shrink-0" />
+                          <span>{h}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
-                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full whitespace-nowrap">
-                    {srv.turnaroundTime}
-                  </span>
-                </div>
+                  {/* Action Triggers */}
+                  <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-3">
+                    <button
+                      onClick={() => handleWhatsApp(srv)}
+                      type="button"
+                      className="px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-white/5 hover:bg-emerald-600/30 border border-white/10 hover:border-emerald-500/50 transition-colors flex items-center gap-2"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>WhatsApp Inquiry</span>
+                    </button>
 
-                {/* Descriptions */}
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-brand-silver leading-relaxed">
-                  {srv.detailedDesc}
-                </p>
-
-                {srv.tamilDesc && (
-                  <p className="text-xs text-brand-blue/90 font-medium">
-                    {srv.tamilDesc}
-                  </p>
-                )}
-
-                {/* Features List */}
-                <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
-                    Service Scope & Deliverables:
-                  </span>
-                  <div className="grid grid-cols-1 gap-1.5">
-                    {srv.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-brand-blue flex-shrink-0 mt-0.5" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
+                    <button
+                      onClick={() => onOpenEnquiry(`Book Service: ${srv.title}`)}
+                      type="button"
+                      className="px-5 py-2.5 rounded-full text-xs font-bold text-black bg-gradient-to-r from-neon-cyan to-neon-magenta hover:opacity-90 transition-all shadow-glow-combo flex items-center gap-1.5"
+                    >
+                      <span>Request Service</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
-
-                {/* Popular For */}
-                <div className="pt-2 text-xs text-slate-500 dark:text-slate-400">
-                  <strong className="text-slate-700 dark:text-slate-200">Recommended For: </strong>
-                  <span>{srv.popularFor}</span>
-                </div>
               </div>
-
-              {/* Action Buttons */}
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => handleWhatsAppService(srv)}
-                  type="button"
-                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors shadow-sm"
-                >
-                  <MessageSquare className="w-3.5 h-3.5" />
-                  <span>WhatsApp Query</span>
-                </button>
-
-                <button
-                  onClick={() => onOpenEnquiry(`Book Service: ${srv.title}`)}
-                  type="button"
-                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-bold text-white bg-brand-blue hover:bg-brand-blue-hover transition-colors shadow-glow-blue"
-                >
-                  <span>Book Service</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* 5-Step Transparent Repair Workflow */}
-        <div className="bg-slate-100 dark:bg-brand-navy rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 space-y-10">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-              Transparent & Reliable
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 dark:text-white">
-              Our 5-Step Service Protocol
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-brand-silver">
-              Every computer, laptop, printer, and CCTV recorder handled by JAZ COMPUTER follows an unbending standard of honesty, transparent billing, and rigorous component-level testing.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            <div className="bg-white dark:bg-brand-navy-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span className="text-xs font-black text-brand-blue">STEP 01</span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Intake & Diagnostics
-              </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Thorough hardware inspection with diagnostic meters to pinpoint the exact failing chip, capacitor, or drive.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-brand-navy-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span className="text-xs font-black text-brand-blue">STEP 02</span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Transparent Estimate
-              </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                We inform you of the exact fault and repair estimate before touching a single solder joint. No surprise bills.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-brand-navy-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span className="text-xs font-black text-brand-blue">STEP 03</span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Precision Lab Repair
-              </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Micro-soldering, authentic replacement parts, internal heatsink re-pasting, and firmware recalibration.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-brand-navy-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span className="text-xs font-black text-brand-blue">STEP 04</span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Burn-In Stress Testing
-              </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Continuous load benchmarking, thermal stability checks, and memory testing to verify rock-solid longevity.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-brand-navy-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span className="text-xs font-black text-brand-blue">STEP 05</span>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                Delivery & Warranty
-              </h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Safe packaging, live functional demonstration upon collection, and repair service warranty coverage.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Emergency On-Site Service Banner */}
-        <div className="rounded-3xl bg-brand-navy text-white p-8 sm:p-12 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-              Urgent Service Call?
-            </span>
-            <h3 className="text-2xl font-bold font-display">
-              Have an urgent office downtime or CCTV recording failure?
-            </h3>
-            <p className="text-brand-silver text-sm max-w-xl">
-              Our on-site field engineers service offices, commercial warehouses, schools, and residences across Tenkasi and surrounding towns.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
-              className="px-6 py-3 rounded-xl text-xs font-bold bg-brand-blue hover:bg-brand-blue-hover text-white shadow-glow-blue transition-all flex items-center gap-2"
-            >
-              <Phone className="w-4 h-4" />
-              <span>Call: {COMPANY_INFO.phoneDisplay}</span>
-            </a>
-          </div>
+            );
+          })}
         </div>
       </div>
     </div>

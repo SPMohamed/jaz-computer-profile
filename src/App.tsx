@@ -53,7 +53,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-brand-navy-dark text-slate-800 dark:text-brand-silver font-sans transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-[#0A0214] text-white font-sans selection:bg-neon-magenta selection:text-white transition-colors duration-200">
       {/* Sticky Header with Logo, Navigation, Calls & Theme Toggle */}
       <Header
         currentPage={currentPage}

@@ -2,24 +2,26 @@ import React from 'react';
 import { COMPANY_INFO } from '../data/company';
 import { PRODUCTS_DATA } from '../data/products';
 import { SERVICES_DATA } from '../data/services';
-import { CLIENTS_DATA } from '../data/clients';
+import { CCTV_PRODUCTS, CCTV_BRANDS } from '../data/cctv';
+import { CLIENTS_DATA, SCROLLING_CLIENTS } from '../data/clients';
 import { PageId } from '../components/common/Header';
 import { 
-  ShieldCheck, 
-  Phone, 
-  MessageSquare, 
+  ArrowUpRight, 
   ChevronRight, 
-  Cpu, 
+  Shield, 
   Laptop, 
   Camera, 
-  Wrench, 
+  Network, 
+  Printer, 
+  Tv, 
   CheckCircle2, 
-  MapPin, 
-  ArrowRight,
-  Tv,
-  Printer,
-  Sparkles,
-  Users
+  Phone, 
+  MessageSquare,
+  Zap,
+  ChevronDown,
+  Cpu,
+  Monitor,
+  ShieldCheck
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -29,403 +31,382 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenEnquiry }) => {
   return (
-    <div className="space-y-20 pb-20">
+    <div className="space-y-32 pb-24 overflow-hidden bg-[#0A0214] text-white">
       {/* =========================================================================
-          HERO SECTION
+          1. IMMERSIVE FUTURISTIC HERO EXPERIENCE
          ========================================================================= */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-navy-dark via-brand-navy to-brand-navy-card text-white py-16 sm:py-24 border-b border-slate-800/80">
-        {/* Ambient Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1685FF10_1px,transparent_1px),linear-gradient(to_bottom,#1685FF10_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-        <div className="absolute top-10 right-10 w-80 h-80 bg-brand-blue/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-96 h-96 bg-brand-navy-light/60 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative min-h-[92vh] flex flex-col justify-center items-center overflow-hidden bg-gradient-to-b from-[#10051F] via-[#15072A] to-[#0A0214] pt-12 pb-20 px-4 sm:px-8">
+        {/* Neon Light Flares & Glow Orbs */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[900px] h-[500px] bg-gradient-to-r from-neon-magenta/20 via-[#9A00E6]/25 to-neon-cyan/20 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute top-20 right-10 w-[350px] h-[350px] bg-neon-cyan/15 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-neon-magenta/15 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-6">
-              {/* Eyebrow Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-blue/15 text-brand-blue border border-brand-blue/30 shadow-sm">
-                <ShieldCheck className="w-4 h-4 text-brand-blue" />
-                <span>{COMPANY_INFO.distributorshipBadge}</span>
-              </div>
+        {/* Cyber Grid Lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#d900ff0a_1px,transparent_1px),linear-gradient(to_bottom,#00e5ff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_75%_65%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none" />
 
-              {/* Main Headline */}
-              <div className="space-y-3">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-white leading-[1.1]">
-                  Technology, <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-sky-300 to-white">
-                    Built Around You.
-                  </span>
-                </h1>
-                <p className="text-lg sm:text-xl text-brand-silver font-medium">
-                  உங்கள் தொழில்நுட்பத் தேவைகளுக்கு நம்பகமான உதவி.
-                </p>
-              </div>
+        <div className="relative max-w-7xl mx-auto w-full text-center space-y-10 z-10 pt-4">
+          {/* Eyebrow Pill */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase bg-[#180B28]/80 border border-neon-cyan/40 text-neon-cyan shadow-[0_0_20px_rgba(0,229,255,0.25)] backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-neon-magenta animate-ping" />
+            <span>Technology & Security Infrastructure · Tenkasi</span>
+          </div>
 
-              {/* Description */}
-              <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                JAZ COMPUTER delivers premier IT infrastructure in Tenkasi: branded and custom-assembled desktops, commercial laptops, certified chip-level repairs, high-resolution CCTV surveillance, and enterprise network support.
-              </p>
+          {/* Main Expressive Headline */}
+          <div className="space-y-4 max-w-5xl mx-auto">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-display tracking-tight text-white leading-[1.02]">
+              JAZ COMPUTER
+            </h1>
+            
+            <p className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-display tracking-tight neon-gradient-text drop-shadow-[0_0_25px_rgba(217,0,255,0.45)]">
+              &ldquo;Technology Beyond Boundaries.&rdquo;
+            </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <a
-                  href={COMPANY_INFO.whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-950/30 transition-all hover:scale-[1.02]"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>WhatsApp Enquiry</span>
-                </a>
+            <p className="text-base sm:text-2xl font-mono tracking-widest text-neon-cyan uppercase pt-2 font-medium">
+              Computers. Security. IT Solutions.
+            </p>
+          </div>
 
-                <a
-                  href={`tel:${COMPANY_INFO.phone}`}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-slate-700 transition-all"
-                >
-                  <Phone className="w-4 h-4 text-brand-blue" />
-                  <span>Call {COMPANY_INFO.phoneDisplay}</span>
-                </a>
+          {/* CTAs */}
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <button
+              onClick={() => onNavigate('products')}
+              type="button"
+              className="px-8 py-4 rounded-full text-xs font-display font-black uppercase tracking-widest text-white bg-gradient-to-r from-neon-magenta via-[#B500E6] to-neon-cyan hover:shadow-[0_0_35px_rgba(217,0,255,0.7)] transition-all duration-300 hover:scale-105 flex items-center gap-2"
+            >
+              <span>EXPLORE PRODUCTS</span>
+              <Zap className="w-4 h-4 text-neon-cyan" />
+            </button>
 
-                <button
-                  onClick={() => onNavigate('products')}
-                  type="button"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-semibold text-brand-blue hover:text-white transition-colors"
-                >
-                  <span>Explore Catalog</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
+            <button
+              onClick={() => onNavigate('contact')}
+              type="button"
+              className="px-8 py-4 rounded-full text-xs font-display font-black uppercase tracking-widest text-neon-cyan bg-[#180B28]/90 hover:bg-[#25103D] border border-neon-cyan/50 hover:border-neon-cyan shadow-[0_0_20px_rgba(0,229,255,0.25)] hover:shadow-[0_0_30px_rgba(0,229,255,0.45)] transition-all duration-300"
+            >
+              GET IN TOUCH
+            </button>
+          </div>
 
-              {/* Trust Checkmarks */}
-              <div className="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-brand-silver border-t border-slate-800/80">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-blue flex-shrink-0" />
-                  <span>Genuine Hardware</span>
+          {/* Layered Visual Showcase Composition */}
+          <div className="pt-8 max-w-5xl mx-auto relative">
+            <div className="relative rounded-3xl overflow-hidden border border-neon-magenta/30 bg-[#160826]/70 shadow-glow-combo backdrop-blur-2xl p-4 sm:p-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Visual Card 1: Custom Workstation PC */}
+                <div className="group relative rounded-2xl overflow-hidden h-56 bg-slate-950 border border-white/10 hover:border-neon-cyan/60 transition-all">
+                  <img
+                    src="/assets/custom-workstation-tower.webp"
+                    alt="Custom Workstation Towers"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/assets/custom-gaming-pc.webp';
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#10051F] via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 text-left">
+                    <span className="text-[10px] font-mono uppercase text-neon-cyan font-bold">Hardware</span>
+                    <p className="text-sm font-display font-bold text-white">Custom Workstation Towers</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-blue flex-shrink-0" />
-                  <span>Chip-Level Lab Service</span>
+
+                {/* Visual Card 2: Laptops & Displays */}
+                <div className="group relative rounded-2xl overflow-hidden h-56 bg-slate-950 border border-white/10 hover:border-neon-magenta/60 transition-all">
+                  <img
+                    src="/assets/macbook-pro-complete.webp"
+                    alt="Commercial Laptops"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/assets/macbook-pro-complete.webp';
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#10051F] via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 text-left">
+                    <span className="text-[10px] font-mono uppercase text-neon-magenta font-bold">Computing</span>
+                    <p className="text-sm font-display font-bold text-white">Commercial Laptops</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-blue flex-shrink-0" />
-                  <span>Hikvision Sub-Regional Distr.</span>
+
+                {/* Visual Card 3: CCTV Security */}
+                <div className="group relative rounded-2xl overflow-hidden h-56 bg-slate-950 border border-white/10 hover:border-neon-cyan/60 transition-all">
+                  <img
+                    src="/assets/hikvision-colorvu-pro-series.webp"
+                    alt="CCTV & AcuSense Systems"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/assets/hikvision-colorvu-pro-series.webp';
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#10051F] via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 text-left">
+                    <span className="text-[10px] font-mono uppercase text-neon-cyan font-bold">Surveillance</span>
+                    <p className="text-sm font-display font-bold text-white">CCTV & AcuSense Systems</p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Right Card Visual Column */}
-            <div className="lg:col-span-5">
-              <div className="relative">
-                {/* Glow Backdrop */}
-                <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-blue to-sky-500 opacity-20 blur-xl"></div>
-                
-                {/* Feature Showcase Glass Card */}
-                <div className="relative bg-brand-navy-card/90 rounded-2xl p-6 sm:p-8 border border-slate-700/80 shadow-2xl backdrop-blur-md space-y-6">
-                  <div className="flex items-center justify-between border-b border-slate-700/80 pb-4">
-                    <div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-brand-blue">
-                        Tenkasi Tech Hub
-                      </span>
-                      <h3 className="text-xl font-bold font-display text-white">
-                        One-Stop Solutions
-                      </h3>
-                    </div>
-                    <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                  </div>
-
-                  <div className="space-y-3.5">
-                    <div 
-                      onClick={() => onNavigate('cctv')}
-                      className="group flex items-center justify-between p-3 rounded-xl bg-brand-navy/60 hover:bg-brand-blue/15 border border-slate-700/50 hover:border-brand-blue/50 transition-all cursor-pointer"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-lg bg-brand-blue/20 text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                          <Camera className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-bold text-white group-hover:text-brand-blue transition-colors">
-                            CCTV Security Systems
-                          </h4>
-                          <p className="text-xs text-slate-400">
-                            Hikvision, CP Plus, TrueView & TVT
-                          </p>
-                        </div>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-brand-blue transition-colors" />
-                    </div>
-
-                    <div 
-                      onClick={() => onNavigate('products')}
-                      className="group flex items-center justify-between p-3 rounded-xl bg-brand-navy/60 hover:bg-brand-blue/15 border border-slate-700/50 hover:border-brand-blue/50 transition-all cursor-pointer"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-lg bg-sky-500/20 text-sky-400 group-hover:bg-sky-500 group-hover:text-white transition-colors">
-                          <Cpu className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-bold text-white group-hover:text-brand-blue transition-colors">
-                            Desktops & Custom Rigs
-                          </h4>
-                          <p className="text-xs text-slate-400">
-                            Intel, AMD, Dell, HP & Lenovo
-                          </p>
-                        </div>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-brand-blue transition-colors" />
-                    </div>
-
-                    <div 
-                      onClick={() => onNavigate('services')}
-                      className="group flex items-center justify-between p-3 rounded-xl bg-brand-navy/60 hover:bg-brand-blue/15 border border-slate-700/50 hover:border-brand-blue/50 transition-all cursor-pointer"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-lg bg-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                          <Wrench className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-bold text-white group-hover:text-brand-blue transition-colors">
-                            Laptop & Desktop Repairs
-                          </h4>
-                          <p className="text-xs text-slate-400">
-                            Chip-level micro-soldering & screen repair
-                          </p>
-                        </div>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-brand-blue transition-colors" />
-                    </div>
-
-                    <div 
-                      onClick={() => onNavigate('products')}
-                      className="group flex items-center justify-between p-3 rounded-xl bg-brand-navy/60 hover:bg-brand-blue/15 border border-slate-700/50 hover:border-brand-blue/50 transition-all cursor-pointer"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-lg bg-amber-500/20 text-amber-400 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                          <Tv className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-bold text-white group-hover:text-brand-blue transition-colors">
-                            LED TVs & Software
-                          </h4>
-                          <p className="text-xs text-slate-400">
-                            24&quot; to 100&quot; Displays & Antivirus
-                          </p>
-                        </div>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-brand-blue transition-colors" />
-                    </div>
-                  </div>
-
-                  <div className="pt-2 text-center border-t border-slate-700/80">
-                    <button
-                      onClick={() => onOpenEnquiry('Instant Consultation')}
-                      type="button"
-                      className="w-full py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-brand-blue hover:bg-brand-blue-hover transition-colors shadow-glow-blue"
-                    >
-                      Request Free Technical Consultation
-                    </button>
-                  </div>
-                </div>
-              </div>
+          {/* Animated Scroll Indicator */}
+          <div className="pt-6 flex flex-col items-center gap-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neon-grey/70">
+              Scroll To Explore
+            </span>
+            <div className="w-5 h-8 rounded-full border-2 border-neon-magenta/40 flex justify-center p-1 shadow-[0_0_10px_rgba(217,0,255,0.3)]">
+              <span className="w-1.5 h-2 rounded-full bg-neon-cyan animate-bounce" />
             </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          KEY STATS TICKER
+          PROMINENT TRUST STATEMENT BANNER
          ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-12 relative z-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-800 text-center space-y-1">
-            <span className="text-3xl sm:text-4xl font-black font-display text-brand-blue">
-              {COMPANY_INFO.stats.yearsExperience}
-            </span>
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-brand-silver">
-              Years in Tenkasi
-            </p>
-          </div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 -mt-12 sm:-mt-16 relative z-20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1b0833] via-[#10051F] to-[#1b0833] border border-neon-cyan/40 p-8 sm:p-12 shadow-[0_0_50px_rgba(0,229,255,0.18)] group">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-neon-magenta/15 rounded-full blur-[130px] pointer-events-none group-hover:bg-neon-magenta/25 transition-all duration-700" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-neon-cyan/15 rounded-full blur-[130px] pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#00e5ff06_1px,transparent_1px),linear-gradient(to_bottom,#d900ff06_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-800 text-center space-y-1">
-            <span className="text-3xl sm:text-4xl font-black font-display text-brand-blue">
-              {COMPANY_INFO.stats.satisfiedClients}
-            </span>
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-brand-silver">
-              Satisfied Clients
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-800 text-center space-y-1">
-            <span className="text-3xl sm:text-4xl font-black font-display text-brand-blue">
-              {COMPANY_INFO.stats.camerasInstalled}
-            </span>
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-brand-silver">
-              Cameras Installed
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-800 text-center space-y-1">
-            <span className="text-3xl sm:text-4xl font-black font-display text-brand-blue">
-              {COMPANY_INFO.stats.systemsServiced}
-            </span>
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-brand-silver">
-              Systems Serviced
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          HIKVISION AUTHORISED DISTRIBUTOR SPOTLIGHT BANNER
-         ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-navy via-brand-navy-card to-brand-navy text-white p-8 sm:p-12 border border-brand-blue/30 shadow-2xl">
-          <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 bg-brand-blue/20 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-blue text-white shadow-sm">
-                <ShieldCheck className="w-4 h-4" />
-                <span>Official Partner Announcement</span>
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-neon-cyan/10 border border-neon-cyan/40 text-neon-cyan shadow-[0_0_15px_rgba(0,229,255,0.25)]">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>Regional Technology Benchmark · Tenkasi</span>
               </div>
-
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-white">
-                Hikvision Authorised Sub-Regional Distributor
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-white leading-tight">
+                Trusted by{' '}
+                <span className="bg-gradient-to-r from-neon-cyan via-white to-neon-magenta bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(0,229,255,0.5)]">
+                  2,000+
+                </span>{' '}
+                Valued Clients
               </h2>
-
-              <p className="text-brand-silver text-sm sm:text-base leading-relaxed max-w-2xl">
-                JAZ COMPUTER is the official Sub-Regional Distributor for Hikvision in Tenkasi and surrounding districts. Get direct access to authentic stock, official warranties, ColorVu 24/7 night vision, AcuSense AI intelligence, and factory-backed technical support.
+              <p className="text-sm sm:text-base text-neon-grey max-w-2xl font-light leading-relaxed">
+                Empowering businesses, healthcare clinics, institutions, textile houses, and professionals with mission-critical computing hardware, certified licensing, and enterprise surveillance.
               </p>
-
-              <div className="flex flex-wrap items-center gap-6 pt-2 text-xs text-slate-300">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-blue" />
-                  <span>Wholesale & Retail Stock</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-blue" />
-                  <span>Certified System Design</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-blue" />
-                  <span>Local On-Site Assistance</span>
-                </div>
-              </div>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 flex-shrink-0">
               <button
-                onClick={() => onNavigate('cctv')}
+                onClick={() => onNavigate('clients')}
                 type="button"
-                className="w-full py-3.5 px-6 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-brand-blue hover:bg-brand-blue-hover shadow-glow-blue transition-all flex items-center justify-center gap-2"
+                className="px-6 py-3.5 rounded-full text-xs font-bold text-black bg-gradient-to-r from-neon-cyan to-neon-magenta hover:opacity-95 transition-all flex items-center justify-center gap-2 shadow-glow-combo"
               >
-                <span>View CCTV Solutions</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Explore Client Directory</span>
+                <ArrowUpRight className="w-4 h-4" />
               </button>
-
-              <button
-                onClick={() => onOpenEnquiry('Hikvision Distributor Bulk Quote')}
-                type="button"
-                className="w-full py-3.5 px-6 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-200 hover:text-white bg-white/10 hover:bg-white/20 border border-slate-700 transition-all text-center"
-              >
-                Distributor Price Enquiry
-              </button>
+              <div className="text-center lg:text-right text-[11px] font-mono text-neon-grey/70">
+                <span>100 Verified Public Accounts</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          CORE PRODUCTS SHOWCASE PREVIEW
+          2. PRODUCT SHOWCASE (FUTURISTIC & HORIZONTAL ASYMMETRIC)
          ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neon-magenta/20 pb-8">
           <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-              Comprehensive Product Range
+            <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-neon-cyan block">
+              // Hardware Catalog
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-slate-900 dark:text-white">
-              Hardware, Software & Displays
+            <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-white">
+              Product Showcase.
             </h2>
-            <p className="text-sm text-slate-600 dark:text-brand-silver max-w-xl">
-              Authentic computing hardware, enterprise software licenses, and commercial surveillance devices sourced directly from verified manufacturers.
-            </p>
           </div>
 
           <button
             onClick={() => onNavigate('products')}
             type="button"
-            className="inline-flex items-center gap-2 text-sm font-bold text-brand-blue hover:text-brand-blue-hover transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-display font-bold uppercase tracking-wider text-neon-cyan hover:text-white transition-colors group"
           >
-            <span>View All Products</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>View All Categories</span>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
 
-        {/* 6 Featured Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PRODUCTS_DATA.slice(0, 6).map((product) => (
-            <div
-              key={product.id}
-              className="bg-white dark:bg-brand-navy-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1"
-            >
-              {/* Product Image */}
-              <div className="relative h-48 overflow-hidden bg-slate-900">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-                  loading="lazy"
-                />
-                {product.badge && (
-                  <span className="absolute top-3 left-3 bg-brand-navy/85 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-brand-blue/30">
-                    {product.badge}
-                  </span>
-                )}
-                <span className="absolute bottom-3 right-3 bg-white/90 dark:bg-brand-navy-dark/90 backdrop-blur-sm text-slate-800 dark:text-brand-silver text-[10px] font-semibold px-2 py-0.5 rounded">
-                  {product.categoryLabel}
-                </span>
-              </div>
+        {/* Featured Editorial Blocks */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Main Feature: Custom Towers */}
+          <div 
+            onClick={() => onNavigate('products')}
+            className="lg:col-span-7 group relative rounded-3xl overflow-hidden bg-[#160826] border border-neon-magenta/30 hover:border-neon-cyan/50 shadow-glow-magenta hover:shadow-glow-cyan transition-all duration-500 cursor-pointer p-8 sm:p-10 flex flex-col justify-end min-h-[440px]"
+          >
+            <img
+              src={PRODUCTS_DATA[1].image}
+              alt={PRODUCTS_DATA[1].name}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = '/assets/custom-gaming-pc.jpg';
+              }}
+              className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#10051F] via-[#10051F]/60 to-transparent" />
 
-              {/* Product Info */}
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display group-hover:text-brand-blue transition-colors">
-                    {product.name}
+            <div className="relative z-10 space-y-3 max-w-lg">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neon-cyan bg-white/10 px-3 py-1 rounded-full border border-neon-cyan/30">
+                {PRODUCTS_DATA[1].tag}
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black font-display text-white">
+                {PRODUCTS_DATA[1].name}
+              </h3>
+              <p className="text-xs sm:text-sm text-neon-grey leading-relaxed">
+                {PRODUCTS_DATA[1].description}
+              </p>
+              <div className="pt-2 flex items-center gap-2 text-xs font-mono font-bold text-neon-magenta uppercase tracking-wider">
+                <span>Explore Configurations →</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Two Stacked Visuals: Laptops & Displays */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            <div 
+              onClick={() => onNavigate('products')}
+              className="group relative rounded-3xl overflow-hidden bg-[#160826] border border-white/10 hover:border-neon-cyan/50 transition-all p-6 flex-1 flex flex-col justify-end min-h-[200px] cursor-pointer"
+            >
+              <img
+                src={PRODUCTS_DATA[2].image}
+                alt={PRODUCTS_DATA[2].name}
+                className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#10051F] via-[#10051F]/60 to-transparent" />
+              <div className="relative z-10 space-y-1">
+                <span className="text-[10px] font-mono text-neon-magenta uppercase tracking-wider block font-bold">
+                  {PRODUCTS_DATA[2].categoryLabel}
+                </span>
+                <h4 className="text-xl font-bold font-display text-white">
+                  {PRODUCTS_DATA[2].name}
+                </h4>
+              </div>
+            </div>
+
+            <div 
+              onClick={() => onNavigate('products')}
+              className="group relative rounded-3xl overflow-hidden bg-[#160826] border border-white/10 hover:border-neon-cyan/50 transition-all p-6 flex-1 flex flex-col justify-end min-h-[200px] cursor-pointer"
+            >
+              <img
+                src={PRODUCTS_DATA[3].image}
+                alt={PRODUCTS_DATA[3].name}
+                className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#10051F] via-[#10051F]/60 to-transparent" />
+              <div className="relative z-10 space-y-1">
+                <span className="text-[10px] font-mono text-neon-cyan uppercase tracking-wider block font-bold">
+                  {PRODUCTS_DATA[3].categoryLabel}
+                </span>
+                <h4 className="text-xl font-bold font-display text-white">
+                  {PRODUCTS_DATA[3].name}
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Horizontal Category Strip */}
+        <div className="space-y-3 pt-2">
+          <div className="flex items-center justify-between text-xs font-mono text-neon-grey/70 px-1">
+            <span className="uppercase">// All Categories</span>
+            <span>Scroll Right →</span>
+          </div>
+
+          <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+            {PRODUCTS_DATA.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => onNavigate('products')}
+                className="flex-shrink-0 w-64 p-4 rounded-2xl bg-[#160826]/80 border border-white/10 hover:border-neon-magenta/60 hover:shadow-glow-magenta/30 transition-all cursor-pointer group"
+              >
+                <div className="h-32 rounded-xl overflow-hidden mb-3 bg-black">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                    loading="lazy"
+                  />
+                </div>
+                <span className="text-[10px] font-mono text-neon-cyan uppercase block font-bold">
+                  {item.categoryLabel}
+                </span>
+                <h4 className="text-sm font-bold font-display text-white truncate mt-0.5">
+                  {item.name}
+                </h4>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          3. IT SERVICES (NEON LINE ICONS & INTERACTIVE MATRIX)
+         ========================================================================= */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+        <div className="space-y-2 border-b border-neon-cyan/20 pb-8">
+          <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-neon-magenta block">
+            // Technical Capabilities
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-white">
+            IT Services.
+          </h2>
+          <p className="text-sm sm:text-base text-neon-grey max-w-xl font-light">
+            Component diagnostics, display renewal, network cabling, and commercial surveillance infrastructure.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SERVICES_DATA.map((srv, index) => (
+            <div
+              key={srv.id}
+              className="p-7 rounded-3xl bg-[#160826]/80 border border-white/10 hover:border-neon-cyan/60 hover:shadow-glow-cyan/20 transition-all duration-300 flex flex-col justify-between group space-y-6"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-[#241035] text-neon-cyan flex items-center justify-center border border-neon-cyan/30 group-hover:border-neon-magenta group-hover:text-neon-magenta transition-colors shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+                    {srv.id === 'srv-desktop' && <Cpu className="w-6 h-6" />}
+                    {srv.id === 'srv-laptop' && <Laptop className="w-6 h-6" />}
+                    {srv.id === 'srv-printer' && <Printer className="w-6 h-6" />}
+                    {srv.id === 'srv-monitor' && <Monitor className="w-6 h-6" />}
+                    {srv.id === 'srv-tv' && <Tv className="w-6 h-6" />}
+                    {srv.id === 'srv-cctv' && <Camera className="w-6 h-6" />}
+                    {srv.id === 'srv-networking' && <Network className="w-6 h-6" />}
+                    {srv.id === 'srv-it-support' && <ShieldCheck className="w-6 h-6" />}
+                  </div>
+                  <span className="text-xs font-mono text-neon-grey/60 font-bold">
+                    {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-bold font-display text-white group-hover:text-neon-cyan transition-colors">
+                    {srv.title}
                   </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                    {product.description}
+                  <p className="text-xs text-neon-grey mt-1.5 leading-relaxed">
+                    {srv.shortDesc}
                   </p>
                 </div>
 
-                {/* Brands Available */}
-                {product.brands && (
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {product.brands.slice(0, 4).map((brand) => (
-                      <span
-                        key={brand}
-                        className="text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-brand-silver px-2 py-0.5 rounded"
-                      >
-                        {brand}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Footer Enquiry Action */}
-                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                  <span className="text-[11px] text-slate-500 font-medium">
-                    Corporate & Retail
-                  </span>
-                  <button
-                    onClick={() => onOpenEnquiry(`Product Enquiry: ${product.name}`)}
-                    type="button"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue hover:text-brand-blue-hover transition-colors"
-                  >
-                    <span>Enquire Now</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
+                <div className="pt-2 flex flex-wrap gap-1.5">
+                  {srv.highlights.map((h, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] font-mono bg-white/[0.04] text-neon-grey px-2.5 py-1 rounded-full border border-white/5"
+                    >
+                      {h}
+                    </span>
+                  ))}
                 </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <button
+                  onClick={() => onOpenEnquiry(`Service Request: ${srv.title}`)}
+                  className="text-xs font-mono font-bold uppercase tracking-wider text-neon-magenta hover:text-white flex items-center gap-1.5 transition-colors"
+                >
+                  <span>Book Technician</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
           ))}
@@ -433,125 +414,68 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenEnquiry })
       </section>
 
       {/* =========================================================================
-          SERVICES SHOWCASE PREVIEW
+          4. CCTV & SECURITY SOLUTIONS EXPERIENCE
          ========================================================================= */}
-      <section className="bg-slate-100 dark:bg-brand-navy/60 py-16 border-y border-slate-200 dark:border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-              Expert Technical Capabilities
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-slate-900 dark:text-white">
-              Professional IT & Repair Services
-            </h2>
-            <p className="text-sm text-slate-600 dark:text-brand-silver">
-              From precision chip-level motherboard troubleshooting to campus CCTV deployments, our Tenkasi technical team has you covered.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SERVICES_DATA.slice(0, 4).map((service) => (
-              <div
-                key={service.id}
-                className="bg-white dark:bg-brand-navy-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
-              >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                    {service.id === 'srv-desktop' && <Cpu className="w-6 h-6" />}
-                    {service.id === 'srv-laptop' && <Laptop className="w-6 h-6" />}
-                    {service.id === 'srv-printer' && <Printer className="w-6 h-6" />}
-                    {service.id === 'srv-cctv' && <Camera className="w-6 h-6" />}
-                  </div>
-
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue">
-                      {service.serviceType}
-                    </span>
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display mt-0.5">
-                      {service.title}
-                    </h3>
-                  </div>
-
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {service.shortDesc}
-                  </p>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                  <span className="text-[11px] text-slate-500 font-medium">
-                    {service.turnaroundTime}
-                  </span>
-                  <button
-                    onClick={() => onOpenEnquiry(`Service Request: ${service.title}`)}
-                    type="button"
-                    className="text-xs font-bold text-brand-blue hover:text-brand-blue-hover transition-colors"
-                  >
-                    Book Service →
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <button
-              onClick={() => onNavigate('services')}
-              type="button"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-brand-blue text-white hover:bg-brand-blue-hover transition-all shadow-glow-blue"
-            >
-              <span>Explore All 8 IT Services</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          CLIENTS SECTION SPOTLIGHT PREVIEW
-         ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-br from-white to-slate-50 dark:from-brand-navy-card dark:to-brand-navy rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 shadow-xl space-y-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-blue">
-                <Users className="w-4 h-4" />
-                <span>Trusted by 43+ Valued Regional Clients</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 dark:text-white">
-                Powering Tenkasi Businesses, Schools & Hospitals
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+        <div className="rounded-3xl bg-gradient-to-br from-[#180B2E] via-[#24103B] to-[#10051F] text-white p-8 sm:p-14 border border-neon-magenta/30 shadow-glow-combo space-y-10">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/10 pb-8">
+            <div className="space-y-3">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-neon-cyan block">
+                // Security Architecture
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-white">
+                CCTV Security Experience.
               </h2>
-              <p className="text-sm text-slate-600 dark:text-brand-silver max-w-xl">
-                We take immense pride in supporting commercial establishments, retail showrooms, educational campuses, textile mills, and healthcare clinics across the region.
+              <p className="text-sm sm:text-base text-neon-grey max-w-xl font-light">
+                Hikvision, CP Plus, TrueView, HiFocus, Maxxion, D-Link & TP-Link. Bullet, Dome, 360° Wi-Fi, Solar & Networking.
               </p>
             </div>
 
             <button
-              onClick={() => onNavigate('clients')}
+              onClick={() => onNavigate('cctv')}
               type="button"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-brand-blue hover:bg-brand-blue-hover text-white transition-all shadow-glow-blue flex-shrink-0"
+              className="px-6 py-3 rounded-full text-xs font-display font-bold uppercase tracking-wider bg-white text-slate-950 hover:bg-neon-cyan hover:text-slate-950 transition-colors self-start lg:self-auto flex items-center gap-2"
             >
-              <span>View All 43 Clients Directory</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Explore Security Systems</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          {/* Sample Client Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {CLIENTS_DATA.slice(0, 8).map((client) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CCTV_PRODUCTS.slice(0, 4).map((cam) => (
               <div
-                key={client.id}
-                className="p-4 rounded-xl bg-white dark:bg-brand-navy border border-slate-200 dark:border-slate-700/60 shadow-sm space-y-1.5"
+                key={cam.id}
+                onClick={() => onNavigate('cctv')}
+                className="group p-5 rounded-2xl bg-[#10051F]/80 hover:bg-[#10051F] border border-white/10 hover:border-neon-cyan transition-all cursor-pointer flex flex-col justify-between space-y-4"
               >
-                <div className="flex items-center justify-between text-[10px] text-slate-500 font-bold uppercase">
-                  <span>Client #{client.clientNumber}</span>
-                  <span className="text-brand-blue">{client.location}</span>
+                <div className="space-y-3">
+                  <div className="h-40 rounded-xl overflow-hidden bg-black">
+                    <img
+                      src={cam.image}
+                      alt={cam.name}
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/assets/cctv/bullet-camera.jpg';
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-neon-magenta block font-bold">
+                    {cam.type}
+                  </span>
+                  <h4 className="text-base font-bold font-display text-white">
+                    {cam.name}
+                  </h4>
+                  <p className="text-xs text-neon-grey line-clamp-2">
+                    {cam.description}
+                  </p>
                 </div>
-                <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display truncate">
-                  {client.name}
-                </h4>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
-                  {client.serviceProvided}
-                </p>
+
+                <div className="pt-2 text-xs font-mono font-bold text-neon-cyan flex items-center gap-1">
+                  <span>View Specifications</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </div>
               </div>
             ))}
           </div>
@@ -559,67 +483,141 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenEnquiry })
       </section>
 
       {/* =========================================================================
-          VERIFIED LOCATION & CONTACT TEASER
+          5. CCTV & SURVEILLANCE SOLUTIONS SHOWCASE
          ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-5 space-y-5">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
-              Visit Our Tenkasi Store
-            </span>
-            <h2 className="text-3xl font-bold font-display text-slate-900 dark:text-white">
-              Conveniently Located at West Car Street
-            </h2>
-            <p className="text-sm text-slate-600 dark:text-brand-silver leading-relaxed">
-              Drop by for hands-on laptop demonstrations, desktop configuration discussions, CCTV camera live display viewing, or quick chip-level diagnostic testing.
-            </p>
+      <section className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="relative overflow-hidden rounded-3xl bg-[#140624] text-white p-8 sm:p-14 border border-neon-magenta/40 shadow-glow-magenta">
+          <div className="absolute top-0 right-0 w-[500px] h-[350px] bg-neon-cyan/15 rounded-full blur-[130px] pointer-events-none" />
 
-            <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" />
-                <div>
-                  <strong className="block text-slate-900 dark:text-white">JAZ COMPUTER</strong>
-                  <span>{COMPANY_INFO.address}, Tenkasi - {COMPANY_INFO.postalCode}, {COMPANY_INFO.state}</span>
-                </div>
+          <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-neon-magenta text-white shadow-glow-magenta">
+                <Shield className="w-3.5 h-3.5" />
+                <span>Security Solutions Hub</span>
               </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-brand-blue flex-shrink-0" />
-                <span>{COMPANY_INFO.phoneDisplay}</span>
+
+              <h2 className="text-3xl sm:text-5xl font-black font-display text-white">
+                Comprehensive CCTV & Surveillance Architecture
+              </h2>
+
+              <p className="text-sm sm:text-base text-neon-grey leading-relaxed max-w-2xl font-light">
+                Enterprise surveillance systems, ColorVu full-color night vision, AcuSense AI intelligence, and off-grid 4G solar cameras supplied and installed for commercial buildings, educational campuses, and residences across Tenkasi.
+              </p>
+
+              <div className="flex flex-wrap gap-6 pt-2 text-xs font-mono text-neon-grey">
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-neon-cyan" />
+                  Leading CCTV Brands
+                </span>
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-neon-cyan" />
+                  Turnkey Installation Support
+                </span>
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-neon-cyan" />
+                  Local Field Support in Tenkasi
+                </span>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a
-                href={COMPANY_INFO.googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-blue hover:bg-brand-blue-hover transition-all shadow-glow-blue"
-              >
-                <MapPin className="w-3.5 h-3.5" />
-                <span>Open in Google Maps</span>
-              </a>
-
+            <div className="lg:col-span-4 flex flex-col gap-3">
               <button
-                onClick={() => onNavigate('contact')}
+                onClick={() => onOpenEnquiry('CCTV Installation & Quote Inquiry')}
                 type="button"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-slate-800 dark:text-white bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 transition-colors"
+                className="w-full py-4 px-6 rounded-full text-xs font-display font-bold uppercase tracking-wider text-white bg-gradient-to-r from-neon-magenta to-[#9A00E6] hover:from-[#E619FF] hover:to-neon-cyan transition-all duration-300 shadow-glow-magenta text-center"
               >
-                <span>Full Contact Page</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+                Inquire Security Setup
+              </button>
+              <button
+                onClick={() => onNavigate('cctv')}
+                type="button"
+                className="w-full py-3.5 px-6 rounded-full text-xs font-display font-bold uppercase tracking-wider text-neon-cyan bg-white/[0.06] hover:bg-white/[0.12] border border-neon-cyan/40 transition-colors text-center"
+              >
+                Explore CCTV Range
               </button>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="lg:col-span-7">
-            <div className="h-80 w-full rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700 shadow-xl relative bg-slate-200 dark:bg-slate-800">
-              <iframe
-                title="JAZ COMPUTER Tenkasi Google Map Location"
-                src={COMPANY_INFO.googleMapsEmbedUrl}
-                className="w-full h-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+      {/* =========================================================================
+          6. TRUSTED CLIENTS (ANIMATED MARQUEE & DIRECTORY LINK)
+         ========================================================================= */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neon-magenta/20 pb-8">
+          <div className="space-y-2">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-neon-cyan block">
+              // Client Relationships
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-white">
+              Trusted by{' '}
+              <span className="bg-gradient-to-r from-neon-cyan via-white to-neon-magenta bg-clip-text text-transparent">
+                2,000+
+              </span>{' '}
+              Valued Clients.
+            </h2>
+          </div>
+
+          <button
+            onClick={() => onNavigate('clients')}
+            type="button"
+            className="inline-flex items-center gap-2 text-xs font-display font-bold uppercase tracking-wider text-neon-cyan hover:text-white transition-colors group"
+          >
+            <span>View Full Directory (100 Accounts)</span>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </button>
+        </div>
+
+        {/* Animated Client Name Marquee */}
+        <div className="relative overflow-hidden py-5 border-y border-neon-magenta/25 bg-[#140624]/60 rounded-2xl backdrop-blur-md">
+          <div className="flex gap-8 whitespace-nowrap animate-marquee">
+            {SCROLLING_CLIENTS.concat(SCROLLING_CLIENTS).map((name, idx) => (
+              <span
+                key={idx}
+                className="text-base sm:text-lg font-display font-medium text-neon-grey tracking-wide hover:text-neon-cyan transition-colors cursor-default"
+              >
+                {name} <span className="text-neon-magenta mx-3">/</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          7. CONTACT CTA (NEON COMMAND CONSOLE)
+         ========================================================================= */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="rounded-3xl bg-[#140624] text-white p-10 sm:p-16 border border-neon-cyan/40 shadow-glow-cyan flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
+          <div className="space-y-4 text-center lg:text-left max-w-xl">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-neon-magenta block">
+              // Store Coordinates
+            </span>
+            <h3 className="text-3xl sm:text-4xl font-black font-display text-white">
+              Ready to Upgrade Hardware or Surveillance?
+            </h3>
+            <p className="text-sm text-neon-grey leading-relaxed">
+              Visit our store at 11/9, West Car Street in Tenkasi or get instant technical consultation over WhatsApp.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={`tel:${COMPANY_INFO.phone}`}
+              className="px-8 py-4 rounded-full text-xs font-display font-bold uppercase tracking-wider bg-white text-slate-950 hover:bg-neon-cyan hover:text-slate-950 transition-all flex items-center gap-2 shadow-lg"
+            >
+              <Phone className="w-3.5 h-3.5 text-neon-magenta" />
+              <span>Call: {COMPANY_INFO.phoneDisplay}</span>
+            </a>
+
+            <a
+              href={COMPANY_INFO.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-full text-xs font-display font-bold uppercase tracking-wider bg-gradient-to-r from-neon-magenta to-[#9A00E6] text-white transition-all flex items-center gap-2 shadow-glow-magenta"
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>WhatsApp Direct</span>
+            </a>
           </div>
         </div>
       </section>

@@ -1,33 +1,33 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2308172E'/><path d='M8 10h16M16 10v12c0 3-2 4-5 4' stroke='%231685FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310051F'/><path d='M8 10h16M16 10v12c0 3-2 4-5 4' stroke='%2300E5FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><circle cx='23' cy='22' r='2.5' fill='%23D900FF'/></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JAZ COMPUTER | Technology, Built Around You | Tenkasi, Tamil Nadu</title>
-    <meta name="description" content="JAZ COMPUTER - Premium Computer Sales, Chip-Level Laptop & Desktop Repairs, CCTV Security Solutions & IT Support in Tenkasi. Hikvision Authorised Sub-Regional Distributor." />
-    <meta name="keywords" content="Jaz Computer, Tenkasi, Hikvision distributor, CCTV installation, laptop repair, desktop sales, antivirus, printers, networking solutions, IT support Tenkasi" />
+    <title>JAZ COMPUTER | Technology Beyond Boundaries | Tenkasi</title>
+    <meta name="description" content="JAZ COMPUTER - Premium Computers, CCTV Security Solutions & IT Infrastructure in Tenkasi. Laptops, Custom PCs, Surveillance & Technical Support." />
+    <meta name="keywords" content="Jaz Computer, Tenkasi, CCTV installation, Hikvision, CP Plus, TrueView, laptop repair, desktop sales, antivirus, printers, networking solutions, IT support Tenkasi" />
     
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="JAZ COMPUTER | Technology, Built Around You" />
-    <meta property="og:description" content="Premium Computer Sales, CCTV Solutions & IT Services in Tenkasi. Hikvision Authorised Sub-Regional Distributor." />
+    <meta property="og:title" content="JAZ COMPUTER | Technology Beyond Boundaries" />
+    <meta property="og:description" content="Computers. Security. IT Solutions in Tenkasi. Laptops, Custom PCs, CCTV Surveillance & IT Support." />
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Space Grotesk & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script>
-      // Prevent dark mode flashing
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      } else {
+      // Default to dark mode for neon futuristic experience
+      if (localStorage.theme === 'light') {
         document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
       }
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-800 dark:bg-brand-navy-dark dark:text-brand-silver font-sans antialiased transition-colors duration-300 min-h-screen">
+  <body class="bg-[#FAF7FD] text-slate-900 dark:bg-[#0A0214] dark:text-[#F3F0F9] font-sans antialiased transition-colors duration-300 min-h-screen selection:bg-[#D900FF] selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
