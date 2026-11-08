@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetPath } from '../utils/assets';
 import { PageHeader } from '../components/common/PageHeader';
 import { PageId } from '../components/common/Header';
 import { CCTV_PRODUCTS, CCTV_BRANDS, CctvProduct } from '../data/cctv';
@@ -180,7 +181,7 @@ export const CctvSolutionsPage: React.FC<CctvSolutionsPageProps> = ({ onNavigate
                       alt={prod.name}
                       onError={(e) => {
                         e.currentTarget.onerror = null;
-                        e.currentTarget.src = '/assets/cctv/bullet-camera.jpg';
+                        e.currentTarget.src = getAssetPath('/assets/cctv/bullet-camera.jpg');
                       }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
                       loading="lazy"

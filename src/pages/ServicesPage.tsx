@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetPath } from '../utils/assets';
 import { PageHeader } from '../components/common/PageHeader';
 import { PageId } from '../components/common/Header';
 import { SERVICES_DATA, ServiceItem } from '../data/services';
@@ -120,7 +121,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenEn
                     alt={srv.title}
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = '/assets/gallery/motherboard-testing.jpg';
+                      e.currentTarget.src = getAssetPath('/assets/gallery/motherboard-testing.jpg');
                     }}
                     className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"

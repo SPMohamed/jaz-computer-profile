@@ -1,3 +1,5 @@
+import { getAssetPath } from '../utils/assets';
+
 export interface CctvProduct {
   id: string;
   name: string;
@@ -97,7 +99,7 @@ export const CCTV_PRODUCTS: CctvProduct[] = [
       'Wide-angle optical lenses'
     ],
     brands: ['Hikvision', 'CP Plus', 'TrueView', 'TVT', 'HiFocus', 'Maxxion'],
-    image: '/assets/hikvision-colorvu-pro-series.webp'
+    image: getAssetPath('/assets/hikvision-colorvu-pro-series.webp')
   },
   {
     id: 'cctv-dome',
@@ -112,7 +114,7 @@ export const CCTV_PRODUCTS: CctvProduct[] = [
       'Seamless ceiling aesthetic integration'
     ],
     brands: ['Hikvision', 'CP Plus', 'Unicam', 'TrueView', 'HiFocus'],
-    image: '/assets/cctv/dome-camera.jpg'
+    image: getAssetPath('/assets/cctv/dome-camera.jpg')
   },
   {
     id: 'cctv-wifi',
@@ -127,7 +129,7 @@ export const CCTV_PRODUCTS: CctvProduct[] = [
       'MicroSD slot up to 256GB'
     ],
     brands: ['TrueView', 'CP Plus', 'Hikvision EZVIZ', 'Cofe'],
-    image: '/assets/cctv/wifi-360-camera.jpg'
+    image: getAssetPath('/assets/cctv/wifi-360-camera.jpg')
   },
   {
     id: 'cctv-solar',
@@ -142,7 +144,7 @@ export const CCTV_PRODUCTS: CctvProduct[] = [
       'Continuous operation through overcast days'
     ],
     brands: ['TrueView Solar', 'Hikvision', 'CP Plus'],
-    image: '/assets/cctv/solar-camera.jpg'
+    image: getAssetPath('/assets/cctv/solar-camera.jpg')
   },
   {
     id: 'cctv-dvr',
@@ -187,7 +189,7 @@ export const CCTV_PRODUCTS: CctvProduct[] = [
       'High-grade copper core 3+1 CCTV video cables'
     ],
     brands: ['Seagate SkyHawk', 'Western Digital Purple', 'Hikvision', 'CP Plus', 'ERD'],
-    image: '/assets/gallery/motherboard-testing.jpg'
+    image: getAssetPath('/assets/gallery/motherboard-testing.jpg')
   },
   {
     id: 'cctv-networking',
@@ -202,6 +204,6 @@ export const CCTV_PRODUCTS: CctvProduct[] = [
       'Heavy-duty wall racks & server enclosures'
     ],
     brands: ['D-Link', 'TP-Link', 'Cofe', 'Hikvision', 'CP Plus'],
-    image: '/assets/gallery/networking.jpg'
+    image: getAssetPath('/assets/gallery/networking.jpg')
   }
 ];

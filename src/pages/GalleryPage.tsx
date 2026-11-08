@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getAssetPath } from '../utils/assets';
 import { PageHeader } from '../components/common/PageHeader';
 import { PageId } from '../components/common/Header';
 import { GALLERY_DATA, GALLERY_CATEGORIES, GalleryItem } from '../data/gallery';
@@ -67,7 +68,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate, onOpenEnqu
                     alt={item.title}
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = '/assets/gallery/outdoor-cctv-installation.jpg';
+                      e.currentTarget.src = getAssetPath('/assets/gallery/outdoor-cctv-installation.jpg');
                     }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
                     loading="lazy"
@@ -121,7 +122,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate, onOpenEnqu
                   alt={activeItem.title}
                   onError={(e) => {
                     e.currentTarget.onerror = null;
-                    e.currentTarget.src = '/assets/gallery/outdoor-cctv-installation.jpg';
+                    e.currentTarget.src = getAssetPath('/assets/gallery/outdoor-cctv-installation.jpg');
                   }}
                   className="w-full h-full object-contain"
                 />

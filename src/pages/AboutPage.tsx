@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetPath } from '../utils/assets';
 import { PageHeader } from '../components/common/PageHeader';
 import { PageId } from '../components/common/Header';
 import { COMPANY_INFO } from '../data/company';
@@ -78,11 +79,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenEnquiry 
           <div className="lg:col-span-5 relative">
             <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-[#241035] to-[#10051F] border border-neon-cyan/40 shadow-[0_0_40px_rgba(0,229,255,0.2)] relative min-h-[400px] group">
               <img
-                src="/assets/about-white-gaming-pc.webp"
+                src={getAssetPath('/assets/about-white-gaming-pc.webp')}
                 alt="JAZ COMPUTER Custom White Gaming PC & Workstation Architecture"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
-                  e.currentTarget.src = '/assets/about-white-gaming-pc.webp';
+                  e.currentTarget.src = getAssetPath('/assets/about-white-gaming-pc.webp');
                 }}
                 className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
               />

@@ -1,3 +1,5 @@
+import { getAssetPath } from '../utils/assets';
+
 export interface SoftwareCategoryGroup {
   category: string;
   items: string[];
@@ -122,7 +124,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     ],
     brands: ['Intel', 'AMD', 'NVIDIA', 'Gigabyte', 'MSI', 'Corsair'],
     tag: 'Custom Built',
-    image: '/assets/custom-workstation-tower.webp'
+    image: getAssetPath('/assets/custom-workstation-tower.webp')
   },
   {
     id: 'prod-laptops',
@@ -139,7 +141,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     ],
     brands: [...LAPTOP_BRANDS],
     tag: 'Pro Mobility',
-    image: '/assets/macbook-pro-complete.webp'
+    image: getAssetPath('/assets/macbook-pro-complete.webp')
   },
   {
     id: 'prod-monitors',
@@ -156,7 +158,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     ],
     brands: ['Samsung', 'LG', 'Dell', 'BenQ', 'AOC'],
     tag: 'Curved Ultrawide',
-    image: '/assets/curved-gaming-monitor.webp'
+    image: getAssetPath('/assets/curved-gaming-monitor.webp')
   },
   {
     id: 'prod-printers',
@@ -173,7 +175,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     ],
     brands: [...PRINTER_BRANDS],
     tag: 'Office & Billing',
-    image: '/assets/printer-lineup.webp'
+    image: getAssetPath('/assets/printer-lineup.webp')
   },
   {
     id: 'prod-accessories',
@@ -190,7 +192,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     ],
     brands: [...KEYBOARD_MOUSE_BRANDS],
     tag: 'Input Peripherals',
-    image: '/assets/premium-gaming-keyboard-mouse.webp'
+    image: getAssetPath('/assets/premium-gaming-keyboard-mouse.webp')
   },
   {
     id: 'prod-led-tv',
@@ -243,7 +245,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     brands: [...GENUINE_SOFTWARE_BRANDS],
     softwareCategories: [...GENUINE_SOFTWARE_CATALOGUE],
     tag: 'Audit Compliant',
-    image: '/assets/microsoft-windows-sql-software.webp'
+    image: getAssetPath('/assets/microsoft-windows-sql-software.webp')
   },
   {
     id: 'prod-antivirus',
@@ -260,7 +262,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     ],
     brands: [...ANTIVIRUS_BRANDS],
     tag: 'Cyber Defense',
-    image: '/assets/antivirus-cybersecurity-alert.webp'
+    image: getAssetPath('/assets/antivirus-cybersecurity-alert.webp')
   },
   {
     id: 'prod-ai',

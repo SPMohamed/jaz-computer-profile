@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetPath } from '../utils/assets';
 import { COMPANY_INFO } from '../data/company';
 import { PRODUCTS_DATA } from '../data/products';
 import { SERVICES_DATA } from '../data/services';
@@ -93,11 +94,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenEnquiry })
                 {/* Visual Card 1: Custom Workstation PC */}
                 <div className="group relative rounded-2xl overflow-hidden h-56 bg-slate-950 border border-white/10 hover:border-neon-cyan/60 transition-all">
                   <img
-                    src="/assets/custom-workstation-tower.webp"
+                    src={getAssetPath('/assets/custom-workstation-tower.webp')}
                     alt="Custom Workstation Towers"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = '/assets/custom-gaming-pc.webp';
+                      e.currentTarget.src = getAssetPath('/assets/custom-gaming-pc.webp');
                     }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
                   />
@@ -111,11 +112,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenEnquiry })
                 {/* Visual Card 2: Laptops & Displays */}
                 <div className="group relative rounded-2xl overflow-hidden h-56 bg-slate-950 border border-white/10 hover:border-neon-magenta/60 transition-all">
                   <img
-                    src="/assets/macbook-pro-complete.webp"
+                    src={getAssetPath('/assets/macbook-pro-complete.webp')}
                     alt="Commercial Laptops"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = '/assets/macbook-pro-complete.webp';
+                      e.currentTarget.src = getAssetPath('/assets/macbook-pro-complete.webp');
                     }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
                   />
@@ -129,11 +130,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenEnquiry })
                 {/* Visual Card 3: CCTV Security */}
                 <div className="group relative rounded-2xl overflow-hidden h-56 bg-slate-950 border border-white/10 hover:border-neon-cyan/60 transition-all">
                   <img
-                    src="/assets/hikvision-colorvu-pro-series.webp"
+                    src={getAssetPath('/assets/hikvision-colorvu-pro-series.webp')}
                     alt="CCTV & AcuSense Systems"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = '/assets/hikvision-colorvu-pro-series.webp';
+                      e.currentTarget.src = getAssetPath('/assets/hikvision-colorvu-pro-series.webp');
                     }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
                   />
@@ -239,7 +240,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenEnquiry })
               alt={PRODUCTS_DATA[1].name}
               onError={(e) => {
                 e.currentTarget.onerror = null;
-                e.currentTarget.src = '/assets/custom-gaming-pc.jpg';
+                e.currentTarget.src = getAssetPath('/assets/custom-gaming-pc.jpg');
               }}
               className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
             />
@@ -455,7 +456,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenEnquiry })
                       alt={cam.name}
                       onError={(e) => {
                         e.currentTarget.onerror = null;
-                        e.currentTarget.src = '/assets/cctv/bullet-camera.jpg';
+                        e.currentTarget.src = getAssetPath('/assets/cctv/bullet-camera.jpg');
                       }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
                       loading="lazy"

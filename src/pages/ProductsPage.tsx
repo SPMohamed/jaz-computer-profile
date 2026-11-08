@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { getAssetPath } from '../utils/assets';
 import { PageHeader } from '../components/common/PageHeader';
 import { PageId } from '../components/common/Header';
 import { PRODUCTS_DATA, PRODUCT_CATEGORIES, ProductItem } from '../data/products';
@@ -131,7 +132,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate, onOpenEn
                   alt={featuredProduct.name}
                   onError={(e) => {
                     e.currentTarget.onerror = null;
-                    e.currentTarget.src = '/assets/custom-gaming-pc.jpg';
+                    e.currentTarget.src = getAssetPath('/assets/custom-gaming-pc.jpg');
                   }}
                   className="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
@@ -227,7 +228,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate, onOpenEn
                     alt={product.name}
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = '/assets/gallery/computer-hardware.jpg';
+                      e.currentTarget.src = getAssetPath('/assets/gallery/computer-hardware.jpg');
                     }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
                     loading="lazy"

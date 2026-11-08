@@ -1,3 +1,5 @@
+import { getAssetPath } from '../utils/assets';
+
 export interface GalleryItem {
   id: string;
   title: string;
@@ -26,7 +28,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     categoryLabel: 'Outdoor CCTV Installation',
     description: 'Weatherproof metallic bullet security camera with industrial conduit mounted on an exterior building wall overlooking a perimeter driveway.',
     locationTag: 'Outdoor Surveillance',
-    image: '/assets/gallery/outdoor-cctv-installation.jpg'
+    image: getAssetPath('/assets/gallery/outdoor-cctv-installation.jpg')
   },
   {
     id: 'gal-indoor-cctv',
@@ -35,7 +37,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     categoryLabel: 'Indoor CCTV Installation',
     description: 'Discreet white dome surveillance camera flush-mounted on acoustic ceiling tiles for retail stores, showrooms, and office counters.',
     locationTag: 'Indoor Commercial',
-    image: '/assets/gallery/indoor-cctv-installation.jpg'
+    image: getAssetPath('/assets/gallery/indoor-cctv-installation.jpg')
   },
   {
     id: 'gal-hardware',
@@ -44,7 +46,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     categoryLabel: 'Computer Hardware',
     description: 'High-performance desktop tower chassis with dual-tower CPU air cooling, dedicated graphics card, high-speed RAM, and clean internal cable routing.',
     locationTag: 'Hardware Assembly',
-    image: '/assets/gallery/computer-hardware.jpg'
+    image: getAssetPath('/assets/gallery/computer-hardware.jpg')
   },
   {
     id: 'gal-motherboard',
@@ -53,7 +55,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     categoryLabel: 'Motherboard Testing & Service',
     description: 'Electronics service bench with digital multimeter probes testing SMD circuit components, with oscilloscope diagnostics and soldering stations.',
     locationTag: 'Diagnostic Bench',
-    image: '/assets/gallery/motherboard-testing.jpg'
+    image: getAssetPath('/assets/gallery/motherboard-testing.jpg')
   },
   {
     id: 'gal-networking',
@@ -62,7 +64,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     categoryLabel: 'Networking',
     description: 'Commercial server rack cabinet organized with dressed color-coded CAT6 ethernet patch cables, patch panels, and enterprise switches with active LED status.',
     locationTag: 'Network Infrastructure',
-    image: '/assets/gallery/networking.jpg'
+    image: getAssetPath('/assets/gallery/networking.jpg')
   },
   {
     id: 'gal-solar-cctv',
@@ -71,6 +73,6 @@ export const GALLERY_DATA: GalleryItem[] = [
     categoryLabel: 'Solar CCTV Installation',
     description: 'Standalone pole-mounted 4G outdoor security camera system with attached photovoltaic solar panel and weatherproof battery box for off-grid perimeter monitoring.',
     locationTag: 'Off-Grid Solar',
-    image: '/assets/gallery/solar-cctv-installation.jpg'
+    image: getAssetPath('/assets/gallery/solar-cctv-installation.jpg')
   }
 ];

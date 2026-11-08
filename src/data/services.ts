@@ -1,3 +1,5 @@
+import { getAssetPath } from '../utils/assets';
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -61,7 +63,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDesc: 'Turnkey security surveillance setups, AcuSense AI human/vehicle filtering, ColorVu full-color night vision, solar 4G units, and smartphone streaming.',
     iconName: 'Camera',
     highlights: ['High-Definition Surveillance', 'Perimeter ColorVu Vision', 'Off-Grid 4G Solar Cameras', 'Zero-Latency Phone Streaming'],
-    image: '/assets/cctv/bullet-camera.jpg'
+    image: getAssetPath('/assets/cctv/bullet-camera.jpg')
   },
   {
     id: 'srv-networking',
@@ -70,7 +72,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDesc: 'Structured CAT6 gigabit cabling, commercial managed switches, seamless Wi-Fi mesh deployment, router security, and clean server rack dressing.',
     iconName: 'Network',
     highlights: ['Gigabit Structured Cabling', 'Campus Seamless Wi-Fi Mesh', 'Rack Dressing & Patch Panels', 'Firewall & Access Security'],
-    image: '/assets/gallery/networking.jpg'
+    image: getAssetPath('/assets/gallery/networking.jpg')
   },
   {
     id: 'srv-it-support',
