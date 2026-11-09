@@ -1,0 +1,8 @@
+# Robots.txt for JAZ COMPUTER (Tenkasi)
+# Website: https://spmohamed.github.io/jaz-computer-profile/
+
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://spmohamed.github.io/jaz-computer-profile/sitemap.xml
